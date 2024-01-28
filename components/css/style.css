@@ -8,7 +8,10 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
-
+.logo img{
+ width: 260px;
+ height:100%;
+}
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -17,12 +20,14 @@ body {
 }
 
 .container {
+  display: flex;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 header {
-  background-color: #0077b5;
+  background-color: #0718C4;
   color: #fff;
   padding: 1rem 0;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -92,6 +97,7 @@ main {
 }
 
 .middle {
+  margin: 15px;
   flex: 0 0 100%;
 }
 
@@ -111,7 +117,7 @@ main {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background-color: #0077b5;
+  background-color: #0718C4;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -139,7 +145,7 @@ main {
 }
 
 footer {
-  background-color: #0077b5;
+  background-color: #0718C4;
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -151,7 +157,7 @@ footer {
   width: 50px;
   height: 50px;
   /* margin-top: 10px; */
-  background-color: #0077b5;
+  background-color: #0718C4;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -180,4 +186,38 @@ footer {
   .right {
     flex: 0 0 calc(20% - 20px);
   }
+
+}
+.new_post{
+  display: flex;
+  gap: 10px;
+  border-radius: 20px;
+  height: 70px;
+  background:#fff;
+  border: 1px solid lightgrey;
+  justify-content: space-between;
+  align-items: center;
+}
+.new_post img , .profile-picture img{
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.new_post button{
+  display: block;
+  width: 80px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #0718C4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.middle_s{
+  display: flex;
+ 
+  width: 50%;
+  flex-direction: column;
 }
