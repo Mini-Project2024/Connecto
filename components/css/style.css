@@ -27,6 +27,8 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;right: 0;left: 0;
   background-color: #0718C4;
   color: #fff;
   padding: 1rem 0;
@@ -41,6 +43,7 @@ header h1 {
 }
 
 nav {
+ 
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -93,10 +96,11 @@ main {
 }
 
 .left {
-  position: relative;
+  width: 300px;
+  position:fixed;
   left: 0px;
- 
-  top: 0;
+  height: 100vh;
+  top: 85px;
   bottom: 0;
   flex: 0 0 100%;
 }
@@ -107,13 +111,20 @@ main {
 }
 
 .right {
+  width: 300px;
+  position:fixed;
+  right: 0;
+  height: 100vh;
+  top: 85px;
+  bottom: 0;
   flex: 0 0 100%;
 }
 
 .left img {
   border-radius: 50%;
   width: 100%;
-  height: auto;
+  height: 100px;
+  width: 100px;
 }
 
 .left button,
@@ -200,6 +211,8 @@ footer {
   width: 620px;
   height: 70px;
   background:#fff;
+  margin-left: 300px;
+  margin-top: 85px;
   border: 1px solid lightgrey;
   justify-content: space-between;
   align-items: center;
@@ -229,6 +242,7 @@ footer {
 }
 /* ------------------feed area----------- */
 .feeds{
+  margin-left: 300px;
   width: 620px;
 }
 .feeds .feed{
