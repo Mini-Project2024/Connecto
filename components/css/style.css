@@ -93,6 +93,11 @@ main {
 }
 
 .left {
+  position: relative;
+  left: 0px;
+ 
+  top: 0;
+  bottom: 0;
   flex: 0 0 100%;
 }
 
@@ -192,6 +197,7 @@ footer {
   display: flex;
   gap: 10px;
   border-radius: 20px;
+  width: 620px;
   height: 70px;
   background:#fff;
   border: 1px solid lightgrey;
@@ -220,4 +226,31 @@ footer {
  
   width: 50%;
   flex-direction: column;
+}
+/* ------------------feed area----------- */
+.feeds{
+  width: 620px;
+}
+.feeds .feed{
+  background-color: #FFF;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 1rem auto;
+  line-height: 1.5;
+  font-size: .85rem;
+}
+.feeds .feed .feed-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.feed .feed-top .user{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.feed .feed-image img{
+ border-radius: 10px;
+ overflow: hidden;
 }
