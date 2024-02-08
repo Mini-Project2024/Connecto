@@ -17,7 +17,7 @@
                 if(password_verify($password, $row['Password'])){
                     $_SESSION['user'] = $row;
                     // echo $_SESSION['user'];
-                    header("Location: ../components/pages/home.php");
+                    header("Location: ../components/pages/home.html");
                     exit();
                 } else {
                     echo "Email or Password is Incorrect";
