@@ -272,7 +272,14 @@ footer {
   align-items: center;
   gap: 1rem;
 }
-.feed .feed-image img{
+/* .feed .feed-image img{
  border-radius: 10px;
  overflow: hidden;
+} */
+
+.feed .feed-image img {
+  max-width: 100%; /* Ensure the image never exceeds its container's width */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 10px;
+  overflow: hidden;
 }
