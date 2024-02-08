@@ -2,7 +2,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "jobfinder";
+    $dbname = "finder";
 
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
 
