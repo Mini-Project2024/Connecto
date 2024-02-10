@@ -210,6 +210,14 @@ if ($userDetails) {
     </section>
     <section class="right">
       <div class="messaging-options">
+        <?php
+          if(isset($_GET['test'])){
+            $current_user = getActiveChatUsersIds();
+            echo "<pre>";
+            print_r(getMessages(7));
+          }
+
+        ?>
         <h2>Messaging</h2>
         <div class="message">
           <p>John Doe: Hi there!</p>

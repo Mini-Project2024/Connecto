@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conn, $query)) {
         echo "Record updated successfully";
+        header("Location: ./home.php");
     } else {
         echo "Error updating record: " . mysqli_error($conn);
     }
