@@ -1,10 +1,11 @@
 <?php
 session_start();
+include_once("./functions.php");
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {
-    // Redirect to login page if user is not logged in
-    header("Location: ../../../components/pages/login.html");
-    exit(); // Stop execution of the script
+  // Redirect to login page if user is not logged in
+  header("Location: ../../../components/pages/login.html");
+  exit(); // Stop execution of the script
 }
 
 // Access the user data from session
@@ -42,11 +43,11 @@ $user = $_SESSION['user'];
   <main class="container">
     <section class="left">
       <div class="profile-options">
-        <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="Your Name" />
         <h2>
           <h2>
             <?php
-              echo $user['FirstName'];
+            echo $user['FirstName'];
             ?>
           </h2>
         </h2>
@@ -57,7 +58,7 @@ $user = $_SESSION['user'];
     </section>
     <section class="middle_s">
       <div class="new_post">
-        <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="Your Name" />
         <h2> start a new post</h2>
         <button>post</button>
       </div>
@@ -67,20 +68,20 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="">
+                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
               </div>
               <div class="info">
                 <h3>
                   <!-- Adding the name from the database -->
                   <?php
-                    echo $user['FirstName'];
+                  echo $user['FirstName'];
                   ?>
                 </h3>
               </div>
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage']?>"="../images/profile.jpg" alt="">
+            <img src="./uploads/<?php echo $user['ProfileImage'] ?>"="../images/profile.jpg" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -106,7 +107,7 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="">
+                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -114,7 +115,7 @@ $user = $_SESSION['user'];
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="">
+            <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -139,7 +140,7 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="">
+                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -147,7 +148,7 @@ $user = $_SESSION['user'];
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage']?>" alt="">
+            <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -158,13 +159,12 @@ $user = $_SESSION['user'];
             <div class="bookmark">
               <i class="fa-regular fa-bookmark"></i>
             </div>
-            
+
           </div>
           <div class="caption">
             <p><b>Ananya</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci laudantium quo iusto quibusdam tempora neque eveniet reprehenderit quas sed commodi! <span>#Lifestyle</span></p>
           </div>
           <div class="comments text-grey">View all comments</div>
-
         </div>
       </div>
       <!-- <section class="middle">
@@ -188,6 +188,16 @@ $user = $_SESSION['user'];
       <span><i class="fa-solid fa-arrow-up"></i></span>
     </section>
     <section class="right">
+
+      <?php
+      if (isset($_GET['test'])) {
+        $active_chat_id = getActiveChatUsersIds();
+        echo"<pre>";
+        print_r(getMessages(7));
+      }
+      ?>
+
+
       <div class="messaging-options">
         <h2>Messaging</h2>
         <div class="message">
@@ -200,8 +210,9 @@ $user = $_SESSION['user'];
           <p>John Doe: Doing well, thanks!</p>
         </div>
       </div>
-      <button>+</button>
+      <!-- <button>+</button> -->
     </section>
+
 
 
   </main>
