@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("./operations.php");
+include_once("./functions.php");
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {
   // Redirect to login page if user is not logged in
