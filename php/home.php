@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("./functions.php");
+include("config.php");
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {
   // Redirect to login page if user is not logged in
@@ -10,6 +11,26 @@ if (!isset($_SESSION['user'])) {
 
 // Access the user data from session
 $user = $_SESSION['user'];
+$query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
+$result = mysqli_query($conn, $query);
+$userDetails = mysqli_fetch_assoc($result);
+
+// Check if user details exist
+if ($userDetails) {
+    $profileImage = $userDetails['ProfileImage'];
+    $firstName = $userDetails['FirstName'];
+    $lastName = $userDetails['LastName'];
+    $email = $userDetails['Email'];
+    $coverimage = $userDetails['CoverPhotoURL'];
+    $bio = $userDetails['Bio'];
+    $company = $userDetails['CompanyName'];
+    $position = $userDetails['Position'];
+    $institution = $userDetails['Institution'];
+    $degree = $userDetails['Degree'];
+    $field_of_study = $userDetails['FieldOfStudy'];
+    $graduationyear = $userDetails['GraduationYear'];
+    $proficiency = $userDetails['Proficiency'];
+}
 
 ?>
 
@@ -43,7 +64,7 @@ $user = $_SESSION['user'];
   <main class="container">
     <section class="left">
       <div class="profile-options">
-        <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage?>" alt="Your Name" />
         <h2>
           <h2>
             <?php
@@ -58,7 +79,7 @@ $user = $_SESSION['user'];
     </section>
     <section class="middle_s">
       <div class="new_post">
-        <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage?>" alt="Your Name" />
         <h2> start a new post</h2>
         <button>post</button>
       </div>
@@ -68,7 +89,7 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
+                <img src="./uploads/<?php echo $profileImage?>" alt="">
               </div>
               <div class="info">
                 <h3>
@@ -81,7 +102,7 @@ $user = $_SESSION['user'];
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage'] ?>"="../images/profile.jpg" alt="">
+            <img src="./uploads/<?php echo $profileImage?>"="../images/profile.jpg" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -107,7 +128,7 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
+                <img src="./uploads/<?php echo $profileImage?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -115,7 +136,7 @@ $user = $_SESSION['user'];
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
+            <img src="./uploads/<?php echo $profileImage?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -140,7 +161,7 @@ $user = $_SESSION['user'];
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
+                <img src="./uploads/<?php echo $profileImage?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -148,7 +169,7 @@ $user = $_SESSION['user'];
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $user['ProfileImage'] ?>" alt="">
+            <img src="./uploads/<?php echo $profileImage?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
