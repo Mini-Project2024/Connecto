@@ -1,5 +1,6 @@
 <?php
 
+    session_start();
     include("config.php");
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -13,7 +14,10 @@
                 $row = mysqli_fetch_assoc($sql);
 
                 if(password_verify($password, $row['Password'])){
-                    header("Location: ../components/pages/profile.html");
+                    $_SESSION['user'] = $row;
+                    // echo $_SESSION['user'];
+                    header("Location: ../php/home.php");
+                    exit();
                 } else {
                     echo "Email or Password is Incorrect";
                 }

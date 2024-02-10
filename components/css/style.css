@@ -8,6 +8,12 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center; 
+}
 .logo img{
  width: 260px;
  height:100%;
@@ -22,6 +28,7 @@ body {
 .container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -46,7 +53,8 @@ nav {
  
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex: 0 0 auto;
 }
 
 nav ul {
@@ -202,7 +210,11 @@ footer {
   cursor: pointer;
   font-size: 1.5rem;
 }
-
+span.fa-solid.fa-arrow-up{
+  width: 50px;
+  height: 50px;
+  margin:20px auto;
+}
 /* Media queries for responsiveness */
 @media only screen and (min-width: 768px) {
   .left,
@@ -287,7 +299,14 @@ footer {
   align-items: center;
   gap: 1rem;
 }
-.feed .feed-image img{
+/* .feed .feed-image img{
  border-radius: 10px;
  overflow: hidden;
+} */
+
+.feed .feed-image img {
+  max-width: 100%; /* Ensure the image never exceeds its container's width */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 10px;
+  overflow: hidden;
 }

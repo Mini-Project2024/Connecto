@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
                 if ($stmt->execute()) {
                     echo "Registration successful!";
+                    header("Location: ../components/pages/login.html");
                 } else {
                     echo "Error in registration. Please try again.";
                 }
