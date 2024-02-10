@@ -9,6 +9,7 @@ if (!isset($_SESSION['user'])) {
 
 // Access the user data from session
 $user = $_SESSION['user'];
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,6 @@ $user = $_SESSION['user'];
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/css/style.css">
 </head>
-
 <body>
   <header>
     <div class="container">
@@ -188,6 +188,7 @@ $user = $_SESSION['user'];
       <span><i class="fa-solid fa-arrow-up"></i></span>
     </section>
     <section class="right">
+      
       <div class="messaging-options">
         <h2>Messaging</h2>
         <div class="message">
