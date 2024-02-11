@@ -214,7 +214,7 @@ if ($userDetails) {
           if(isset($_GET['test'])){
             $current_user = getActiveChatUsersIds();
             echo "<pre>";
-            print_r(getMessages(7));
+            print_r(getMessages(5));
           }
 
         ?>
