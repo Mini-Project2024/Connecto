@@ -23,7 +23,7 @@ if ($userDetails) {
 
 $postquery = "SELECT p.*, u.FirstName, u.ProfileImage 
               FROM posts p 
-              JOIN users u ON p.UserID = u.UserID";
+              JOIN users u ON p.UserID = u.UserID ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 
 ?>
@@ -39,19 +39,27 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
+    var chatting_user_id = 6;
+
     function synmsg() {
       $.ajax({
-          url: './ajax.php?getMessages',
-          method: 'GET',
-          dataType: 'json',
-          success: function(response){
-              $('#chatlist').html(response.chatlist);
-          }
+        url: './ajax.php?getMessages',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+          chatter_id: chatting_user_id
+        },
+        success: function(response) {
+          console.log(response.chat);
+          $('#chatlist').html(response.chatlist);
+          $('#user_chat').html(response.chat);
+        }
       });
     }
-    setInterval(() => {
-      synmsg();
-    }, 1000);
+    synmsg();
+    // setInterval(() => {
+    //   synmsg();
+    // }, 1000);
   </script>
   <link rel="stylesheet" href="../components/css/style.css">
 </head>
@@ -88,9 +96,26 @@ $postresult = mysqli_query($conn, $postquery);
       <div class="new_post">
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2> start a new post</h2>
-        <button><a href="./post.php">Post</a></button>
+        <button><a style="text-decoration:none; color:#fff; font-weight:600;" href="./post.php">Post</a></button>
       </div>
       <div class="feeds">
+        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
+          <div class="feed">
+            <div class="feed-top">
+              <div class="user">
+                <div class="profile-picture">
+                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
+                </div>
+                <div class="info">
+                  <h3><?php echo $postDetails['FirstName']; ?></h3>
+                </div>
+              </div>
+            </div>
+            <div class="caption">
+              <?php echo $postDetails['Content']; ?>
+            </div>
+            <div class="feed-image">
+              <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
         <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
           <div class="feed">
             <div class="feed-top">
@@ -113,12 +138,55 @@ $postresult = mysqli_query($conn, $postquery);
               <!-- Your action buttons here -->
             </div>
             <div class="comments text-grey">View all comments</div>
+            <div class="action-button">
+              <!-- Your action buttons here -->
+            </div>
+            <div class="comments text-grey">View all comments</div>
           </div>
+        <?php } ?>
         <?php } ?>
       </div>
     </section>
     <section class="right">
-      <!-- Your right section content -->
+      <script>
+        // Function to show chatbox and hide messaging options
+        function showChatbox() {
+          document.getElementById('chatbox').style.display = 'block';
+          document.getElementById('messaging-options').style.display = 'none';
+        }
+
+        // Function to hide chatbox and show messaging options
+        function hideChatbox() {
+          document.getElementById('chatbox').style.display = 'none';
+          document.getElementById('messaging-options').style.display = 'block';
+        }
+      </script>
+
+      <div class="chatbox" id="chatbox">
+        <div class="chathead">
+          <a href="#" onclick="hideChatbox()"><i class="fa-solid fa-arrow-left"></i></a>
+          <img class="chat-img" src="./uploads/<?php echo $profileImage ?>" alt="">
+          <p>Nishal</p>
+        </div>
+        <div class="chatarea" id="user_chat">
+          <!-- <div class="chat1">
+            Hello,Nice to meet you
+          </div> -->
+          <div class="chat2">
+            Same Here Nishal
+          </div>
+        </div>
+        <div class="chatbottom">
+          <input type="text" class="chat-msg">
+          <button class="sendbtn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div class="messaging-options" id="messaging-options">
+        <h2>Messaging</h2>
+        <div class="message" id="chatlist">
+
+        </div>
+      </div>
     </section>
   </main>
   <footer>

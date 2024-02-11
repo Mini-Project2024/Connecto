@@ -126,7 +126,7 @@ main {
   top: 85px;
   bottom: 0;
   overflow-y: auto;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .right::-webkit-scrollbar {
   display: none;
@@ -354,9 +354,16 @@ span.fa-solid.fa-arrow-up{
 }
 
 .chatarea {
-  flex: 1;
+  max-height: 460px;
   overflow-y: auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chatarea::-webkit-scrollbar {
+  display: none;
 }
 
 .chatbottom {
@@ -426,3 +433,62 @@ span.fa-solid.fa-arrow-up{
   display: none;
 }
 
+.chat1{
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  background-color: #ddd;
+  width: fit-content;
+  max-width: 200px;
+  margin-right: auto;
+}
+
+.chat2{
+  padding: 5px;
+  align-items: end;
+  border-radius: 5px 0 0 5px;
+  background-color: #0718C4;
+  width: fit-content;
+  max-width: 200px;
+  color: #fff;
+  margin-top: 2px;
+  margin-left: auto;
+}
+
+/* Post Page*/
+.postcontainer{
+  
+  width: 600px;
+  height: 500px;
+  margin: 50px auto;
+  border-radius: 15px;
+  background-color: aquamarine;
+}
+.myself{
+  display: flex;
+  align-items: center;
+}
+.postprofile{
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.postprofilename{
+  margin-left: 10px;
+  font-size: 25px;
+}
+.postmessage{
+  width: 590px;
+  margin: 10px auto;
+}
+#posttext{
+  width: 590px;
+  border-radius: 15px;
+  border: none;
+  resize: none;
+  padding: 15px;
+  
+}
+#fileToUpload{
+  display: none;
+}
