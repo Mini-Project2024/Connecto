@@ -6,7 +6,7 @@ include("config.php");
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {
   // Redirect to login page if user is not logged in
-  header("Location: ../../../components/pages/login.html");
+  header("Location: ../components/pages/login.html");
   exit(); // Stop execution of the script
 }
 
@@ -42,7 +42,6 @@ $postresult = mysqli_query($conn, $postquery);
     var chatting_user_id = 6;
 
     function synmsg() {
-      // console.log("hello");
       $.ajax({
         url: './ajax.php?getMessages',
         method: 'GET',
@@ -86,7 +85,7 @@ $postresult = mysqli_query($conn, $postquery);
       <div class="profile-options">
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2>
-          <?php echo $user['FirstName']; ?>
+          <?php echo $userDetails['FirstName']; ?>
         </h2>
         <p>Job Title</p>
         <button><a href="./profile.php">View Profile</a></button>
@@ -117,15 +116,36 @@ $postresult = mysqli_query($conn, $postquery);
             </div>
             <div class="feed-image">
               <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
+          <div class="feed">
+            <div class="feed-top">
+              <div class="user">
+                <div class="profile-picture">
+                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
+                </div>
+                <div class="info">
+                  <h3><?php echo $postDetails['FirstName']; ?></h3>
+                </div>
+              </div>
             </div>
+            <div class="caption">
+              <?php echo $postDetails['Content']; ?>
+            </div>
+            <div class="feed-image">
+              <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+            </div>
+            <div class="action-button">
+              <!-- Your action buttons here -->
+            </div>
+            <div class="comments text-grey">View all comments</div>
             <div class="action-button">
               <!-- Your action buttons here -->
             </div>
             <div class="comments text-grey">View all comments</div>
           </div>
         <?php } ?>
+        <?php } ?>
       </div>
-      <span><i class="fa-solid fa-arrow-up"></i></span>
     </section>
     <section class="right">
       <script>
