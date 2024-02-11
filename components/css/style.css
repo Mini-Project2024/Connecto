@@ -119,13 +119,17 @@ main {
 }
 
 .right {
-  width: 300px;
-  position:fixed;
+  width: 400px;
+  position: fixed;
   right: 0;
-  height: 100vh;
+  height: calc(100vh - 85px);
   top: 85px;
   bottom: 0;
-  flex: 0 0 100%;
+  overflow-y: auto;
+  /* padding: 20px; */
+}
+.right::-webkit-scrollbar {
+  display: none;
 }
 
 .left img {
@@ -135,8 +139,7 @@ main {
   width: 100px;
 }
 
-.left button,
-.right button {
+.left button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -159,6 +162,9 @@ main {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 10px;
 }
 .message {
   margin-bottom: 3px;
@@ -196,20 +202,19 @@ footer {
   padding: 10px 0;
   text-align: center;
 }
-.right button {
+/* .right button {
   position: absolute;
   bottom: 100px;
 
   width: 50px;
   height: 50px;
-  /* margin-top: 10px; */
   background-color: #0718C4;
   color: #fff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.5rem;
-}
+} */
 span.fa-solid.fa-arrow-up{
   width: 50px;
   height: 50px;
@@ -309,4 +314,204 @@ span.fa-solid.fa-arrow-up{
   height: auto; /* Maintain the aspect ratio */
   border-radius: 10px;
   overflow: hidden;
+}
+
+/* ------------------message icon ----------- */
+.msg-main{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding: 5px;
+}
+
+.msg-img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.msg-name{
+  font-weight: 600;
+  font-size: 18px;
+}
+.msg > a{
+  text-decoration: none;
+  color: #000;
+}
+
+.chatbox {
+  width: 100%;
+  height: 580px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+  border-radius: 15px 15px 10px 10px;
+  display: none;
+}
+
+.chathead {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  background-color: #ddd;
+  border-radius: 15px 15px 0 0;
+}
+
+.chathead > p {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.chathead > a > i {
+  color: #000;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.chat-img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.chatarea {
+  max-height: 460px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chatarea::-webkit-scrollbar {
+  display: none;
+}
+
+.chatbottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ddd;
+  border-radius: 0 0 10px 10px;
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Align items horizontally with space between */
+  align-items: center; /* Align items vertically */
+  padding: 10px;
+}
+
+.chat-msg {
+  flex: 1; /* Take remaining space */
+  padding: 5px;
+}
+
+.sendbtn {
+  padding: 5px 10px;
+  background-color: #0718C4;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-msg{
+  border: none;
+}
+/* Post Page*/
+.postcontainer{
+  
+  width: 600px;
+  height: 500px;
+  margin: 50px auto;
+  border-radius: 15px;
+  background-color: aquamarine;
+}
+.myself{
+  display: flex;
+  align-items: center;
+}
+.postprofile{
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.postprofilename{
+  margin-left: 10px;
+  font-size: 25px;
+}
+.postmessage{
+  width: 590px;
+  margin: 10px auto;
+}
+#posttext{
+  width: 590px;
+  border-radius: 15px;
+  border: none;
+  resize: none;
+  padding: 15px;
+  
+}
+#fileToUpload{
+  display: none;
+}
+
+.chat1{
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  background-color: #ddd;
+  width: fit-content;
+  max-width: 200px;
+  margin-right: auto;
+}
+
+.chat2{
+  padding: 5px;
+  align-items: end;
+  border-radius: 5px 0 0 5px;
+  background-color: #0718C4;
+  width: fit-content;
+  max-width: 200px;
+  color: #fff;
+  margin-top: 2px;
+  margin-left: auto;
+}
+
+/* Post Page*/
+.postcontainer{
+  
+  width: 600px;
+  height: 500px;
+  margin: 50px auto;
+  border-radius: 15px;
+  background-color: aquamarine;
+}
+.myself{
+  display: flex;
+  align-items: center;
+}
+.postprofile{
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.postprofilename{
+  margin-left: 10px;
+  font-size: 25px;
+}
+.postmessage{
+  width: 590px;
+  margin: 10px auto;
+}
+#posttext{
+  width: 590px;
+  border-radius: 15px;
+  border: none;
+  resize: none;
+  padding: 15px;
+  
+}
+#fileToUpload{
+  display: none;
 }
