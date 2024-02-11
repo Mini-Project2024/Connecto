@@ -1,7 +1,8 @@
 <?php
-session_start();
+// session_start();
 include_once("./functions.php");
 include("config.php");
+
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {
   // Redirect to login page if user is not logged in
@@ -17,21 +18,20 @@ $userDetails = mysqli_fetch_assoc($result);
 
 // Check if user details exist
 if ($userDetails) {
-    $profileImage = $userDetails['ProfileImage'];
-    $firstName = $userDetails['FirstName'];
-    $lastName = $userDetails['LastName'];
-    $email = $userDetails['Email'];
-    $coverimage = $userDetails['CoverPhotoURL'];
-    $bio = $userDetails['Bio'];
-    $company = $userDetails['CompanyName'];
-    $position = $userDetails['Position'];
-    $institution = $userDetails['Institution'];
-    $degree = $userDetails['Degree'];
-    $field_of_study = $userDetails['FieldOfStudy'];
-    $graduationyear = $userDetails['GraduationYear'];
-    $proficiency = $userDetails['Proficiency'];
+  $profileImage = $userDetails['ProfileImage'];
+  $firstName = $userDetails['FirstName'];
+  $lastName = $userDetails['LastName'];
+  $email = $userDetails['Email'];
+  $coverimage = $userDetails['CoverPhotoURL'];
+  $bio = $userDetails['Bio'];
+  $company = $userDetails['CompanyName'];
+  $position = $userDetails['Position'];
+  $institution = $userDetails['Institution'];
+  $degree = $userDetails['Degree'];
+  $field_of_study = $userDetails['FieldOfStudy'];
+  $graduationyear = $userDetails['GraduationYear'];
+  $proficiency = $userDetails['Proficiency'];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +43,26 @@ if ($userDetails) {
   <title>CONNECTO</title>
   <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function synmsg() {
+      // console.log("hello");
+      $.ajax({
+          url: './ajax.php?getMessages',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response){
+              $('#chatlist').html(response.chatlist);
+          }
+      });
+    }
+    setInterval(() => {
+      synmsg();
+    }, 1000);
+  </script>
   <link rel="stylesheet" href="../components/css/style.css">
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -64,13 +82,9 @@ if ($userDetails) {
   <main class="container">
     <section class="left">
       <div class="profile-options">
-        <img src="./uploads/<?php echo $profileImage?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2>
-          <h2>
-            <?php
-            echo $user['FirstName'];
-            ?>
-          </h2>
+          <?php echo $user['FirstName']; ?>
         </h2>
         <p>Job Title</p>
         <button><a href="./profile.php">View Profile</a></button>
@@ -79,7 +93,7 @@ if ($userDetails) {
     </section>
     <section class="middle_s">
       <div class="new_post">
-        <img src="./uploads/<?php echo $profileImage?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2> start a new post</h2>
         <button>post</button>
       </div>
@@ -89,20 +103,17 @@ if ($userDetails) {
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $profileImage?>" alt="">
+                <img src="./uploads/<?php echo $profileImage ?>" alt="">
               </div>
               <div class="info">
                 <h3>
-                  <!-- Adding the name from the database -->
-                  <?php
-                  echo $user['FirstName'];
-                  ?>
+                  <?php echo $user['FirstName']; ?>
                 </h3>
               </div>
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $profileImage?>"="../images/profile.jpg" alt="">
+            <img src="./uploads/<?php echo $profileImage ?>"="../images/profile.jpg" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -118,7 +129,6 @@ if ($userDetails) {
             <p><b>Ananya</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci laudantium quo iusto quibusdam tempora neque eveniet reprehenderit quas sed commodi! <span>#Lifestyle</span></p>
           </div>
           <div class="comments text-grey">View all comments</div>
-
         </div>
       </div>
 
@@ -128,7 +138,7 @@ if ($userDetails) {
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $profileImage?>" alt="">
+                <img src="./uploads/<?php echo $profileImage ?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -136,7 +146,7 @@ if ($userDetails) {
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $profileImage?>" alt="">
+            <img src="./uploads/<?php echo $profileImage ?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -152,7 +162,6 @@ if ($userDetails) {
             <p><b>Ananya</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci laudantium quo iusto quibusdam tempora neque eveniet reprehenderit quas sed commodi! <span>#Lifestyle</span></p>
           </div>
           <div class="comments text-grey">View all comments</div>
-
         </div>
       </div>
       <div class="feeds">
@@ -161,7 +170,7 @@ if ($userDetails) {
           <div class="feed-top">
             <div class="user">
               <div class="profile-picture">
-                <img src="./uploads/<?php echo $profileImage?>" alt="">
+                <img src="./uploads/<?php echo $profileImage ?>" alt="">
               </div>
               <div class="info">
                 <h3>Ananya</h3>
@@ -169,7 +178,7 @@ if ($userDetails) {
             </div>
           </div>
           <div class="feed-image">
-            <img src="./uploads/<?php echo $profileImage?>" alt="">
+            <img src="./uploads/<?php echo $profileImage ?>" alt="">
           </div>
           <div class="action-button">
             <div class="interaction-button">
@@ -180,7 +189,6 @@ if ($userDetails) {
             <div class="bookmark">
               <i class="fa-regular fa-bookmark"></i>
             </div>
-
           </div>
           <div class="caption">
             <p><b>Ananya</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci laudantium quo iusto quibusdam tempora neque eveniet reprehenderit quas sed commodi! <span>#Lifestyle</span></p>
@@ -188,27 +196,10 @@ if ($userDetails) {
           <div class="comments text-grey">View all comments</div>
         </div>
       </div>
-      <!-- <section class="middle">
-       
-      
-        
-       
-        <div class="post-options">
-          <h2>Posts</h2>
-          <img src="./uploads/" alt="Post Image" />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            deserunt placeat iste architecto dolorem iusto laboriosam atque
-            commodi magnam, adipisci quo veniam voluptatibus possimus sint
-            nesciunt modi eos aliquam. In animi unde labore hic debitis, ullam
-            aspernatur culpa quibusdam corrupti blanditiis explicabo quis vel
-            modi ad mollitia eius? Earum illum ut accusamus.
-          </p>
-        </div>
-      </section> -->
       <span><i class="fa-solid fa-arrow-up"></i></span>
     </section>
     <section class="right">
+<<<<<<< HEAD
       <div class="messaging-options">
         <?php
           if(isset($_GET['test'])){
@@ -216,24 +207,29 @@ if ($userDetails) {
             echo "<pre>";
             print_r(getMessages(5));
           }
+=======
+      <div class="chatbox" id="chatbox">
+        <div class="chathead">
+          <a href="#"><i class="fa-solid fa-arrow-left"></i></a>
+          <img class="chat-img" src="./uploads/<?php echo $profileImage?>" alt="">
+          <p>Nishal</p>
+        </div>
+        <div class="chatarea">
+>>>>>>> a7027a348e883f13290cf4e18d4fb1170003690c
 
-        ?>
-        <h2>Messaging</h2>
-        <div class="message">
-          <p>John Doe: Hi there!</p>
         </div>
-        <div class="message">
-          <p>Jane Doe: How are you?</p>
-        </div>
-        <div class="message">
-          <p>John Doe: Doing well, thanks!</p>
+        <div class="chatbottom">
+          <input type="text" class="chat-msg">
+          <button class="sendbtn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
-      <!-- <button>+</button> -->
+      <div class="messaging-options">
+        <h2>Messaging</h2>
+        <div class="message" id="chatlist">
+          
+        </div>
+      </div>
     </section>
-
-
-
   </main>
   <footer>
     <div class="container">
