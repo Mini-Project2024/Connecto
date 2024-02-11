@@ -24,7 +24,7 @@ if ($userDetails) {
   $lastName = $userDetails['LastName'];
 }
 
-$postquery = "SELECT p.*, u.FirstName, u.ProfileImage 
+$postquery = "SELECT p.*, u.* 
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
@@ -110,7 +110,7 @@ $postresult = mysqli_query($conn, $postquery);
                   <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
                 </div>
                 <div class="info">
-                  <h3><?php echo $postDetails['FirstName']; ?></h3>
+                  <h3><?php echo $postDetails['FirstName'].' '.$postDetails['LastName'] ?></h3>
                 </div>
               </div>
             </div>
