@@ -19,6 +19,9 @@ $userDetails = mysqli_fetch_assoc($result);
 // Check if user details exist
 if ($userDetails) {
   $profileImage = $userDetails['ProfileImage'];
+  
+  $firstName = $userDetails['FirstName'];
+  $lastName = $userDetails['LastName'];
 }
 
 $postquery = "SELECT p.*, u.FirstName, u.ProfileImage 
@@ -85,7 +88,7 @@ $postresult = mysqli_query($conn, $postquery);
       <div class="profile-options">
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2>
-          <?php echo $userDetails['FirstName']; ?>
+          <?php echo $userDetails['FirstName'].' '.$userDetails['LastName'] ?>
         </h2>
         <p>Job Title</p>
         <button><a href="./profile.php">View Profile</a></button>
