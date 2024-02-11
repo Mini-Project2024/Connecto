@@ -199,15 +199,6 @@ if ($userDetails) {
       <span><i class="fa-solid fa-arrow-up"></i></span>
     </section>
     <section class="right">
-<<<<<<< HEAD
-      <div class="messaging-options">
-        <?php
-          if(isset($_GET['test'])){
-            $current_user = getActiveChatUsersIds();
-            echo "<pre>";
-            print_r(getMessages(5));
-          }
-=======
       <div class="chatbox" id="chatbox">
         <div class="chathead">
           <a href="#"><i class="fa-solid fa-arrow-left"></i></a>
@@ -215,7 +206,6 @@ if ($userDetails) {
           <p>Nishal</p>
         </div>
         <div class="chatarea">
->>>>>>> a7027a348e883f13290cf4e18d4fb1170003690c
 
         </div>
         <div class="chatbottom">
