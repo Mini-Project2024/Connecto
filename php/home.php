@@ -116,34 +116,12 @@ $postresult = mysqli_query($conn, $postquery);
             </div>
             <div class="feed-image">
               <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
-          <div class="feed">
-            <div class="feed-top">
-              <div class="user">
-                <div class="profile-picture">
-                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
-                </div>
-                <div class="info">
-                  <h3><?php echo $postDetails['FirstName']; ?></h3>
-                </div>
-              </div>
             </div>
-            <div class="caption">
-              <?php echo $postDetails['Content']; ?>
-            </div>
-            <div class="feed-image">
-              <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-            </div>
-            <div class="action-button">
-              <!-- Your action buttons here -->
-            </div>
-            <div class="comments text-grey">View all comments</div>
             <div class="action-button">
               <!-- Your action buttons here -->
             </div>
             <div class="comments text-grey">View all comments</div>
           </div>
-        <?php } ?>
         <?php } ?>
       </div>
     </section>
