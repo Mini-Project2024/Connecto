@@ -91,34 +91,65 @@ if ($userDetails) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link rel="stylesheet" href="../components/css/style.css">
 </head>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-        <input type="text" name="first_name" placeholder="Name" value="<?php echo $firstName ?>" required>
-        <input type="text" name="last_name" placeholder="LastName" value="<?php echo $lastName ?>" required>
-        <input type="email" name="email" placeholder="email" value="<?php echo $email ?>" required>
+    <div class="full">
+    <div class="left1">
+    <h1>Profile <br> details</h1>
+        <img src="../components/images/application.png" alt="">
+    </div> 
+
+    <div class="right1">   
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" class="edit">
+        <h1>Edit Your Profile</h1>
+        <fieldset>
+            <legend>Personal details</legend>
+        <div class="one">
+            <label>Name:</label>
+        <input type="text" name="first_name" placeholder="Name" class="fname" value="<?php echo $firstName ?>" required>
+        <input type="text" name="last_name" placeholder="LastName" class="lname" value="<?php echo $lastName ?>" required>
+      </div>
+       
+        <div class="one"> 
+            <label>Email:</label><input type="email" name="email" placeholder="email" value="<?php echo $email ?>" required>
+        </div>
+        <div class="one">
         <label for="upload_profile_image">Upload New Profile Image: </label>
         <input type="file" name="img" id="upload_profile_image">
         <input type="hidden" name="current_profile_image" value="<?php echo $profileImage ?>">
-        <label for="upload_cover_image">Upload New Cover Photo: </label>
+        </div>
+        <div class="one"><label for="upload_cover_image">Upload New Cover Photo: </label>
         <input type="file" name="coverimg" id="upload_cover_image">
+        </div>
         <input type="hidden" name="current_cover_image" value="<?php echo $coverimage ?>">
-        <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
-        <input type="text" name="company" placeholder="Company name" value="<?php echo $company ?>">
-        <input type="text" name="position" placeholder="Position" value="<?php echo $position ?>">
-        <input type="text" name="institution" placeholder="Institution" value="<?php echo $institution ?>">
-        <input type="text" name="degree" placeholder="Degree" value="<?php echo $degree ?>">
-        <input type="text" name="fieldofstudy" placeholder="Field of study" value="<?php echo $field_of_study ?>">
-        <input type="number" name="graduationyear" placeholder="Graduation year" value="<?php echo $graduationyear ?>">
+       <label>Bio:</label><textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
+    </fieldset>
+    <fieldset>
+        <legend>Company Details</legend>
+        <label>Company:</label><input type="text" name="company" placeholder="Company name" value="<?php echo $company ?>">
+        <label>Position:</label><input type="text" name="position" placeholder="Position" value="<?php echo $position ?>">
+        </fieldset>
+        <Fieldset> 
+            <legend>Institutional details</legend>
+            <div class="one"> <label>Institution:</label> <input type="text" name="institution" placeholder="Institution" value="<?php echo $institution ?>"></div>
+            <div class="one"><label>Degree:</label><input type="text" name="degree" placeholder="Degree" value="<?php echo $degree ?>"></div>
+            <div class="one"><label>Field of study:</label><input type="text" name="fieldofstudy" placeholder="Field of study" value="<?php echo $field_of_study ?>"></div>
+            <div class="one"> <label for="">graduation year:</label><input type="number" name="graduationyear" placeholder="Graduation year" value="<?php echo $graduationyear ?>">
+          
+            <div class="one">
+            <label for="">Proficiency:</label>
         <select name="proficiency">
             <option value="Beginner" <?php if ($proficiency == 'Beginner') echo 'selected'; ?>>Beginner</option>
             <option value="Intermediate" <?php if ($proficiency == 'Intermediate') echo 'selected'; ?>>Intermediate</option>
             <option value="Advanced" <?php if ($proficiency == 'Advanced') echo 'selected'; ?>>Advanced</option>
         </select>
-
-        <input type="submit" class="button" value="Submit"><br>
+</div>
+</Fieldset>
+        <input type="submit" class="button" value="Save" "><br>
     </form>
+    </div></div>
 </body>
 
 </html>

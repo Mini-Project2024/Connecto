@@ -36,12 +36,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../components/css/style.css">
 </head>
 <body>
 
-<img src="./uploads/<?php echo $coverimage?>" alt="Your Name" />
-<img src="./uploads/<?php echo $profileImage?>" alt="Your Name" />
-<h1><?php echo $firstName . ' ' . $lastName; ?></h1>
+<img src="./uploads/<?php echo $coverimage?>" alt="Your Name" class="cover-photo"/>
+<img src="./uploads/<?php echo $profileImage?>" alt="Your Name" class="profile-image" />
+<div class="username"><h1><?php echo $firstName . ' ' . $lastName; ?></h1>
 <?php echo $bio ?> <br>
 <?php echo $email ?> <br>
 <?php echo $company ?> <br>
@@ -50,7 +51,7 @@
 <?php echo $field_of_study ?> <br>
 <?php echo $degree ?> <br>
 <?php echo $graduationyear ?> <br>
-
+</div>
 </body>
 </html>
 
