@@ -19,9 +19,12 @@ $userDetails = mysqli_fetch_assoc($result);
 // Check if user details exist
 if ($userDetails) {
   $profileImage = $userDetails['ProfileImage'];
+  
+  $firstName = $userDetails['FirstName'];
+  $lastName = $userDetails['LastName'];
 }
 
-$postquery = "SELECT p.*, u.FirstName, u.ProfileImage 
+$postquery = "SELECT p.*, u.* 
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
@@ -85,7 +88,7 @@ $postresult = mysqli_query($conn, $postquery);
       <div class="profile-options">
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h2>
-          <?php echo $userDetails['FirstName']; ?>
+          <?php echo $userDetails['FirstName'].' '.$userDetails['LastName'] ?>
         </h2>
         <p>Job Title</p>
         <button><a href="./profile.php">View Profile</a></button>
@@ -107,7 +110,7 @@ $postresult = mysqli_query($conn, $postquery);
                   <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
                 </div>
                 <div class="info">
-                  <h3><?php echo $postDetails['FirstName']; ?></h3>
+                  <h3><?php echo $postDetails['FirstName'].' '.$postDetails['LastName'] ?></h3>
                 </div>
               </div>
             </div>
