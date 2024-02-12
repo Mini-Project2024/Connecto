@@ -55,14 +55,14 @@ $postresult = mysqli_query($conn, $postquery);
         success: function(response) {
           console.log(response.chat);
           $('#chatlist').html(response.chatlist);
-          $('#user_chat').html(response.chat);
+          // $('#user_chat').html(response.chat);
         }
       });
     }
-    synmsg();
-    // setInterval(() => {
-    //   synmsg();
-    // }, 1000);
+    // synmsg();
+    setInterval(() => {
+      synmsg();
+    }, 1000);
   </script>
   <link rel="stylesheet" href="../components/css/style.css">
 </head>
@@ -129,7 +129,7 @@ $postresult = mysqli_query($conn, $postquery);
       </div>
     </section>
     <section class="right">
-      <script>
+      <!-- <script>
         // Function to show chatbox and hide messaging options
         function showChatbox() {
           document.getElementById('chatbox').style.display = 'block';
@@ -141,31 +141,13 @@ $postresult = mysqli_query($conn, $postquery);
           document.getElementById('chatbox').style.display = 'none';
           document.getElementById('messaging-options').style.display = 'block';
         }
-      </script>
+      </script> -->
 
-      <div class="chatbox" id="chatbox">
-        <div class="chathead">
-          <a href="#" onclick="hideChatbox()"><i class="fa-solid fa-arrow-left"></i></a>
-          <img class="chat-img" src="./uploads/<?php echo $profileImage ?>" alt="">
-          <p>Nishal</p>
-        </div>
-        <div class="chatarea" id="user_chat">
-          <!-- <div class="chat1">
-            Hello,Nice to meet you
-          </div> -->
-          <div class="chat2">
-            Same Here Nishal
-          </div>
-        </div>
-        <div class="chatbottom">
-          <input type="text" class="chat-msg">
-          <button class="sendbtn"><i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-      </div>
+      
       <div class="messaging-options" id="messaging-options">
         <h2>Messaging</h2>
         <div class="message" id="chatlist">
-
+          
         </div>
       </div>
     </section>

@@ -353,7 +353,6 @@ span.fa-solid.fa-arrow-up{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   border-radius: 15px 15px 10px 10px;
-  display: none;
 }
 
 .chathead {
@@ -417,6 +416,7 @@ span.fa-solid.fa-arrow-up{
 
 .sendbtn {
   padding: 5px 10px;
+  color: #fff;
   background-color: #0718C4;
   border: none;
   cursor: pointer;
@@ -465,24 +465,26 @@ span.fa-solid.fa-arrow-up{
 }
 
 .chat1{
-  padding: 5px;
-  border-radius: 0 5px 5px 0;
+  padding: 15px;
+  border-radius: 5px 5px 5px 0;
   background-color: #ddd;
   width: fit-content;
-  max-width: 200px;
+  max-width: 400px;
   margin-right: auto;
+  margin-bottom: 3px;
 }
 
 .chat2{
-  padding: 5px;
+  padding: 15px;
   align-items: end;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px 5px 0 5px;
   background-color: #0718C4;
   width: fit-content;
-  max-width: 200px;
+  max-width: 400px;
   color: #fff;
   margin-top: 2px;
   margin-left: auto;
+  margin-bottom: 3px;
 }
 
 /* Post Page*/
