@@ -57,6 +57,7 @@ function getAllMessaages(){
     return $conversation;
 }
 
+
 function getUser($id){
     global $conn;
 
@@ -65,6 +66,17 @@ function getUser($id){
     $run = mysqli_query($conn, $query);
 
     return mysqli_fetch_assoc($run);
+}
+
+function sendMessage($user_id,$msg){
+    global $conn;
+
+    $current_user_id = $_SESSION['user']['UserID'];
+
+    $query = "INSERT INTO messages (from_user_id,to_user_id,msg) VALUES($current_user_id,$user_id,'$msg')";
+
+    return mysqli_query($conn, $query);
+
 }
 
 
