@@ -28,6 +28,7 @@
         $field_of_study = $userDetails['FieldOfStudy'];
         $graduationyear = $userDetails['GraduationYear'];
         $coverimage = $userDetails['CoverPhotoURL'];
+        $nativeplace = $userDetails['NativePlace'];
     }  
 ?>
 <!DOCTYPE html>
@@ -45,7 +46,7 @@
 <img src="./uploads/<?php echo $profileImage?>" alt="Your Name" class="profile-image" />
 <div class="username"><h1><?php echo $firstName . ' ' . $lastName; ?></h1>
 <p><?php echo $position ?> at <?php echo $company ?></p>
-<p>Mangaluru,Karnataka</p>
+<p><?php echo $nativeplace ?></p>
 <p>connections</p>
 </div>
 <br><br><br><br>
