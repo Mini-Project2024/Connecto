@@ -49,8 +49,8 @@
 <p><?php echo $position ?> at <?php echo $company ?></p>
 <p><?php echo $nativeplace ?></p>
 <p>1 connections</p>
-<button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
-<a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a>
+<!-- <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
+<a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a> -->
 </div>
 <br><br><br><br>
 <hr>
