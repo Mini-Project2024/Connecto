@@ -1,15 +1,12 @@
 <?php
 session_start();
 include("config.php");
-
 if (!isset($_SESSION['user'])) {
     // Redirect to login page if user is not logged in
     header("Location: ../../../components/pages/login.html");
     exit(); // Stop execution of the script
 }
-
 $user = $_SESSION['user'];
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -26,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Define the upload directory
     $uploadDirectory = 'uploads/';
-
+    
     // Check if a profile image was uploaded
     if ($_FILES['img']['error'] === UPLOAD_ERR_OK) {
         $profileImage = $_FILES['img']['name'];
@@ -44,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES['coverimg']['tmp_name'], $coverImageFilePath);
     } else {
         // If no new image uploaded, keep the existing one
-        $coverimage = $_POST['current_cover_image'];
+            $coverimage = $_POST['current_cover_image'];
     }
 
     // Extract only the filenames without the path
@@ -127,7 +124,7 @@ if ($userDetails) {
         </div>
         <input type="hidden" name="current_cover_image" value="<?php echo $coverimage ?>">
        <label>Bio:</label><textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
-       <input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" required>
+       <input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" >
     </fieldset>
     <fieldset>
         <legend>Company Details</legend>
@@ -150,7 +147,7 @@ if ($userDetails) {
         </select>
 </div>
 </Fieldset>
-        <input type="submit" class="button" value="Save" "><br>
+        <input type="submit" class="button" value="Save"><br>
     </form>
     </div></div>
 </body>
