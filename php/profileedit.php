@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $field_of_study = $_POST['fieldofstudy'];
     $graduationyear = $_POST['graduationyear'];
     $proficiency = $_POST['proficiency'];
+    $nativeplace = $_POST['nativeplace'];
 
     // Define the upload directory
     $uploadDirectory = 'uploads/';
@@ -51,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $coverImageFileName = basename($coverimage);
 
     // Update the database with only the filenames
-    $query = "UPDATE users SET FirstName='$first_name', LastName='$last_name', Email='$email', ProfileImage='$profileImageFileName', CoverPhotoURL='$coverImageFileName', Bio='$bio', CompanyName='$company', Position='$position', Institution='$institution', Degree='$degree', FieldOfStudy='$field_of_study', GraduationYear='$graduationyear', Proficiency='$proficiency' WHERE UserID=" . $user['UserID'];
+    $query = "UPDATE users SET FirstName='$first_name', LastName='$last_name', Email='$email', ProfileImage='$profileImageFileName', CoverPhotoURL='$coverImageFileName', Bio='$bio', NativePlace='$nativeplace', CompanyName='$company', Position='$position', Institution='$institution', Degree='$degree', FieldOfStudy='$field_of_study', GraduationYear='$graduationyear', Proficiency='$proficiency' WHERE UserID=" . $user['UserID'];
 
     if (mysqli_query($conn, $query)) {
         echo "Record updated successfully";
@@ -80,6 +81,7 @@ if ($userDetails) {
     $field_of_study = $userDetails['FieldOfStudy'];
     $graduationyear = $userDetails['GraduationYear'];
     $proficiency = $userDetails['Proficiency'];
+    $nativeplace = $userDetails['NativePlace'];
 }
 
 ?>
@@ -125,6 +127,7 @@ if ($userDetails) {
         </div>
         <input type="hidden" name="current_cover_image" value="<?php echo $coverimage ?>">
        <label>Bio:</label><textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
+       <input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" required>
     </fieldset>
     <fieldset>
         <legend>Company Details</legend>
