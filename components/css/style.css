@@ -170,17 +170,23 @@ main {
   padding: 10px;
 }
 .message {
-  margin-bottom: 3px;
-  padding: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+/* .message {
+  margin-bottom: 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   height: 60px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-}
-.message-p{
- 
+} */
+/* .message-p{
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -198,7 +204,7 @@ main {
   border-radius: 50%;
   align-items: center;
   margin: 10px;
-}
+} */
 footer {
   background-color: #0718C4;
   color: #fff;
@@ -464,6 +470,9 @@ span.fa-solid.fa-arrow-up{
   display: none;
 }
 
+/* ----------------------------messages start------------------- */
+
+
 .chat1{
   padding: 15px;
   border-radius: 5px 5px 5px 0;
@@ -486,6 +495,9 @@ span.fa-solid.fa-arrow-up{
   margin-left: auto;
   margin-bottom: 3px;
 }
+
+/* ----------------------------messages end------------------- */
+
 
 /* Post Page*/
 .postcontainer{
@@ -649,4 +661,25 @@ input[type=submit]{
   background: #0718C4;
   color: #fff;
   width: 200px;
+}
+
+/* ----------------------------Folllow Or connect------------------- */
+.connect,.message_btn{
+  background-color: #0a66c2;
+  color: #fff;
+  font-weight: 600;
+  /* width: 100px; */
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: none;
+  text-decoration: none;
+}
+.message_btn{
+  font-size: 13px;
+}
+
+.connect:hover,.message_btn:hover{
+  background-color: transparent;
+  color: #0a66c2;
+  border: 2px solid #0a66c2;
 }

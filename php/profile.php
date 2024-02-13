@@ -38,6 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../components/css/style.css">
+    <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -47,7 +48,9 @@
 <div class="username"><h1><?php echo $firstName . ' ' . $lastName; ?></h1>
 <p><?php echo $position ?> at <?php echo $company ?></p>
 <p><?php echo $nativeplace ?></p>
-<p>connections</p>
+<p>1 connections</p>
+<button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
+<a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a>
 </div>
 <br><br><br><br>
 <hr>
