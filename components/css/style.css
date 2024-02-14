@@ -24,7 +24,9 @@ body {
   padding: 0;
   background-color: #f4f4f4;
 }
-
+.profile{
+  object-fit: cover;
+}
 .container {
   display: flex;
   justify-content: space-between;
@@ -208,9 +210,14 @@ main {
   margin: 10px;
 } */
 footer {
+  position: relative;
+ left: 0;
+ right: 0;
+  bottom: 0;
+ z-index: 3;
   background-color: #0718C4;
   color: #fff;
-  padding: 10px 0;
+  padding: 10px ;
   text-align: center;
 }
 /* .right button {
@@ -236,10 +243,14 @@ span.fa-solid.fa-arrow-up{
   .left,
   .middle,
   .right {
+
     flex: 0 0 calc(33.33% - 20px);
   }
 }
-
+.left,
+  .right{
+    z-index: 5;
+  }
 @media only screen and (min-width: 992px) {
   .left {
     flex: 0 0 calc(20% - 20px);
@@ -433,15 +444,16 @@ span.fa-solid.fa-arrow-up{
 .chat-msg{
   border: none;
 }
-/* Post Page*/
+/* ------------------------Post Page--------------------------------*/
 .postcontainer{
-  
   width: 600px;
   height: 500px;
   margin: 50px auto;
   border-radius: 15px;
-  background-color: aquamarine;
+  border:1px solid lightgray;
+  color: #000;
 }
+
 .myself{
   display: flex;
   align-items: center;
@@ -462,6 +474,7 @@ span.fa-solid.fa-arrow-up{
 }
 #posttext{
   width: 590px;
+  height: 350px;
   border-radius: 15px;
   border: none;
   resize: none;
@@ -470,6 +483,10 @@ span.fa-solid.fa-arrow-up{
 }
 #fileToUpload{
   display: none;
+}
+#mediaEmoji{
+ 
+  margin: 10px;
 }
 
 /* ----------------------------messages start------------------- */
@@ -502,14 +519,7 @@ span.fa-solid.fa-arrow-up{
 
 
 /* Post Page*/
-.postcontainer{
-  
-  width: 600px;
-  height: 500px;
-  margin: 50px auto;
-  border-radius: 15px;
-  background-color: aquamarine;
-}
+
 .myself{
   display: flex;
   align-items: center;
@@ -554,24 +564,24 @@ hr{
 .main-profile .cover-photo{
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 160px;
   object-fit: cover;
   z-index: 0;
 }
 .main-profile .profile-image {
   position: absolute;
   left: 145px;
-  top: 183px;
-  width: 161px;
-  height: 162px;
+  top: 210px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 50%;
-  border:4px solid #fff;
+  border: 4px solid #fff;
 }
 .username {
   position: relative;
- left: 42px;
- top: 50px;
+ left: 259px;
+ top: 13px;
 }
 .username h1{
   font-size: 30px;
@@ -689,10 +699,15 @@ input[type=submit]{
   height: 100vh;
   width: 30%;
   border: 1px solid lightgrey;
-  
+  padding: 30px;  
 }
 .side-profile .follow-section{
  display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 10px;
+ border: 1px solid lightgrey;
+ border-radius: 5px;
 }
 .side-profile .follow-profile{
   width: 50px;
