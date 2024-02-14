@@ -8,7 +8,6 @@
         exit(); // Stop execution of the script
     }
 
-
     $user = $_SESSION['user'];
     $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
     $result = mysqli_query($conn, $query);
@@ -28,7 +27,7 @@
         $field_of_study = $userDetails['FieldOfStudy'];
         $graduationyear = $userDetails['GraduationYear'];
         $coverimage = $userDetails['CoverPhotoURL'];
-        $nativeplace = $userDetails['NativePlace'];
+        $NativePlace=$userDetails['NativePlace'];
     }  
 ?>
 <!DOCTYPE html>
@@ -75,6 +74,12 @@
 <div class="flex">
 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2m-6 0h-4V4h4z"/></svg>
 <p><?php echo $position ?> at <?php echo $company ?></p>
+<p><?php echo $NativePlace ?></p>
+<p>connections</p>
+
+<br>
+<input type="button" value="Message me">
+<input type="text" value="edit profile">
 </div>
 <hr>
 <div class="flex">
@@ -102,4 +107,3 @@
 </div>
 </body>
 </html>
-
