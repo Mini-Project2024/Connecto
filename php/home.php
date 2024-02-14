@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 
 // Access the user data from session
 $user = $_SESSION['user'];
+
 $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
 $result = mysqli_query($conn, $query);
 $userDetails = mysqli_fetch_assoc($result);
@@ -22,6 +23,7 @@ if ($userDetails) {
   
   $firstName = $userDetails['FirstName'];
   $lastName = $userDetails['LastName'];
+  $position =$userDetails['Position'];
 }
 
 $postquery = "SELECT p.*, u.* 
@@ -86,18 +88,18 @@ $postresult = mysqli_query($conn, $postquery);
   <main class="container">
     <section class="left">
       <div class="profile-options">
-        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile"/>
         <h2>
           <?php echo $userDetails['FirstName'].' '.$userDetails['LastName'] ?>
         </h2>
-        <p>Job Title</p>
+        <p><?php echo $position ?>
         <button><a href="./profile.php">View Profile</a></button>
         <button><a href="./profileedit.php">Edit Profile</a></button>
       </div>
     </section>
     <section class="middle_s">
       <div class="new_post">
-        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile"/>
         <h2> start a new post</h2>
         <button><a style="text-decoration:none; color:#fff; font-weight:600;" href="./post.php">Post</a></button>
       </div>
@@ -107,7 +109,7 @@ $postresult = mysqli_query($conn, $postquery);
             <div class="feed-top">
               <div class="user">
                 <div class="profile-picture">
-                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="">
+                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
                 </div>
                 <div class="info">
                   <h3><?php echo $postDetails['FirstName'].' '.$postDetails['LastName'] ?></h3>
@@ -127,6 +129,12 @@ $postresult = mysqli_query($conn, $postquery);
           </div>
         <?php } ?>
       </div>
+      <footer>
+  
+  <p>&copy; 2024 Your Network. All rights reserved.</p>
+
+</footer>
+    
     </section>
     <section class="right">
       <!-- <script>
@@ -151,12 +159,9 @@ $postresult = mysqli_query($conn, $postquery);
         </div>
       </div>
     </section>
+   
   </main>
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 Your Network. All rights reserved.</p>
-    </div>
-  </footer>
+
 </body>
 
 </html>
