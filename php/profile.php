@@ -68,13 +68,17 @@
 <p><?php echo $position ?> at <?php echo $company ?></p>
 <p><?php echo $nativeplace ?></p>
 <p>1 connections</p>
+<br>
 <?php if(!$viewingOwnProfile) { ?>
 <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
-<?php } ?>
 <a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a>
+<?php } ?>
+<?php if($viewingOwnProfile) { ?>
+<a href="#" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i>  View Connections</a>
+<?php } ?>
 </div>
 
-<br><br><hr>
+<br><br><br><hr>
 <h4><?php echo $bio ?></h4>
 <?php echo $email ?> <br>
 <?php echo $company ?> <br>

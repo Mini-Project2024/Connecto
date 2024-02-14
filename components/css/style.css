@@ -679,7 +679,7 @@ input[type=submit]{
   color: #fff;
   width: 200px;
 }
-<<<<<<< HEAD
+
 /* -------follow section in profile.php------ */
 .full-profile{
   display: flex;
@@ -699,7 +699,7 @@ input[type=submit]{
   height: 50px;
   border-radius: 50%;
 }
-=======
+
 
 /* ----------------------------Folllow Or connect------------------- */
 .connect,.message_btn{
@@ -721,4 +721,18 @@ input[type=submit]{
   color: #0a66c2;
   border: 2px solid #0a66c2;
 }
->>>>>>> 9a1238c1ec6cc06436b9c80c95b923539c6546c6
+
+.view-connect{
+  background-color: transparent;
+  color: #0a66c2;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 2px solid #0a66c2;
+}
+
+.view-connect:hover{
+  background-color: #0a66c2;
+  color: #fff;
+}
