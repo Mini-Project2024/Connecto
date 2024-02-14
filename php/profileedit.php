@@ -124,7 +124,7 @@ if ($userDetails) {
         </div>
         <input type="hidden" name="current_cover_image" value="<?php echo $coverimage ?>">
        <label>Bio:</label><textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
-       <input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" >
+       <label>Native Place:</label><input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" >
     </fieldset>
     <fieldset>
         <legend>Company Details</legend>
