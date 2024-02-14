@@ -20,10 +20,10 @@ $userDetails = mysqli_fetch_assoc($result);
 // Check if user details exist
 if ($userDetails) {
   $profileImage = $userDetails['ProfileImage'];
-  
+
   $firstName = $userDetails['FirstName'];
   $lastName = $userDetails['LastName'];
-  $position =$userDetails['Position'];
+  $position = $userDetails['Position'];
 }
 
 $postquery = "SELECT p.*, u.* 
@@ -88,31 +88,37 @@ $postresult = mysqli_query($conn, $postquery);
   <main class="container">
     <section class="left">
       <div class="profile-options">
-        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile"/>
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile" />
         <h2>
-          <?php echo $userDetails['FirstName'].' '.$userDetails['LastName'] ?>
+          <?php echo $userDetails['FirstName'] . ' ' . $userDetails['LastName'] ?>
         </h2>
         <p><?php echo $position ?>
-        <button><a href="./profile.php">View Profile</a></button>
-        <button><a href="./profileedit.php">Edit Profile</a></button>
+          <button><a href="./profile.php">View Profile</a></button>
+          <button><a href="./profileedit.php">Edit Profile</a></button>
       </div>
     </section>
     <section class="middle_s">
       <div class="new_post">
-        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile"/>
+        <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile" />
         <h2> start a new post</h2>
         <button><a style="text-decoration:none; color:#fff; font-weight:600;" href="./post.php">Post</a></button>
       </div>
       <div class="feeds">
+        <script>
+          function redirectToProfile(userID) {
+            var profileUrl = "./profile.php?userID=" + userID;
+            window.location.href = profileUrl;
+          }
+        </script>
         <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
           <div class="feed">
             <div class="feed-top">
-              <div class="user">
+              <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
                 <div class="profile-picture">
                   <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
                 </div>
                 <div class="info">
-                  <h3><?php echo $postDetails['FirstName'].' '.$postDetails['LastName'] ?></h3>
+                  <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
                 </div>
               </div>
             </div>
@@ -130,11 +136,11 @@ $postresult = mysqli_query($conn, $postquery);
         <?php } ?>
       </div>
       <footer>
-  
-  <p>&copy; 2024 Your Network. All rights reserved.</p>
 
-</footer>
-    
+        <p>&copy; 2024 Your Network. All rights reserved.</p>
+
+      </footer>
+
     </section>
     <section class="right">
       <!-- <script>
@@ -151,15 +157,15 @@ $postresult = mysqli_query($conn, $postquery);
         }
       </script> -->
 
-      
+
       <div class="messaging-options" id="messaging-options">
         <h2>Messaging</h2>
         <div class="message" id="chatlist">
-          
+
         </div>
       </div>
     </section>
-   
+
   </main>
 
 </body>

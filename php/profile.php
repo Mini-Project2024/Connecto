@@ -8,12 +8,21 @@ if (!isset($_SESSION['user'])) {
   exit(); // Stop execution of the script
 }
 
-$user = $_SESSION['user'];
-$query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
-$result = mysqli_query($conn, $query);
-$userDetails = mysqli_fetch_assoc($result);
 
-// Check if user details exist
+
+if (isset($_GET['userID'])) {
+  $userID = $_GET['userID'];
+
+  $query = "SELECT * FROM users WHERE UserID = $userID";
+  $result = mysqli_query($conn, $query);
+  $userDetails = mysqli_fetch_assoc($result);
+} else {
+  $user = $_SESSION['user'];
+  $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
+  $result = mysqli_query($conn, $query);
+  $userDetails = mysqli_fetch_assoc($result);
+}
+
 if ($userDetails) {
   $profileImage = $userDetails['ProfileImage'];
   $firstName = $userDetails['FirstName'];
@@ -29,6 +38,7 @@ if ($userDetails) {
   $coverimage = $userDetails['CoverPhotoURL'];
   $NativePlace = $userDetails['NativePlace'];
 }
+
 $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
 ?>
 <!DOCTYPE html>
