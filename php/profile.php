@@ -8,7 +8,6 @@
         exit(); // Stop execution of the script
     }
 
-
     $user = $_SESSION['user'];
     $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
     $result = mysqli_query($conn, $query);
@@ -29,7 +28,12 @@
         $graduationyear = $userDetails['GraduationYear'];
         $coverimage = $userDetails['CoverPhotoURL'];
         $nativeplace = $userDetails['NativePlace'];
-    }  
+        $loggedInUserID = $user['UserID']; // Get the ID of the logged-in user
+    }
+
+    // Check if the profile being viewed is the profile of the logged-in user
+    $viewingOwnProfile = ($loggedInUserID == $userDetails['UserID']);
+      
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +53,10 @@
 <p><?php echo $position ?> at <?php echo $company ?></p>
 <p><?php echo $nativeplace ?></p>
 <p>1 connections</p>
-<!-- <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
-<a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a> -->
+<?php if(!$viewingOwnProfile) { ?>
+<button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
+<?php } ?>
+<a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i>  Message</a>
 </div>
 <br><br><br><br>
 <hr>
@@ -67,4 +73,3 @@
 
 </body>
 </html>
-
