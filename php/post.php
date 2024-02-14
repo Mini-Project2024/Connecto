@@ -20,6 +20,7 @@ if ($userDetails) {
   $profileImage = $userDetails['ProfileImage'];
   $firstName = $userDetails['FirstName'];
   $lastName = $userDetails['LastName'];
+  
 }
 ?>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ if ($userDetails) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../components/css/style.css"> 
     <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Post picture</title>
 </head>
 <body>
     
@@ -37,16 +38,19 @@ if ($userDetails) {
         <div class="myself">
         <img class='postprofile' src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h4 class='postprofilename'>
-          <?php echo $firstName.' '.$lastName; ?>
+         Post your thoughts..
         </h4>
         </div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div class="postmessage">
         <textarea name="posttext" id="posttext" maxlength="1000" cols="100" rows="17" placeholder="Share your thoughts...."></textarea>
         </div>
-        <i class="fa-regular fa-image" id="mediaEmoji"></i>
-        <input type="file" name="fileToUpload" id="fileToUpload"/>
-        <input type="submit"  class="postbutton" value="Submit"></input>
+        <div class="flex" style="justify-content:center">
+        
+        <i class="fa-regular fa-image" id="mediaEmoji"></i><p>Choose an image</p>
+        <input type="file" name="fileToUpload" id="fileToUpload"/></div><br>
+        <div class="flex" style="justify-content:center">
+        <input type="submit"  class="postbutton" value="Post"></input></div>
         </form>
     </div>
     
