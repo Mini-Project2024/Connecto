@@ -71,6 +71,7 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
 
   <div class="full-profile">
     <div class="main-profile">
+      
       <img src="./uploads/<?php echo $coverimage ?>" alt="Your Name" class="cover-photo" />
       <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile-image" />
       <div class="username">
@@ -79,9 +80,15 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
         <p> From <?php echo $NativePlace ?></p>
         <p>1 connections</p>
         <br>
+        <script>
+          function redirectToMessages(userID) {
+            var profileUrl = "./messages.php?chatter_id=" + userID;
+            window.location.href = profileUrl;
+          }
+        </script>
         <?php if (!$viewingOwnProfile) { ?>
           <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i> Connect</button>
-          <a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</a>
+          <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
           <a href="#" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
