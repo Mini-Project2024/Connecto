@@ -47,6 +47,7 @@ header h1 {
   align-items: center;
   font-size: 1.5rem;
   font-family: "Lato", sans-serif;
+  z-index: 9999;
 }
 
 nav {
@@ -55,6 +56,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
+ 
 }
 
 nav ul {
@@ -170,17 +172,23 @@ main {
   padding: 10px;
 }
 .message {
-  margin-bottom: 3px;
-  padding: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+/* .message {
+  margin-bottom: 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   height: 60px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-}
-.message-p{
- 
+} */
+/* .message-p{
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -198,7 +206,7 @@ main {
   border-radius: 50%;
   align-items: center;
   margin: 10px;
-}
+} */
 footer {
   background-color: #0718C4;
   color: #fff;
@@ -464,6 +472,9 @@ span.fa-solid.fa-arrow-up{
   display: none;
 }
 
+/* ----------------------------messages start------------------- */
+
+
 .chat1{
   padding: 15px;
   border-radius: 5px 5px 5px 0;
@@ -486,6 +497,9 @@ span.fa-solid.fa-arrow-up{
   margin-left: auto;
   margin-bottom: 3px;
 }
+
+/* ----------------------------messages end------------------- */
+
 
 /* Post Page*/
 .postcontainer{
@@ -526,26 +540,41 @@ span.fa-solid.fa-arrow-up{
   display: none;
 }
 /* ----------------------------profile.php------------------- */
-.cover-photo{
-  position: relative;
-  width: 100vw;
-  height: 130px;
-  object-fit: cover;
+
+.main-profile{
+  margin: 100px;
+  width: 60%;
+ 
+  border: 1px solid lightgrey;
+  border-radius: 10px;
 }
-.profile-image{
+hr{
+  border: .2px solid lightgrey;
+}
+.main-profile .cover-photo{
+  position: relative;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  z-index: 0;
+}
+.main-profile .profile-image {
   position: absolute;
-  left: 30px;
-  top: 60px;
-  width: 250px;
-  height: 250px;
+  left: 145px;
+  top: 183px;
+  width: 161px;
+  height: 162px;
   object-fit: cover;
   border-radius: 50%;
+  border:4px solid #fff;
 }
 .username {
   position: relative;
- left: 300px;
+ left: 42px;
+ top: 50px;
 }
 .username h1{
+  font-size: 30px;
   text-transform: capitalize;
 }
 /* ----------------------------editprofile.php------------------- */
@@ -650,3 +679,46 @@ input[type=submit]{
   color: #fff;
   width: 200px;
 }
+<<<<<<< HEAD
+/* -------follow section in profile.php------ */
+.full-profile{
+  display: flex;
+}
+.side-profile{
+  margin-top: 150px;
+  height: 100vh;
+  width: 30%;
+  border: 1px solid lightgrey;
+  
+}
+.side-profile .follow-section{
+ display: flex;
+}
+.side-profile .follow-profile{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+=======
+
+/* ----------------------------Folllow Or connect------------------- */
+.connect,.message_btn{
+  background-color: #0a66c2;
+  color: #fff;
+  font-weight: 600;
+  /* width: 100px; */
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: none;
+  text-decoration: none;
+}
+.message_btn{
+  font-size: 13px;
+}
+
+.connect:hover,.message_btn:hover{
+  background-color: transparent;
+  color: #0a66c2;
+  border: 2px solid #0a66c2;
+}
+>>>>>>> 9a1238c1ec6cc06436b9c80c95b923539c6546c6
