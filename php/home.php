@@ -43,6 +43,8 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
   <script>
     var chatting_user_id = 6;
 
@@ -131,6 +133,9 @@ $postresult = mysqli_query($conn, $postquery);
             <div class="action-button">
               <!-- Your action buttons here -->
             </div>
+            <div class="flex">
+            <i class="fa-regular fa-heart style="font-size: 24px;"></i>
+            <i class="fa-regular fa-comment "></i></div>
             <div class="comments text-grey">View all comments</div>
           </div>
         <?php } ?>

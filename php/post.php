@@ -47,7 +47,7 @@ if ($userDetails) {
         </div>
         <div class="flex" style="justify-content:center">
         
-        <i class="fa-regular fa-image" id="mediaEmoji"></i><p>Choose an image</p>
+
         <input type="file" name="fileToUpload" id="fileToUpload"/></div><br>
         <div class="flex" style="justify-content:center">
         <input type="submit"  class="postbutton" value="Post"></input></div>
@@ -55,10 +55,7 @@ if ($userDetails) {
     </div>
     
 </body>
-<script>
-    document.getElementById('mediaEmoji').addEventListener('click', function() {
-    document.getElementById('fileToUpload').click();
-});
+
 
 </script>
 </html>
@@ -72,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+    
     // Check if the file is an actual image
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
@@ -94,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
-
+    skip_upload:
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
     } else {
