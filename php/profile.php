@@ -64,7 +64,6 @@
 
 <p> From <?php echo $nativeplace ?></p>
 <p>1 connections</p>
-<br>
 <?php if(!$viewingOwnProfile) { ?>
 <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button>
 <?php } ?>

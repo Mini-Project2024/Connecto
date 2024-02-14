@@ -689,7 +689,6 @@ input[type=submit]{
   color: #fff;
   width: 200px;
 }
-
 /* -------follow section in profile.php------ */
 .full-profile{
   display: flex;
@@ -714,8 +713,6 @@ input[type=submit]{
   height: 50px;
   border-radius: 50%;
 }
-=======
-
 /* ----------------------------Folllow Or connect------------------- */
 .connect,.message_btn{
   background-color: #0a66c2;
@@ -736,3 +733,4 @@ input[type=submit]{
   color: #0a66c2;
   border: 2px solid #0a66c2;
 }
+
