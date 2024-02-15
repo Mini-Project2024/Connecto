@@ -50,4 +50,16 @@ if(isset($_GET['getMessages'])){
     }
     echo json_encode($json);
 }
+
+//for follow
+
+if(isset($_GET['connect'])){
+    $user_id = $_POST['user_id'];
+    if(followUser($user_id)){
+        $response['status'] = true;
+    }else{
+        $response['status'] = false;
+    }
+    echo json_encode($response);
+}
 ?>

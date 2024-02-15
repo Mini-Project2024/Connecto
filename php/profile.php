@@ -1,6 +1,7 @@
 <?php
-session_start();
+// session_start();
 include("config.php");
+include_once("functions.php");
 
 if (!isset($_SESSION['user'])) {
   // Redirect to login page if user is not logged in
@@ -9,15 +10,15 @@ if (!isset($_SESSION['user'])) {
 }
 
 
-
 if (isset($_GET['userID'])) {
   $userID = $_GET['userID'];
-
+  $follow_suggestions = filterFollowSuggestion($userID);
   $query = "SELECT * FROM users WHERE UserID = $userID";
   $result = mysqli_query($conn, $query);
   $userDetails = mysqli_fetch_assoc($result);
 } else {
   $user = $_SESSION['user'];
+  $follow_suggestions = filterFollowSuggestion($user['UserID']);
   $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
   $result = mysqli_query($conn, $query);
   $userDetails = mysqli_fetch_assoc($result);
@@ -40,6 +41,16 @@ if ($userDetails) {
 }
 
 $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
+// Check if the viewing user is already connected to the profile user
+$connected = false;
+if (!$viewingOwnProfile) {
+  $connected = checkFollowStatus($userDetails['UserID']);
+}
+
+$no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE connector_id = {$userDetails['UserID']}";
+$res = mysqli_query($conn, $no_connections);
+$no = mysqli_fetch_array($res);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +61,54 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
   <title>Document</title>
   <link rel="stylesheet" href="../components/css/style.css">
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    //for following the user
+    $(document).on("click", ".connect", function() {
+      var user_id_connect = $(this).data('user-id');
+      var button = this;
+      $(button).attr('disabled', true);
+      $.ajax({
+        url: './ajax.php?connect',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          user_id: user_id_connect
+        },
+        success: function(response) {
+          if (response.status) {
+            $(button).data('user-id', 0);
+            $(button).html('<i class="fa-solid fa-user-check"></i> Connected');
+          } else {
+            $(button).attr('disabled', false);
+            alert("Something went wrong");
+          }
+        }
+      })
+    });
+    $(document).on("click", ".cnt", function() {
+      var user_id_connect = $(this).data('user-id');
+      var button = this;
+      $(button).attr('disabled', true);
+      $.ajax({
+        url: './ajax.php?connect',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          user_id: user_id_connect
+        },
+        success: function(response) {
+          if (response.status) {
+            $(button).data('user-id', 0);
+            $(button).html('<i class="fa-solid fa-user-check"></i> Connected');
+          } else {
+            $(button).attr('disabled', false);
+            alert("Something went wrong");
+          }
+        }
+      })
+    });
+  </script>
 </head>
 
 <body>
@@ -71,14 +130,14 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
 
   <div class="full-profile">
     <div class="main-profile">
-      
+
       <img src="./uploads/<?php echo $coverimage ?>" alt="Your Name" class="cover-photo" />
       <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile-image" />
       <div class="username">
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
 
         <p> From <?php echo $NativePlace ?></p>
-        <p>1 connections</p>
+        <p><?php echo $no['connection_count'] ?> connections</p>
         <br>
         <script>
           function redirectToMessages(userID) {
@@ -87,7 +146,11 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
           }
         </script>
         <?php if (!$viewingOwnProfile) { ?>
-          <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i> Connect</button>
+          <?php if ($connected) { ?>
+            <button class="connect" id="connect"><i class="fa-solid fa-user-check"></i> Connected</button>
+          <?php } else { ?>
+            <button class="connect" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
+          <?php } ?>
           <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
@@ -144,12 +207,21 @@ $viewingOwnProfile = ($_SESSION['user']['UserID'] === $userDetails['UserID']);
 
 
     <div class="side-profile">
-      <div class="follow-section">
-        <img src="../components/images/profile.jpg" alt="" class="follow-profile">
-        <p>username</p>
-        <button>connect</button>
-      </div>
+      <?php foreach ($follow_suggestions as $suser) : ?>
+        <div class="follow-section">
+          <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
+          <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
+          <button class="connect" id="connect" data-user-id="<?php echo $suser['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
+        </div>
+      <?php endforeach; ?>
+      <?php
+      if (count($follow_suggestions) < 1) {
+        echo "<h6>Currently no suggestions for You</h6>";
+      }
+      ?>
     </div>
+
+
   </div>
 </body>
 
