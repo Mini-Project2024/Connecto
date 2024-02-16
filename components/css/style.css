@@ -454,6 +454,7 @@ span.fa-solid.fa-arrow-up{
   border-radius: 15px;
   border:1px solid lightgray;
   color: #000;
+  
 }
 #posttext
 .myself{
@@ -509,14 +510,44 @@ span.fa-solid.fa-arrow-up{
   align-items: end;
   border-radius: 5px 5px 0 5px;
   background-color: #0718C4;
-  width: fit-content;
+  width: max-content;
   max-width: 400px;
+  height: 100%;
   color: #fff;
   margin-top: 2px;
   margin-left: auto;
   margin-bottom: 3px;
 }
-
+/* ---------network.php----------- */
+body{
+  background:#f4f4f4;
+}
+.cards{
+  margin-left: 100px;
+  background:#fff;
+width:300px;
+height: 400px;
+border:none;
+border-radius:10px;
+}
+.cards .connect-cover{
+position:relative;
+width: 300px;
+height: 80px;
+object-fit:cover;
+}
+.cards .connect-profile{
+position: absolute;
+margin-top:60px;
+left: 190px;
+width: 120px;
+height: 120px;
+border-radius:50%;
+object-fit:cover;
+}
+.connect-content{
+  margin-top: 100px;
+}
 /* ----------------------------messages end------------------- */
 
 
@@ -747,5 +778,8 @@ input[type=submit]{
  font-size: 26px;
  margin-left: 10px;
 }
+<<<<<<< HEAD
 
 /* ----------------------------MyNetwork--------------------------------- */
+=======
+>>>>>>> c513eb5f7bde86157f56a6d1193429687efc0aed

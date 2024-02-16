@@ -80,7 +80,7 @@ $postresult = mysqli_query($conn, $postquery);
       <nav>
         <ul>
           <li><a href="#">Home</a></li>
-          <li><a href="./myNetwork.php">My Network</a></li>
+          <li><a href="network.php">My Network</a></li>
           <li><a href="#">Jobs</a></li>
         </ul>
       </nav>
