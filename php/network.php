@@ -42,10 +42,9 @@ $result = mysqli_query($conn, $query);
       </div>
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="./home.php">Home</a></li>
           <li><a href="#">My Network</a></li>
           <li><a href="#">Jobs</a></li>
-          <li><a href="#">Messaging</a></li>
         </ul>
       </nav>
     </div>
