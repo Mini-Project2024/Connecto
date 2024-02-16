@@ -114,6 +114,7 @@ if ($userDetails) {
             padding: 10px;
             background-color: #fff;
             display: flex;
+           
             flex-direction: column-reverse;
         }
 
