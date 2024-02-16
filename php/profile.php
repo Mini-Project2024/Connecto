@@ -119,10 +119,9 @@ $no = mysqli_fetch_array($res);
       </div>
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">My Network</a></li>
+          <li><a href="./home.php">Home</a></li>
+          <li><a href="./myNetwork.php">My Network</a></li>
           <li><a href="#">Jobs</a></li>
-          <li><a href="#">Messaging</a></li>
         </ul>
       </nav>
     </div>
