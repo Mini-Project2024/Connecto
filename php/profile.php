@@ -51,6 +51,7 @@ $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE co
 $res = mysqli_query($conn, $no_connections);
 $no = mysqli_fetch_array($res);
 
+$user = $_SESSION['user'];
 $postquery = "SELECT p.*, u.* 
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID and u.UserID = " . $user['UserID']. "
