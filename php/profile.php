@@ -153,7 +153,7 @@ $no = mysqli_fetch_array($res);
           <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
-          <a href="#" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
+          <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
         <?php } ?>
       </div>
 
