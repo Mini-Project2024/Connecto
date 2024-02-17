@@ -242,6 +242,7 @@ span.fa-solid.fa-arrow-up {
   height: 50px;
   margin: 20px auto;
 }
+
 /* Media queries for responsiveness */
 @media only screen and (min-width: 768px) {
   .left,

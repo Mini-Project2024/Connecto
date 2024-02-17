@@ -268,7 +268,7 @@ $postresult = mysqli_query($conn, $postquery);
                 <div class="info">
                   <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
                 </div>
-                <div class="delete">
+            
                 <?php if ($viewingOwnProfile) { ?>
                   
                     <div class="delete">
@@ -276,7 +276,7 @@ $postresult = mysqli_query($conn, $postquery);
                     </div>
                 <?php } ?>
 
-                </div>
+                
               </div>
             </div>
             <div class="caption">
