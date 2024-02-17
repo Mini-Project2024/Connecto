@@ -145,7 +145,7 @@ $postresult = mysqli_query($conn, $postquery);
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
            <div class="flex">
            <img src="../components/images/location.svg" class="svg"> <p>From <?php echo $NativePlace ?></p></div>
-        <p><i class="fa-solid fa-link" style="color: #000;" class="svg"></i><?php echo $no['connection_count'] ?> connections</p>
+        <p><?php echo $no['connection_count'] ?> connections</p>
         <br>
         <script>
           function redirectToMessages(userID) {

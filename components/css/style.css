@@ -799,6 +799,7 @@ hr {
   background: #fff;
   border-radius: 15px;
   color:#000;
+  cursor: pointer;
 }
 /* ----------------------------editprofile.php------------------- */
 .edit {
