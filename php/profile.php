@@ -145,7 +145,8 @@ $postresult = mysqli_query($conn, $postquery);
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
            <div class="flex">
            <img src="../components/images/location.svg" class="svg"> <p>From <?php echo $NativePlace ?></p></div>
-        <p><?php echo $no['connection_count'] ?> connections</p>
+        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> <a href="./network.php" >Connections</a></p>
+
         <br>
         <script>
           function redirectToMessages(userID) {
@@ -163,9 +164,11 @@ $postresult = mysqli_query($conn, $postquery);
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
           <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
+          <a href="./profileedit.php" class="edit-connect">Edit Profile <i class="fa-solid fa-pen"></i></a>
         <?php } ?>
-      </div>
 
+      </div>
+       <br>
       <br>
       <hr>
       <br>

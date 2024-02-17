@@ -11,6 +11,9 @@
 a, i ,.user{
   cursor: pointer;
 }
+a{
+  text-decoration: none;
+}
 .svg{
   width: 17px;
   height: 17px;
@@ -930,7 +933,7 @@ input[type="submit"] {
 .connect,
 .view-connect,
 .message_btn {
-  background-color: #0a66c2;
+  background-color: #0718C4;
   color: #fff;
   font-weight: 600;
   /* width: 100px; */
@@ -938,6 +941,14 @@ input[type="submit"] {
   border-radius: 20px;
   border: none;
   text-decoration: none;
+}
+.edit-connect{
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  background-color: transparent;
+  color: #0718C4;
+  border: 2px solid #0718C4;
 }
 .message_btn {
   font-size: 13px;
@@ -947,8 +958,8 @@ input[type="submit"] {
 .view-connect:hover,
 .message_btn:hover {
   background-color: transparent;
-  color: #0a66c2;
-  border: 2px solid #0a66c2;
+  color: #0718C4;
+  border: 2px solid #0718C4;
 }
 
 .flex {
