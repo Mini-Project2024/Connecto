@@ -51,7 +51,8 @@ $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE co
 $res = mysqli_query($conn, $no_connections);
 $no = mysqli_fetch_array($res);
 
-// $user = $_SESSION['user'];
+$user = $_SESSION['user'];
+
 $postquery = "SELECT p.*, u.* 
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID']. "
@@ -240,6 +241,23 @@ $postresult = mysqli_query($conn, $postquery);
             window.location.href = profileUrl;
           }
         </script>
+      <script>
+    function deletePost(postId) {
+        $.ajax({
+            url: './delete_post.php',
+            method: 'POST',
+            data: { postId: postId },
+            success: function(response) {
+                console.log(response); // Log the response for debugging
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+
         <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
           <div class="feed">
             <div class="feed-top">
@@ -249,6 +267,15 @@ $postresult = mysqli_query($conn, $postquery);
                 </div>
                 <div class="info">
                   <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+                </div>
+                <div class="delete">
+                <?php if ($viewingOwnProfile) { ?>
+                  
+                    <div class="delete">
+                        <button onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete Post</button>
+                    </div>
+                <?php } ?>
+
                 </div>
               </div>
             </div>
