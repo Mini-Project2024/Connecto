@@ -98,7 +98,7 @@ if ($userDetails) {
         }
 
         .chat_header {
-            background-color: #836FFF;
+            background-color: #0718c4;
             color: #fff;
             padding: 10px;
             display: flex;
@@ -108,13 +108,13 @@ if ($userDetails) {
         }
 
         .chat_body {
-            max-height: 500px;
+            max-height: 1200px;
             height: 500px;
-            overflow-y: auto;
+            overflow-y:auto ;
             padding: 10px;
             background-color: #fff;
             display: flex;
-           
+          
             flex-direction: column-reverse;
         }
 
@@ -128,14 +128,15 @@ if ($userDetails) {
         }
 
         .chat_input {
-            width: calc(100% - 60px);
+            width: calc(100% - 51px);
             padding: 8px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .send_button {
             width: 50px;
+            
             padding: 8px;
             background-color: #333;
             color: #fff;

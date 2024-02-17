@@ -43,7 +43,7 @@ $result = mysqli_query($conn, $query);
       <nav>
         <ul>
           <li><a href="./home.php">Home</a></li>
-          <li><a href="#">My Network</a></li>
+          <li><a href="./network.php">My Network</a></li>
           <li><a href="#">Jobs</a></li>
         </ul>
       </nav>
@@ -70,14 +70,21 @@ $result = mysqli_query($conn, $query);
       $lastName = $userDetails['LastName'];
       $company = $userDetails['CompanyName'];
       $userId = $userDetails['UserID'];
+
+      $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE connector_id = {$userDetails['UserID']}";
+      $res = mysqli_query($conn, $no_connections);
+      $no = mysqli_fetch_array($res);
+
     ?>
       <div class="cards">
         <img src="./uploads/<?php echo $coverImage ?>" alt="Your Name" class="connect-cover" />
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="connect-profile" />
         <div class="connect-content">
-          <h6><?php echo $firstName . ' ' . $lastName ?></h6>
+          <center>
+          <h3><?php echo $firstName . ' ' . $lastName ?></h3><center>
           <p><?php echo $position ?> at <?php echo $company ?></p>
-          <div> <button onclick="redirectToProfile(<?php echo $userId ?>)">View Profile</button></div>
+          <p><?php echo $no['connection_count'] ?> connections</p></p>
+          <div> <button onclick="redirectToProfile(<?php echo $userId ?>)" class="view">View Profile</button></div>
         </div>
       </div>
     <?php } ?>
