@@ -11,7 +11,7 @@ if(isset($_GET['sendmessage'])){
 }
 
 if(isset($_GET['getMessages'])){
-    $chats = getAllMessaages();
+    $chats = getAllMessages();
     $chatlist = "";
     foreach ($chats as $chat) {
         $ch_user = getUser($chat['user_id']);
