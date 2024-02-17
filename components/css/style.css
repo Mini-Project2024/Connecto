@@ -927,6 +927,7 @@ input[type="submit"] {
 }
 /* ----------------------------Folllow Or connect------------------- */
 .connect,
+.view-connect,
 .message_btn {
   background-color: #0a66c2;
   color: #fff;
@@ -942,6 +943,7 @@ input[type="submit"] {
 }
 
 .connect:hover,
+.view-connect:hover,
 .message_btn:hover {
   background-color: transparent;
   color: #0a66c2;
