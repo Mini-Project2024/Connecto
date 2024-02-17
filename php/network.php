@@ -66,6 +66,8 @@ $result = mysqli_query($conn, $query);
       $coverImage = $userDetails['CoverPhotoURL'];
       $profileImage = $userDetails['ProfileImage'];
       $position = $userDetails['Position'];
+      $firstName = $userDetails['FirstName'];
+      $lastName = $userDetails['LastName'];
       $company = $userDetails['CompanyName'];
       $userId = $userDetails['UserID'];
     ?>
@@ -73,6 +75,7 @@ $result = mysqli_query($conn, $query);
         <img src="./uploads/<?php echo $coverImage ?>" alt="Your Name" class="connect-cover" />
         <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="connect-profile" />
         <div class="connect-content">
+          <h6><?php echo $firstName . ' ' . $lastName ?></h6>
           <p><?php echo $position ?> at <?php echo $company ?></p>
           <div> <button onclick="redirectToProfile(<?php echo $userId ?>)">View Profile</button></div>
         </div>

@@ -51,9 +51,11 @@ $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE co
 $res = mysqli_query($conn, $no_connections);
 $no = mysqli_fetch_array($res);
 
+$user = $_SESSION['user'];
+
 $postquery = "SELECT p.*, u.* 
               FROM posts p 
-              JOIN users u ON p.UserID = u.UserID and u.UserID = " . $user['UserID']. "
+              JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID']. "
               ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 
@@ -126,7 +128,7 @@ $postresult = mysqli_query($conn, $postquery);
       <nav>
         <ul>
           <li><a href="./home.php">Home</a></li>
-          <li><a href="./myNetwork.php">My Network</a></li>
+          <li><a href="./network.php">My Network</a></li>
           <li><a href="#">Jobs</a></li>
         </ul>
       </nav>
@@ -159,7 +161,7 @@ $postresult = mysqli_query($conn, $postquery);
           <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
-          <a href="#" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
+          <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
         <?php } ?>
       </div>
 
@@ -239,6 +241,23 @@ $postresult = mysqli_query($conn, $postquery);
             window.location.href = profileUrl;
           }
         </script>
+      <script>
+    function deletePost(postId) {
+        $.ajax({
+            url: './delete_post.php',
+            method: 'POST',
+            data: { postId: postId },
+            success: function(response) {
+                console.log(response); // Log the response for debugging
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+
         <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
           <div class="feed">
             <div class="feed-top">
@@ -249,6 +268,15 @@ $postresult = mysqli_query($conn, $postquery);
                 <div class="info">
                   <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
                 </div>
+            
+                <?php if ($viewingOwnProfile) { ?>
+                  
+                    <div class="delete">
+                        <button onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete Post</button>
+                    </div>
+                <?php } ?>
+
+                
               </div>
             </div>
             <div class="caption">

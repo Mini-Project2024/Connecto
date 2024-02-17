@@ -87,6 +87,7 @@ header {
   color: #fff;
   padding: 1rem 0;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
 
 header h1 {
@@ -94,7 +95,7 @@ header h1 {
   align-items: center;
   font-size: 1.5rem;
   font-family: "Lato", sans-serif;
-  z-index: 9999;
+
 }
 
 nav {
@@ -284,6 +285,7 @@ span.fa-solid.fa-arrow-up {
   height: 50px;
   margin: 20px auto;
 }
+
 /* Media queries for responsiveness */
 @media only screen and (min-width: 768px) {
   .left,
@@ -536,6 +538,7 @@ span.fa-solid.fa-arrow-up {
   border-radius: 5px 5px 5px 0;
   background-color: #ddd;
   width: fit-content;
+  height: fit-content;
   max-width: 400px;
   margin-right: auto;
   margin-bottom: 3px;
@@ -548,7 +551,6 @@ span.fa-solid.fa-arrow-up {
   background-color: #0718C4;
   width: fit-content;
   max-width: 400px;
-  height: 100%;
   color: #fff;
   margin-top: 2px;
   margin-left: auto;
