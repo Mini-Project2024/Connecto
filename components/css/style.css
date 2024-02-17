@@ -8,6 +8,22 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.customfile{
+  border: 1px solid lightgrey;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+}
+.customfile::-webkit-file-upload-button{
+  border:1px solid lightgrey;
+  background: #fff;
+  color: #0718C4;
+  padding:10px;
+  outline: none;
+  
+  border-radius: 20px;
+}
 /* -----------------register page--------- */
 .register{
   background: #f4f4f4;
@@ -15,43 +31,76 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  border: 1px solid lightgrey;
 }
 .register form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 570px;
+  width: 450px;
   height: 580px;
+   border-radius: 12px;
+  /* background: #fff; */
+  border: .5px solid lightgrey;
+  
+}
+.register-img img{
 
-  background: #fff;
-  border: 2px double lightgrey;
-  border-radius:36% 64% 41% 59% / 61% 36% 64% 39%  ;
-}
-.register::before{
-  content: url(../images/girl.png);
   object-fit: cover;
-  /* background: #0718C4;
-  height: 450px;
+ padding: 20px;
+   height: 580px;
+  /* background: #fff; */
+  /*height: 450px;
   border-radius:36% 64% 41% 59% / 61% 36% 64% 39%  ; */
 }
-.register::after{
+/* .register::after{
   content: url(../images/girl1.png);
-  object-fit: cover;
+  object-fit: cover; */
   /* background: #0718C4;
-  height: 450px;
-  border-radius:36% 64% 41% 59% / 61% 36% 64% 39%  ; */
-}
+  /* height: 450px; */
+  
+/* } */
 .register form input{
   border: 1px solid lightgrey;
   outline: none;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   padding:10px;
-  width: 200px;
+  width: 340px;
 }
 
-/* ------------end------------ */
+/* ------------login------------ */
+.login{
+  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+}
+.login form{
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius:10px;
+  padding: 10px;
+}
+.login form input{ 
+  border: 1px solid lightgrey;
+  outline: none;
+  margin: 10px;
+  border-radius: 20px;
+  padding:10px;
+  width: 340px;
+
+}
+/* -------------------------- */
 .logo {
   flex: 0 0 auto;
   display: flex;
@@ -492,10 +541,11 @@ span.fa-solid.fa-arrow-up {
 /* ------------------------Post Page--------------------------------*/
 .postcontainer {
   width: 600px;
-  height: 500px;
+  height: 570px;
   margin: 50px auto;
   border-radius: 15px;
   border: 1px solid lightgray;
+  /* background: #fff; */
   color: #000;
 }
 #posttext .myself {
@@ -519,8 +569,9 @@ span.fa-solid.fa-arrow-up {
 #posttext {
   width: 590px;
   height: 350px;
+  border: 1px solid lightgrey;
   border-radius: 15px;
-  border: none;
+  /* background: #f4f4f4; */
   resize: none;
   padding: 15px;
 }
@@ -530,7 +581,12 @@ span.fa-solid.fa-arrow-up {
 #mediaEmoji {
   margin: 10px;
 }
-
+.postbutton{
+  border-radius: 10px;
+  padding: 5px;
+  outline: none;
+  inset: 10px;
+}
 /* ----------------------------messages start------------------- */
 
 .chat1 {
@@ -558,6 +614,7 @@ span.fa-solid.fa-arrow-up {
   text-wrap: wrap;
 }
 /* ---------network.php----------- */
+
 body {
   background: #f4f4f4;
 }
@@ -595,19 +652,23 @@ object-fit:cover;
   height: 100px;
   object-fit: cover;
 }
-.cards .connect-profile{
-position: absolute;
-margin-top:60px;
-left: 190px;
-width: 120px;
-height: 120px;
-border-radius:50%;
-object-fit:cover;
-background: red;
+
+.connect-profile {
+  position: relative;
+  display: flex;
+  width: 130px;
+  height: 130px;
+  border: 2px solid white;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: -60px auto 0;
+  align-items: center;
+  z-index: 1;
 }
 .connect-content {
   margin-top: 100px;
 }
+
 /* ----------------------------messages end------------------- */
 
 /* Post Page*/

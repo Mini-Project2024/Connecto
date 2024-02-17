@@ -48,7 +48,7 @@ if ($userDetails) {
         <div class="flex" style="justify-content:center">
         
 
-        <input type="file" name="fileToUpload" id="fileToUpload"/></div><br>
+        <input type="file" name="fileToUpload" id="fileToUpload" class="customfile"/></div><br>
         <div class="flex" style="justify-content:center">
         <input type="submit"  class="postbutton" value="Post"></input></div>
         </form>
