@@ -493,6 +493,7 @@ span.fa-solid.fa-arrow-up {
   border-radius: 5px 5px 5px 0;
   background-color: #ddd;
   width: fit-content;
+  height: fit-content;
   max-width: 400px;
   margin-right: auto;
   margin-bottom: 3px;
@@ -505,7 +506,6 @@ span.fa-solid.fa-arrow-up {
   background-color: #0718c4;
   width: max-content;
   max-width: 400px;
-  height: 100%;
   color: #fff;
   margin-top: 2px;
   margin-left: auto;
