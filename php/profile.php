@@ -51,6 +51,12 @@ $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE co
 $res = mysqli_query($conn, $no_connections);
 $no = mysqli_fetch_array($res);
 
+$postquery = "SELECT p.*, u.* 
+              FROM posts p 
+              JOIN users u ON p.UserID = u.UserID and u.UserID = " . $user['UserID']. "
+              ORDER BY p.PostedDate DESC";
+$postresult = mysqli_query($conn, $postquery);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -199,6 +205,9 @@ $no = mysqli_fetch_array($res);
         <p><?php echo $degree ?> in <?php echo $field_of_study ?> completed in the year <?php echo $graduationYear ?> <br> </p>
         <br>
       </div>
+
+      
+
     </div>
     <!-- <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button> -->
     <!-- <a href="./messages.php" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</a> -->
@@ -222,6 +231,42 @@ $no = mysqli_fetch_array($res);
 
 
   </div>
+  <div class="feeds">
+    <h1>Post by <?php echo $userDetails['FirstName'] . ' ' . $userDetails['LastName'] ?></h1>
+        <script>
+          function redirectToProfile(userID) {
+            var profileUrl = "./profile.php?userID=" + userID;
+            window.location.href = profileUrl;
+          }
+        </script>
+        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
+          <div class="feed">
+            <div class="feed-top">
+              <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
+                <div class="profile-picture">
+                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+                </div>
+                <div class="info">
+                  <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+                </div>
+              </div>
+            </div>
+            <div class="caption">
+              <?php echo $postDetails['Content']; ?>
+            </div>
+            <div class="feed-image">
+              <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+            </div>
+            <div class="action-button">
+              <!-- Your action buttons here -->
+            </div>
+            <div class="flex">
+            <i class="fa-regular fa-heart style="font-size: 24px;"></i>
+            <i class="fa-regular fa-comment "></i></div>
+            <div class="comments text-grey">View all comments</div>
+          </div>
+        <?php } ?>
+      </div>
 </body>
 
 </html>
