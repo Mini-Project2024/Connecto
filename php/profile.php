@@ -59,6 +59,7 @@ $postquery = "SELECT p.*, u.*
               ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -234,8 +235,18 @@ $postresult = mysqli_query($conn, $postquery);
 
   </div>
   <div class="feeds">
-    <h1>Post by <?php echo $userDetails['FirstName'] . ' ' . $userDetails['LastName'] ?></h1>
-        <script>
+
+  <?php  
+  $row = mysqli_num_rows($postresult);
+  ?><?php
+    if($row!=0){
+    ?>   <h1>Post by <?php echo $userDetails['FirstName'] . ' ' . $userDetails['LastName'] ?></h1><?php
+    }
+    else{
+    ?>  <h1>No Posts Yet</h1><?php
+    }
+    ?>
+        <script> 
           function redirectToProfile(userID) {
             var profileUrl = "./profile.php?userID=" + userID;
             window.location.href = profileUrl;
@@ -258,42 +269,44 @@ $postresult = mysqli_query($conn, $postquery);
 </script>
 
 
-        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
-          <div class="feed">
-            <div class="feed-top">
-              <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-                <div class="profile-picture">
-                  <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
-                </div>
-                <div class="info">
-                  <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
-                </div>
-            
-                <?php if ($viewingOwnProfile) { ?>
-                  
-                    <div class="delete">
-                        <button onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete Post</button>
+        <?php  
+       
+        while ($postDetails = mysqli_fetch_assoc($postresult)) {
+          
+    ?>
+            <div class="feed">
+                <div class="feed-top">
+                    <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
+                        <div class="profile-picture">
+                            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+                        </div>
+                        <div class="info">
+                            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+                        </div>
+                        <?php if ($viewingOwnProfile) { ?>
+                            <div class="delete">
+                                <button onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete Post</button>
+                            </div>
+                        <?php } ?>
                     </div>
-                <?php } ?>
-
-                
-              </div>
+                </div>
+                <div class="caption">
+                    <?php echo $postDetails['Content']; ?>
+                </div>
+                <div class="feed-image">
+                    <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+                </div>
+                <div class="action-button">
+                    <!-- Your action buttons here -->
+                </div>
+                <div class="flex">
+                    <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
+                    <i class="fa-regular fa-comment "></i>
+                </div>
+                <div class="comments text-grey">View all comments</div>
             </div>
-            <div class="caption">
-              <?php echo $postDetails['Content']; ?>
-            </div>
-            <div class="feed-image">
-              <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-            </div>
-            <div class="action-button">
-              <!-- Your action buttons here -->
-            </div>
-            <div class="flex">
-            <i class="fa-regular fa-heart style="font-size: 24px;"></i>
-            <i class="fa-regular fa-comment "></i></div>
-            <div class="comments text-grey">View all comments</div>
-          </div>
-        <?php } ?>
+    <?php
+        }?>
       </div>
 </body>
 
