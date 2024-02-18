@@ -10,6 +10,11 @@ if(isset($_POST['postId'])) {
     
     if($result) {
         echo "Post deleted successfully";
+        echo "
+<script>
+  window.location.reload(); // Reload the page
+</script>
+";
     } else {
         echo "Failed to delete post";
     }

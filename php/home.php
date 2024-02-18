@@ -81,7 +81,7 @@ $postresult = mysqli_query($conn, $postquery);
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="network.php">My Network</a></li>
-          <li><a href="#">Jobs</a></li>
+          <li><a href="logout.php">Logout</a></li>
         </ul>
       </nav>
     </div>

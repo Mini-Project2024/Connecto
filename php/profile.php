@@ -117,6 +117,27 @@ $postresult = mysqli_query($conn, $postquery);
         }
       })
     });
+
+    // Acc deleting
+    function deleteacc(userid) {
+        $.ajax({
+            url: './delete_acc.php',
+            method: 'POST',
+            data: { userid: userid },
+            dataType: 'json', // Specify JSON dataType for parsing response
+            success: function(response) {
+                if (response.status === 'success') {
+                    // Redirect to the provided URL
+                    window.location.href = response.redirect;
+                } else {
+                    console.error("Error deleting account");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
   </script>
 </head>
 
@@ -130,7 +151,7 @@ $postresult = mysqli_query($conn, $postquery);
         <ul>
           <li><a href="./home.php">Home</a></li>
           <li><a href="./network.php">My Network</a></li>
-          <li><a href="#">Jobs</a></li>
+          <li><a href="./logout.php">Logout</a></li>
         </ul>
       </nav>
     </div>
@@ -163,7 +184,9 @@ $postresult = mysqli_query($conn, $postquery);
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
           <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
+          <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>)">DELETE ACCOUNT</button>
         <?php } ?>
+
       </div>
 
       <br><br><br>
