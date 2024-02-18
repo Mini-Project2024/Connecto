@@ -116,3 +116,11 @@ function followUser($user_id){
     $query = "INSERT INTO connections(connector_id,user_id) VALUES($current_user_id,$user_id)";
     return mysqli_query($conn,$query);
 }
+
+function searchUser($search) {
+    global $conn;
+    $query = "SELECT * FROM users WHERE FirstName LIKE '%$search%' OR LastName LIKE '%$search%'";
+    $run = mysqli_query($conn,$query);
+    return mysqli_fetch_all($run, MYSQLI_ASSOC);
+}
+

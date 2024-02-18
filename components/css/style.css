@@ -287,6 +287,7 @@ main {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
+  color: #000;
 }
 /* .message {
   margin-bottom: 10px;
@@ -970,6 +971,42 @@ input[type="submit"] {
 .flex i {
   font-size: 26px;
   margin-left: 10px;
+}
+
+.search {
+  position: relative;
+}
+
+#searchResults {
+  position: absolute;
+  top: 100%;
+  left: 55%;
+  right: 0;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 999; /* Ensure it's above other elements */
+  color: #000;
+  font-weight: 600;
+}
+
+#searchResults ul {
+  list-style: none;
+  padding: 0;
+}
+
+#searchResults ul li {
+  padding: 10px;
+}
+
+#searchResults ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+#searchResults ul li a:hover {
+  background-color: #f4f4f4;
 }
 
 

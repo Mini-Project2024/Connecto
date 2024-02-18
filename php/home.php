@@ -49,6 +49,33 @@ $postresult = mysqli_query($conn, $postquery);
   <script>
     var chatting_user_id = 6;
 
+    function search() {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        var searchString = document.querySelector('.search').value.trim();
+        if (searchString !== '') {
+          $.ajax({
+            url: './ajax.php?searchUsers',
+            method: 'GET',
+            dataType: 'json',
+            data: {
+              searchString: searchString
+            },
+            success: function(response) {
+              // console.log(response);
+              if (response.userlist.length > 0) {
+                if (response.hasOwnProperty('userlist')) {
+                  document.getElementById('searchResults').innerHTML = response.userlist;
+                }
+              } else {
+                $('#searchResults').html('<p>No users found</p>');
+              }
+            }
+          });
+        }
+      }
+    }
+
+
     function synmsg() {
       $.ajax({
         url: './ajax.php?getMessages',
@@ -80,6 +107,8 @@ $postresult = mysqli_query($conn, $postquery);
       </div>
       <nav>
         <ul>
+          <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
+          <div id="searchResults" style="text-align: center;"></div>
           <li><a href="#">Home</a></li>
           <li><a href="network.php">My Network</a></li>
           <li><a href="logout.php">Logout</a></li>
@@ -134,8 +163,9 @@ $postresult = mysqli_query($conn, $postquery);
               <!-- Your action buttons here -->
             </div>
             <div class="flex">
-            <i class="fa-regular fa-heart style="font-size: 24px;"></i>
-            <i class="fa-regular fa-comment "></i></div>
+              <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
+              <i class="fa-regular fa-comment "></i>
+            </div>
             <div class="comments text-grey">View all comments</div>
           </div>
         <?php } ?>
