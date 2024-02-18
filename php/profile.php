@@ -164,9 +164,10 @@ $postresult = mysqli_query($conn, $postquery);
       <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile-image" />
       <div class="username">
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
+           <div class="flex">
+           <img src="../components/images/location.svg" class="svg"> <p>From <?php echo $NativePlace ?></p></div>
+        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> <a href="./network.php" >Connections</a></p>
 
-        <p> From <?php echo $NativePlace ?></p>
-        <p><?php echo $no['connection_count'] ?> connections</p>
         <br>
         <script>
           function redirectToMessages(userID) {
@@ -185,15 +186,17 @@ $postresult = mysqli_query($conn, $postquery);
         <?php if ($viewingOwnProfile) { ?>
           <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
           <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>)">DELETE ACCOUNT</button>
+          <a href="./profileedit.php" class="edit-connect">Edit Profile <i class="fa-solid fa-pen"></i></a>
         <?php } ?>
 
-      </div>
 
-      <br><br><br>
+      </div>
+       <br>
+      <br>
       <hr>
       <br>
 
-      <h4><?php echo $bio ?></h4><br>
+      <h4 style="margin:10px"><?php echo $bio ?></h4><br>
       <hr>
       <div class="flex">
         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
@@ -241,6 +244,7 @@ $postresult = mysqli_query($conn, $postquery);
 
 
     <div class="side-profile">
+      <h2>Suggestions</h2>
       <?php foreach ($follow_suggestions as $suser) : ?>
         <div class="follow-section">
           <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
@@ -257,13 +261,14 @@ $postresult = mysqli_query($conn, $postquery);
 
 
   </div>
-  <div class="feeds">
-
+   <center><h1>Posts</h1></center> 
+  <div class="feeds1">
+ 
   <?php  
   $row = mysqli_num_rows($postresult);
   ?><?php
     if($row!=0){
-    ?>   <h1>Post by <?php echo $userDetails['FirstName'] . ' ' . $userDetails['LastName'] ?></h1><?php
+    ?>   <?php
     }
     else{
     ?>  <h1>No Posts Yet</h1><?php
@@ -307,26 +312,27 @@ $postresult = mysqli_query($conn, $postquery);
                             <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
                         </div>
                         <?php if ($viewingOwnProfile) { ?>
-                            <div class="delete">
-                                <button onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete Post</button>
+                            <div>
+                                <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete <i class="fa-solid fa-xmark" style="color: #ff0000;"></i></button>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
-                <div class="caption">
-                    <?php echo $postDetails['Content']; ?>
-                </div>
+               
                 <div class="feed-image">
                     <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
                 </div>
+                 <div class="caption">
+                 <?php echo $postDetails['Content']; ?>
+                <br></div>
                 <div class="action-button">
                     <!-- Your action buttons here -->
                 </div>
-                <div class="flex">
+                <!-- <div class="flex">
                     <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
                     <i class="fa-regular fa-comment "></i>
                 </div>
-                <div class="comments text-grey">View all comments</div>
+                <div class="comments text-grey">View all comments</div> -->
             </div>
     <?php
         }?>

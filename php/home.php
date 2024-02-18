@@ -45,6 +45,7 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
+  <link rel="icon" type="image/x-icon" href="../components/images/favicon.ico">
   <script>
     var chatting_user_id = 6;
 

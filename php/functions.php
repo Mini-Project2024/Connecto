@@ -47,7 +47,7 @@ function getMessages($user_id){
     return mysqli_fetch_all($run, true);
 }
 
-function getAllMessaages(){
+function getAllMessages(){
     $active_chat_ids = getActiveChatUsersIds();
     $conversation = array();
     foreach($active_chat_ids as $index=>$id){

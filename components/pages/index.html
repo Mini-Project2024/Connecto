@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="register">
+        <div class="register-img">
+            <img src="../images/kids.png" alt="">
+        </div>
         <form action="../../php/signup.php" method="post" enctype="multipart/form-data">
             <h1>Register</h1>
             <div class="error-text"></div>
-            <input type="text" name="first_name" placeholder="Name" required>
+            <input type="text" name="first_name" placeholder="Firstname" required>
             <input type="text" name="last_name" placeholder="LastName" required>
             <input type="email" name="email" placeholder="email" required>
             <input type="password" name="password" placeholder="enter password" required><br>
-            <input type="file" name="img" id="img">
+            <input type="file" name="img" id="img" class="customfile">
             <input type="submit" class="button" value="Sign-in"><br>
             <p>Already a user? <a href="login.html">Login Here</a></p>
         </form>

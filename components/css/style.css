@@ -8,7 +8,113 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
+a, i ,.user{
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+}
+.svg{
+  width: 17px;
+  height: 17px;
+  margin: 8px;
+  filter: grayscale(50%);
+}
+svg{
+  margin: 20px;
+}
+.customfile{
+  border: 1px solid lightgrey;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+}
+.customfile::-webkit-file-upload-button{
+  border:1px solid lightgrey;
+  background: #fff;
+  color: #0718C4;
+  padding:10px;
+  outline: none;
+  
+  border-radius: 20px;
+}
+/* -----------------register page--------- */
+.register{
+  background: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid lightgrey;
+}
+.register form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 580px;
+   border-radius: 12px;
+  /* background: #fff; */
+  border: .5px solid lightgrey;
+  
+}
+.register-img img{
 
+  object-fit: cover;
+ padding: 20px;
+   height: 580px;
+  /* background: #fff; */
+  /*height: 450px;
+  border-radius:36% 64% 41% 59% / 61% 36% 64% 39%  ; */
+}
+/* .register::after{
+  content: url(../images/girl1.png);
+  object-fit: cover; */
+  /* background: #0718C4;
+  /* height: 450px; */
+  
+/* } */
+.register form input{
+  border: 1px solid lightgrey;
+  outline: none;
+  margin: 10px;
+  border-radius: 20px;
+  padding:10px;
+  width: 340px;
+}
+
+/* ------------login------------ */
+.login{
+  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+}
+.login form{
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius:10px;
+  padding: 10px;
+}
+.login form input{ 
+  border: 1px solid lightgrey;
+  outline: none;
+  margin: 10px;
+  border-radius: 20px;
+  padding:10px;
+  width: 340px;
+
+}
+/* -------------------------- */
 .logo {
   flex: 0 0 auto;
   display: flex;
@@ -310,6 +416,7 @@ span.fa-solid.fa-arrow-up {
   margin: 0 auto;
   width: 620px;
 }
+
 .feeds .feed {
   background-color: #fff;
   padding: 10px;
@@ -318,6 +425,7 @@ span.fa-solid.fa-arrow-up {
   line-height: 1.5;
   font-size: 0.85rem;
 }
+
 .feeds .feed .feed-top {
   display: flex;
   align-items: center;
@@ -335,16 +443,37 @@ span.fa-solid.fa-arrow-up {
 .feed .feed-image {
   display: flex;
   justify-content: center;
+
   align-items: center;
 }
 .feed .feed-image img {
   max-width: 700px; /* Ensure the image never exceeds its container's width */
   height: 500px; /* Maintain the aspect ratio */
-  border-radius: 5px;
+  border-radius: 0px;
   overflow: hidden;
-  object-fit: cove;
+  object-fit: contain;
 }
-
+.feeds1 {
+  margin: 50px;
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+}
+.feeds1 .feed{
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+.feeds1 .feed .feed-top{
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  border-radius: 10px;
+}
+.feeds1 .feed .feed-image img{
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
 /* ------------------message icon ----------- */
 .msg-main {
   display: flex;
@@ -436,9 +565,12 @@ span.fa-solid.fa-arrow-up {
 }
 
 .sendbtn {
-  padding: 5px 10px;
+  width: 45px;
+  height: 38px;
+  padding: 4px 3px;
   color: #fff;
   background-color: #0718c4;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
 }
@@ -449,10 +581,11 @@ span.fa-solid.fa-arrow-up {
 /* ------------------------Post Page--------------------------------*/
 .postcontainer {
   width: 600px;
-  height: 500px;
+  height: 570px;
   margin: 50px auto;
   border-radius: 15px;
   border: 1px solid lightgray;
+  /* background: #fff; */
   color: #000;
 }
 #posttext .myself {
@@ -476,8 +609,9 @@ span.fa-solid.fa-arrow-up {
 #posttext {
   width: 590px;
   height: 350px;
+  border: 1px solid lightgrey;
   border-radius: 15px;
-  border: none;
+  /* background: #f4f4f4; */
   resize: none;
   padding: 15px;
 }
@@ -487,7 +621,12 @@ span.fa-solid.fa-arrow-up {
 #mediaEmoji {
   margin: 10px;
 }
-
+.postbutton{
+  border-radius: 10px;
+  padding: 5px;
+  outline: none;
+  inset: 10px;
+}
 /* ----------------------------messages start------------------- */
 
 .chat1 {
@@ -505,15 +644,19 @@ span.fa-solid.fa-arrow-up {
   padding: 15px;
   align-items: end;
   border-radius: 5px 5px 0 5px;
-  background-color: #0718c4;
-  width: max-content;
+  background-color: #0718C4;
+  width: fit-content;
   max-width: 400px;
   color: #fff;
   margin-top: 2px;
   margin-left: auto;
   margin-bottom: 3px;
+  /* display: inline-block;
+  vertical-align: top; */
+  word-wrap: break-word;
 }
 /* ---------network.php----------- */
+
 body {
   background: #f4f4f4;
 }
@@ -538,7 +681,10 @@ border-radius:10px;
   border-radius: 10px;
   height: 400px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+ justify-content: space-around;
 }
 /* .cards .connect-cover{
 position:relative;
@@ -551,15 +697,7 @@ object-fit:cover;
   height: 100px;
   object-fit: cover;
 }
-/* .cards .connect-profile {
-  position: absolute;
-  margin-top: 60px;
-  left: 190px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-} */
+
 .connect-profile {
   position: relative;
   display: flex;
@@ -572,8 +710,18 @@ object-fit:cover;
   align-items: center;
   z-index: 1;
 }
-.connect-content {
-  margin-top: 100px;
+.cards .connect-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.view{
+  width: 150px;
+  color: #0718C4;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 2px solid #0718C4;
+  padding: 10px;
 }
 /* ----------------------------messages end------------------- */
 
@@ -646,6 +794,15 @@ hr {
 .username h1 {
   font-size: 30px;
   text-transform: capitalize;
+}
+.delete{
+  border:1px solid lightgrey;
+  outline: none;
+  padding: 5px 10px;
+  background: #fff;
+  border-radius: 15px;
+  color:#000;
+  cursor: pointer;
 }
 /* ----------------------------editprofile.php------------------- */
 .edit {
@@ -752,10 +909,11 @@ input[type="submit"] {
   display: flex;
 }
 .side-profile {
-  margin-top: 150px;
-  height: 100vh;
-  width: 30%;
+  margin-top: 104px;
+  height: 101vh;
+  width: 26%;
   border: 1px solid lightgrey;
+  border-radius: 10px;
   padding: 30px;
 }
 .side-profile .follow-section {
@@ -773,8 +931,9 @@ input[type="submit"] {
 }
 /* ----------------------------Folllow Or connect------------------- */
 .connect,
+.view-connect,
 .message_btn {
-  background-color: #0a66c2;
+  background-color: #0718C4;
   color: #fff;
   font-weight: 600;
   /* width: 100px; */
@@ -783,15 +942,24 @@ input[type="submit"] {
   border: none;
   text-decoration: none;
 }
+.edit-connect{
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  background-color: transparent;
+  color: #0718C4;
+  border: 2px solid #0718C4;
+}
 .message_btn {
   font-size: 13px;
 }
 
 .connect:hover,
+.view-connect:hover,
 .message_btn:hover {
   background-color: transparent;
-  color: #0a66c2;
-  border: 2px solid #0a66c2;
+  color: #0718C4;
+  border: 2px solid #0718C4;
 }
 
 .flex {
