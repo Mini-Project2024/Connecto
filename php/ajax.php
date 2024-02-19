@@ -62,4 +62,23 @@ if(isset($_GET['connect'])){
     }
     echo json_encode($response);
 }
+
+if(isset($_GET['searchUsers'])){
+    $str = $_GET['searchString'];
+    $search_results = searchUser($str);
+    $userlist = "";
+    foreach ($search_results as $user) {
+        $userlist .= '<div class="msg">
+                        <a href="./profile.php?userID=' . $user['UserID'] . '" class="chatlist_item">
+                            <div class="msg-main">
+                                <img class="msg-img" src="./uploads/' . $user['ProfileImage'] . '" alt="img">
+                                <p class="msg-name">' . $user['FirstName'] . ' ' . $user['LastName'] .'</p>
+                            </div>
+                        </a>
+                    </div><hr>';
+    }
+    $json['userlist'] = $userlist;
+    echo json_encode($json);
+}
+
 ?>
