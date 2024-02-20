@@ -315,9 +315,11 @@ function unlikes(PostID) {
                       <div class="profile-picture">
                         <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
                       </div>
-                      <p><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></p>
-                      <p class="commenttext"><?php echo $comment['Comment'] ?></p>
-                      <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Post</button>
+                      <div class="nameandcomment">
+                        <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                        <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                      </div>
+                      <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
 
                   </div>
                     
@@ -327,7 +329,7 @@ function unlikes(PostID) {
                         <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
                         <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
                         <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
-                        <button type="submit" class="commentpost">Reply</button>
+                        <button type="submit" class="commentpost">Post</button>
                       </form>
                     </div>
                 </div>
@@ -345,8 +347,11 @@ function unlikes(PostID) {
                     <div class="profile-picture">
                       <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
                     </div>
-                    <p><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></p>
-                    <p class="commenttext"><?php echo $replyComment['Comment'] ?></p>
+                    <div class="nameandcomment">
+                      <h5><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></h5>
+                      <p class="commenttext"><?php echo $replyComment['Comment'] ?></p>
+                    </div>
+                    
                   </div>
                 <?php } ?>
             
