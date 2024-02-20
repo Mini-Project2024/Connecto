@@ -114,6 +114,7 @@ function likes(PostID) {
                 $(button).attr('disabled', false);
                 $(button).hide();
                 $(button).siblings('.unlike_btn').show();
+                location.reload(true);
             } else {
                 $(button).attr('disabled', false);
                 alert("Something is wrong");
@@ -140,6 +141,7 @@ function unlikes(PostID) {
                 $(button).attr('disabled', false);
                 $(button).hide();
                 $(button).siblings('.like_btn').show();
+                location.reload(true);
                
             } else {
                 $(button).attr('disabled', false);
