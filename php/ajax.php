@@ -80,5 +80,26 @@ if(isset($_GET['searchUsers'])){
     $json['userlist'] = $userlist;
     echo json_encode($json);
 }
-
+if(isset($_GET['like'])){
+    $PostID= $_POST['PostID'];
+    if(!checkLikeStatus($PostID)){
+    if(like($PostID)){
+        $response['status'] = true;
+    }else{
+        $response['status'] = false;
+    }
+    echo json_encode($response);
+}
+}
+if(isset($_GET['unlike'])){
+    $PostID= $_POST['PostID'];
+    if(checkLikeStatus($PostID)){
+    if(unlike($PostID)){
+        $response['status'] = true;
+    }else{
+        $response['status'] = false;
+    }
+    echo json_encode($response);
+}
+}
 ?>
