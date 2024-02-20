@@ -25,11 +25,34 @@ if ($userDetails) {
   $lastName = $userDetails['LastName'];
   $position = $userDetails['Position'];
 }
-
+//post details
 $postquery = "SELECT p.*, u.* 
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
+$postDetails = mysqli_fetch_assoc($postresult);
+
+//insert comment
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  include("config.php");
+
+  $newComment = $_POST['newcomment'];
+  $postID = $_POST['PostID'];
+  $userID = $_POST['UserID'];
+  $parentCommentId = $_POST['ParentCommentID'];
+  $commentdate = date('Y-m-d H:i:s');
+
+  $commentinsertQuery = "INSERT INTO comments (Comment, UserID, PostID, CommentDate,ParentCommentID) VALUES ('$newComment', '$userID', '$postID','$commentdate','$parentCommentId')";
+  $commentinsertValue = mysqli_query($conn, $commentinsertQuery);
+ 
+  
+  if ($commentinsertValue) {
+      echo "Successfull comment insertion";
+  } else {
+      echo "Error adding comment: " . mysqli_error($conn) ;
+  }
+}
 
 ?>
 
@@ -159,17 +182,112 @@ $postresult = mysqli_query($conn, $postquery);
             <div class="feed-image">
               <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
             </div>
-            <div class="action-button">
-              <!-- Your action buttons here -->
-            </div>
+            <script>
+                    
+                        function toggleCommentSection(commentIcon) {
+                            var feed = commentIcon.closest('.feed');
+                            var commentSection = feed.querySelector('.commentsection');
+                            if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+                                commentSection.style.display = 'block';
+                            } else {
+                                commentSection.style.display = 'none';
+                            }
+                        }
+                        function toggleReply(replyButton, commentID, postID) {
+                            var comment = replyButton.closest('.comment'); // Get the parent comment element
+                            var inputform = comment.querySelector('.inputform'); // Find the input form within the comment
+                            var parentCommentIDInput = inputform.querySelector('.parentCommentID');
+                            parentCommentIDInput.value = commentID; // Set the ParentCommentID input field
+                            var postIDInput = inputform.querySelector('.postID');
+                            postIDInput.value = postID; // Set the PostID input field
+                            if (inputform.style.display === 'none' || inputform.style.display === '') {
+                                inputform.style.display = 'block';
+                                comment.appendChild(inputform); // Move the input form to the end of the comment
+                            } else {
+                                inputform.style.display = 'none';
+                            }
+                        }
+
+
+            </script>
+              <?php
+                  // Comment section php code
+           //Parent comments
+            $postID = $postDetails['PostID'];
+            $commentQuery = "SELECT u.*,c.*
+                             FROM comments c JOIN users u
+                             ON c.UserID = u.UserID  AND PostID = $postID AND ParentCommentID=0";
+            $commentResult = mysqli_query($conn, $commentQuery);
+          
+
+              
+
+      ?>
             <div class="flex">
-              <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
-              <i class="fa-regular fa-comment "></i>
+              <i class="fa-regular fa-heart" style=" font-size: 24px;"></i>
+              <i class="fa-regular fa-comment " style=" font-size: 24px;" onclick="toggleCommentSection(this)"></i>
             </div>
-            <div class="comments text-grey">View all comments</div>
+            
+            <div class="commentsection" style="display: none;">
+                 <?php  while ($comment = mysqli_fetch_assoc($commentResult)) {?>
+                <div class="comment">
+                  <div class="onlycomment">
+                      <div class="profile-picture">
+                          <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                        </div>
+                        <div class="nameandcomment">
+                          <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                          <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                        </div>
+                        
+                        <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
+                  </div>
+                    <div class="inputform" style="display: none;">
+                          <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                            <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
+                            <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                            <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                            <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
+                            <button type="submit" class="commentpost">Post</button>
+                          </form>
+                    </div>
+                </div>
+                <?php 
+                  $replyCommentQuery = "SELECT u.*,c.*
+                                        FROM comments c JOIN users u
+                                        ON c.UserID = u.UserID  
+                                        AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
+                  $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
+                  while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                ?>
+                  <div class="replycomment">
+                    <div class="profile-picture">
+                      <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
+                    </div>
+                    <div class="nameandcomment">
+                      <h5><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></h5>
+                      <p class="commenttext"><?php echo '@'.$comment['FirstName'].' '.$comment['LastName'].' ' ?><?php echo $replyComment['Comment'] ?></p>
+                    </div>
+                  
+                  </div>
+                <?php } ?>
+            
+                <?php }?>
+                
+                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                  <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
+                  <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                  <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                  <input type="hidden" name="ParentCommentID" class="parentCommentID" value="NULL">
+                  <button type="submit" class="commentpost">Post</button>
+
+                </form>
+                
+            </div>
           </div>
         <?php } ?>
       </div>
+    
       <footer>
 
         <p>&copy; 2024 Your Network. All rights reserved.</p>
@@ -205,4 +323,4 @@ $postresult = mysqli_query($conn, $postquery);
 
 </body>
 
-</html>
+</html> 

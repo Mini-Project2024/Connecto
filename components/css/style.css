@@ -1010,3 +1010,44 @@ input[type="submit"] {
 }
 
 
+/* comment section */
+.commentsection{
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.comment{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 400px;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  
+}
+.onlycomment{
+  display: flex;
+  width: 400px;
+  gap: 15px;
+  align-items: center;
+}
+.inputform{
+  margin: 10px;
+}
+.replycomment{
+  margin: 10px;
+  width: 400px;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  display: flex;
+  float: right;
+  gap: 15px;
+  align-items: center;
+}
+.replynewcomment{
+  width: 380px;
+}
+.newcomment{
+  width: 500px;
+  border-radius: 5px;
+}
