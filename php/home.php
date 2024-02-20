@@ -303,12 +303,67 @@ function unlikes(PostID) {
             </span>
             
             <!-- <?php echo $postDetails['PostID']?> -->
-              <i class="fa-regular fa-comment "></i>
+            <i class="fa-regular fa-comment " style=" font-size: 24px;" onclick="toggleCommentSection(this)"></i>
+
             </div>
             <br>
             <?=count($likes)?> likes
-            <div class="comments text-grey">View all comments</div>
+            <div class="commentsection" style="display: none;">
+                 <?php  while ($comment = mysqli_fetch_assoc($commentResult)) {?>
+                <div class="comment">
+                  <div class="onlycomment">
+                      <div class="profile-picture">
+                        <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                      </div>
+                      <p><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></p>
+                      <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                      <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Post</button>
+
+                  </div>
+                    
+                    <div class="inputform" style="display: none;">
+                      <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
+                        <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                        <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                        <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
+                        <button type="submit" class="commentpost">Reply</button>
+                      </form>
+                    </div>
+                </div>
+
+
+                <?php 
+                  $replyCommentQuery = "SELECT u.*,c.*
+                                        FROM comments c JOIN users u
+                                        ON c.UserID = u.UserID  
+                                        AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
+                  $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
+                  while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                ?>
+                  <div class="replycomment">
+                    <div class="profile-picture">
+                      <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
+                    </div>
+                    <p><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></p>
+                    <p class="commenttext"><?php echo $replyComment['Comment'] ?></p>
+                  </div>
+                <?php } ?>
+            
+                <?php }?>
+                
+                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                  <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
+                  <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                  <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                  <input type="hidden" name="ParentCommentID" class="parentCommentID" value="NULL">
+                  <button type="submit" class="commentpost">Post</button>
+
+                </form>
+                
+            </div>
           </div>
+          
           
         <?php } ?>
       </div>
