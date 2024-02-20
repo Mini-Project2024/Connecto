@@ -124,3 +124,31 @@ function searchUser($search) {
     return mysqli_fetch_all($run, MYSQLI_ASSOC);
 }
 
+//functions check like status
+function checkLikeStatus($PostId){
+    global $conn;
+    $current_user_id = $_SESSION['user']['UserID'];
+    $query = "SELECT COUNT(*) as row FROM likes WHERE UserId = $current_user_id && PostId = $PostId";
+    $run = mysqli_query($conn,$query);
+    return mysqli_fetch_assoc($run)['row'];
+}
+
+function like($PostID){
+    global $conn;
+    $current_user_id = $_SESSION['user']['UserID'];
+    $query = "INSERT INTO likes(PostId,UserId) VALUES($PostID,$current_user_id)";
+    return mysqli_query($conn,$query);
+}
+function unlike($PostID){
+    global $conn;
+    $current_user_id = $_SESSION['user']['UserID'];
+    $query = "DELETE FROM likes WHERE UserId = $current_user_id && PostId = $PostID";
+    return mysqli_query($conn,$query);
+}
+///getting like count
+function getlikes($PostID){
+    global $conn;
+    $query = "SELECT * FROM likes WHERE  PostId = $PostID";
+    $run = mysqli_query($conn,$query);
+    return mysqli_fetch_all($run);
+}

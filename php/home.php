@@ -95,6 +95,61 @@ $postresult = mysqli_query($conn, $postquery);
     setInterval(() => {
       synmsg();
     }, 1000);
+   
+// for like
+function likes(PostID) {
+    var button = this;
+    $(button).attr('disabled', true);
+
+    $.ajax({
+        url: './ajax.php?like',
+        method: 'post',
+        dataType: 'json',
+        data: { PostID: PostID },
+        success: function (response) {
+            console.log(response);
+            if (response.status) {
+                // Change the class to the filled heart icon
+               
+                $(button).attr('disabled', false);
+                $(button).hide();
+                $(button).siblings('.unlike_btn').show();
+            } else {
+                $(button).attr('disabled', false);
+                alert("Something is wrong");
+            }
+        }
+    });
+}
+
+function unlikes(PostID) {
+    var button = this;
+    $(button).attr('disabled', true);
+
+    $.ajax({
+        url: './ajax.php?unlike',
+        method: 'post',
+        dataType: 'json',
+        data: { PostID: PostID },
+        success: function (response) {
+          
+            console.log(response);
+            
+            if (response.status) {
+                // Change the class to the regular heart icon
+                $(button).attr('disabled', false);
+                $(button).hide();
+                $(button).siblings('.like_btn').show();
+               
+            } else {
+                $(button).attr('disabled', false);
+                alert("Something is wrong");
+            }
+        }
+    });
+  };
+  
+
   </script>
   <link rel="stylesheet" href="../components/css/style.css">
 </head>
@@ -141,7 +196,8 @@ $postresult = mysqli_query($conn, $postquery);
             window.location.href = profileUrl;
           }
         </script>
-        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { ?>
+        <?php while ($postDetails = mysqli_fetch_assoc($postresult)) { 
+          $likes =getlikes($postDetails['PostID']);?>
           <div class="feed">
             <div class="feed-top">
               <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
@@ -162,12 +218,32 @@ $postresult = mysqli_query($conn, $postquery);
             <div class="action-button">
               <!-- Your action buttons here -->
             </div>
-            <div class="flex">
-              <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
+            <span>
+             <?php
+             if(checkLikeStatus($postDetails['PostID'])){
+              $like_btn_display='none';
+              $unlike_btn_display=''; 
+             }
+              else{
+                $like_btn_display='';
+              $unlike_btn_display='none'; 
+              }
+              ?>
+              <div class="flex">
+              
+              <i class="fa-regular fa-heart like_btn "style="font-size:24px;cursor:pointer;display:<?=$like_btn_display?>" onclick="likes(<?php echo $postDetails['PostID']; ?>)"></i> 
+              
+            <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;cursor:pointer;color:red;display:<?=$unlike_btn_display?>" onclick="unlikes(<?php echo $postDetails['PostID'];?>)"></i> 
+            </span>
+            
+            <!-- <?php echo $postDetails['PostID']?> -->
               <i class="fa-regular fa-comment "></i>
             </div>
+            <br>
+            <?=count($likes)?> likes
             <div class="comments text-grey">View all comments</div>
           </div>
+          
         <?php } ?>
       </div>
       <footer>

@@ -11,6 +11,9 @@
 a, i ,.user{
   cursor: pointer;
 }
+.flex i{
+  cursor: pointer;
+}
 a{
   text-decoration: none;
 }
