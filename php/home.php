@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  
   
   if ($commentinsertValue) {
-      echo "Successfull comment insertion";
+      // echo "Successfull comment insertion";
   } else {
       echo "Error adding comment: " . mysqli_error($conn) ;
   }
