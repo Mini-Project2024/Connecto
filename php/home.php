@@ -30,7 +30,7 @@ $postquery = "SELECT p.*, u.*
               FROM posts p 
               JOIN users u ON p.UserID = u.UserID ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
-$postDetails = mysqli_fetch_assoc($postresult);
+
 
 //insert comment
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
