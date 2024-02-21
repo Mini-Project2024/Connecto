@@ -349,7 +349,7 @@ function unlikes(PostID) {
                     </div>
                     <div class="nameandcomment">
                       <h5><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></h5>
-                      <p class="commenttext"><?php echo $replyComment['Comment'] ?></p>
+                      <p class="commenttext"><?php echo "@".$comment['FirstName'].' '.$comment['LastName']; ?> <?php echo $replyComment['Comment'] ?></p>
                     </div>
                     
                   </div>
