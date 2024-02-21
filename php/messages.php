@@ -53,6 +53,9 @@ if ($userDetails) {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            background:url(../components/images/chat-bg.jpg);
+            background-size:contain;
+            background-repeat:repeat;
         }
 
         header {
@@ -112,7 +115,8 @@ if ($userDetails) {
             height: 500px;
             overflow-y:auto ;
             padding: 10px;
-            background-color: #fff;
+            background:#fff;
+        
             display: flex;
           
             flex-direction: column-reverse;

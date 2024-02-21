@@ -433,10 +433,22 @@ span.fa-solid.fa-arrow-up {
 .feeds .feed .feed-top {
   display: flex;
   align-items: center;
+  
   justify-content: space-between;
 }
-.feed .feed-top .user {
+.feeds .feed .feed-top .user {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feeds1 .feed .feed-top .user {
+  display: flex;
+
+  width: 100%;
+  padding: 0 10px;
+  justify-content: space-around;
   align-items: center;
   gap: 1rem;
 }
@@ -469,7 +481,7 @@ gap: 20px;
 }
 .feeds1 .feed .feed-top{
   display: flex;
-  justify-content: space-around;
+  justify-content:space-between;
   background: #fff;
   border-radius: 10px;
 }
