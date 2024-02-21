@@ -129,6 +129,7 @@ $postresult = mysqli_query($conn, $postquery);
                 if (response.status === 'success') {
                     // Redirect to the provided URL
                     window.location.href = response.redirect;
+
                 } else {
                     console.error("Error deleting account");
                 }
@@ -287,7 +288,8 @@ $postresult = mysqli_query($conn, $postquery);
             method: 'POST',
             data: { postId: postId },
             success: function(response) {
-                console.log(response); // Log the response for debugging
+                console.log(response);
+                $("#post_" + postId).remove(); // Log the response for debugging
             },
             error: function(xhr, status, error) {
                 console.error(xhr.responseText);
