@@ -369,7 +369,7 @@ function unlikes(PostID) {
                 </form>
                 
             </div>
-                                       <?php echo $commentcount + $replycommentcount ." comments" ?>
+            <?php echo $commentcount + $replycommentcount ." comments" ?>
 
           </div>
 
@@ -380,7 +380,6 @@ function unlikes(PostID) {
       <footer>
 
         <p>&copy; 2024 Your Network. All rights reserved.</p>
-
       </footer>
 
     </section>
