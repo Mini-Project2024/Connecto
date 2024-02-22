@@ -290,7 +290,7 @@ function unlikes(PostID) {
                          FROM comments c JOIN users u
                          ON c.UserID = u.UserID  AND PostID = $postID AND ParentCommentID=0";
         $commentResult = mysqli_query($conn, $commentQuery);
-        $commentcount=mysqli_num_rows($commentResult);
+        
       
 
           
@@ -310,7 +310,13 @@ function unlikes(PostID) {
             <br>
             <?=count($likes)?> likes
             <div class="commentsection" style="display: none;">
-                 <?php  while ($comment = mysqli_fetch_assoc($commentResult)) {?>
+           
+                 <?php 
+                  $replycommentcount = 0;
+                  $commentcount = 0;
+                  while ($comment = mysqli_fetch_assoc($commentResult)) {
+                    $commentcount++;
+                    ?>
                 <div class="comment">
                   <div class="onlycomment">
                       <div class="profile-picture">
@@ -342,8 +348,9 @@ function unlikes(PostID) {
                                         ON c.UserID = u.UserID  
                                         AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
                   $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
-                  $replycommentcount =mysqli_num_rows($replyCommentResult);
+            
                   while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                    $replycommentcount++;
                 ?>
                   <div class="replycomment">
                     <div class="profile-picture">
