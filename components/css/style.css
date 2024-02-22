@@ -1026,11 +1026,18 @@ input[type="submit"] {
 
 
 /* comment section */
-.commentsection{
+.commentsection {
   padding: 5px;
   border: 1px solid gray;
   border-radius: 10px;
+  max-height: 200px;
+  overflow: scroll; 
 }
+
+.commentsection::-webkit-scrollbar {
+  width: 0; /* Set the width of the scrollbar to 0 */
+}
+
 .comment{
   display: flex;
   flex-direction: column;
@@ -1038,13 +1045,19 @@ input[type="submit"] {
   width: 400px;
   border: 1px solid gainsboro;
   border-radius: 15px;
+ 
   
 }
 .onlycomment{
   display: flex;
   width: 400px;
-  gap: 15px;
+  padding: 10px;
+  justify-content:  space-between;
   align-items: center;
+}
+.profileandcomment{
+  display: flex;
+  gap: 15px;
 }
 .inputform{
   margin: 10px;
@@ -1060,9 +1073,22 @@ input[type="submit"] {
   align-items: center;
 }
 .replynewcomment{
-  width: 380px;
+  width: 320px;
+  border-radius: 5px;
 }
 .newcomment{
   width: 500px;
   border-radius: 5px;
+}
+.replybtn{
+  border: none;
+  background-color: white;
+}
+.commentpost{
+  border: none;
+  background-color: white;
+}
+.commentForm{
+  width: fit-content;
+  margin: 0  auto;
 }

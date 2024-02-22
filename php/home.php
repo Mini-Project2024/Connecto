@@ -319,19 +319,21 @@ function unlikes(PostID) {
                     ?>
                 <div class="comment">
                   <div class="onlycomment">
+                    <div class="profileandcomment">
                       <div class="profile-picture">
-                        <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
-                      </div>
-                      <div class="nameandcomment">
-                        <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
-                        <p class="commenttext"><?php echo $comment['Comment'] ?></p>
-                      </div>
+                          <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                        </div>
+                        <div class="nameandcomment">
+                          <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                          <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                        </div>
+                    </div>
                       <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
 
                   </div>
                     
                     <div class="inputform" style="display: none;">
-                      <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                      <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
                         <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
                         <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
                         <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
@@ -366,7 +368,7 @@ function unlikes(PostID) {
             
                 <?php }?>
                 
-                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
                   <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
                   <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
                   <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
