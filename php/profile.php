@@ -315,7 +315,7 @@ $postresult = mysqli_query($conn, $postquery);
                         </div>
                         <?php if ($viewingOwnProfile) { ?>
                             <div>
-                                <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)">Delete <i class="fa-solid fa-xmark" style="color: #ff0000;"></i></button>
+                                <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         <?php } ?>
                     </div>
