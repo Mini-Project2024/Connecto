@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
-     $defaultImage = "./uploads/default.png"; 
+    $defaultImage = "./uploads/default.png"; 
 
     // File upload handling
     $target_dir = "uploads/";

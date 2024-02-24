@@ -47,7 +47,7 @@ if (!$viewingOwnProfile) {
   $connected = checkFollowStatus($userDetails['UserID']);
 }
 
-$no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE connector_id = {$userDetails['UserID']}";
+$no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE (connector_id = {$userDetails['UserID']} OR user_id = {$userDetails['UserID']})";
 $res = mysqli_query($conn, $no_connections);
 $no = mysqli_fetch_array($res);
 
@@ -55,7 +55,7 @@ $user = $_SESSION['user'];
 
 $postquery = "SELECT p.*, u.* 
               FROM posts p 
-              JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID']. "
+              JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID'] . "
               ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 
@@ -72,72 +72,79 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
-    //for following the user
     $(document).on("click", ".connect", function() {
-      var user_id_connect = $(this).data('user-id');
-      var button = this;
-      $(button).attr('disabled', true);
+      var button = $(this);
+      var user_id_connect = button.data('user-id');
+
+      var connectStatus = button.text().trim();
+      var ajaxURL = './ajax.php?connect';
+      var action = 'connect';
+
+
+      if (connectStatus === 'Connected') {
+        ajaxURL = './ajax.php?disconnect';
+        action = 'disconnect';
+      }
+
       $.ajax({
-        url: './ajax.php?connect',
+        url: ajaxURL,
         method: 'POST',
         dataType: 'json',
         data: {
           user_id: user_id_connect
         },
         success: function(response) {
+          // console.log(response.status);
           if (response.status) {
-            $(button).data('user-id', 0);
-            $(button).html('<i class="fa-solid fa-user-check"></i> Connected');
+            if (action === 'connect') {
+              button.html('<i class="fa-solid fa-user-check"></i> Connected');
+              setTimeout(function() {
+                location.reload();
+              }, 500);
+            } else {
+              button.html('<i class="fa-solid fa-user-plus"></i> Connect');
+              setTimeout(function() {
+                location.reload();
+              }, 500);
+            }
           } else {
-            $(button).attr('disabled', false);
             alert("Something went wrong");
           }
-        }
-      })
-    });
-    $(document).on("click", ".cnt", function() {
-      var user_id_connect = $(this).data('user-id');
-      var button = this;
-      $(button).attr('disabled', true);
-      $.ajax({
-        url: './ajax.php?connect',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-          user_id: user_id_connect
         },
-        success: function(response) {
-          if (response.status) {
-            $(button).data('user-id', 0);
-            $(button).html('<i class="fa-solid fa-user-check"></i> Connected');
-          } else {
-            $(button).attr('disabled', false);
-            alert("Something went wrong");
-          }
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+          alert("Something went wrong");
         }
-      })
+      });
     });
+
+
+
+
+
 
     // Acc deleting
     function deleteacc(userid) {
-        $.ajax({
-            url: './delete_acc.php',
-            method: 'POST',
-            data: { userid: userid },
-            dataType: 'json', // Specify JSON dataType for parsing response
-            success: function(response) {
-                if (response.status === 'success') {
-                    // Redirect to the provided URL
-                    window.location.href = response.redirect;
+      $.ajax({
+        url: './delete_acc.php',
+        method: 'POST',
+        data: {
+          userid: userid
+        },
+        dataType: 'json', // Specify JSON dataType for parsing response
+        success: function(response) {
+          if (response.status === 'success') {
+            // Redirect to the provided URL
+            window.location.href = response.redirect;
 
-                } else {
-                    console.error("Error deleting account");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
+          } else {
+            console.error("Error deleting account");
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
     }
   </script>
 </head>
@@ -165,9 +172,11 @@ $postresult = mysqli_query($conn, $postquery);
       <img src="./uploads/<?php echo $profileImage ?>" alt="Your Name" class="profile-image" />
       <div class="username">
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
-           <div class="flex">
-           <img src="../components/images/location.svg" class="svg"> <p>From <?php echo $NativePlace ?></p></div>
-        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> <a href="./network.php" >Connections</a></p>
+        <div class="flex">
+          <img src="../components/images/location.svg" class="svg">
+          <p>From <?php echo $NativePlace ?></p>
+        </div>
+        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> <a href="./network.php">Connections</a></p>
 
         <br>
         <script>
@@ -178,7 +187,7 @@ $postresult = mysqli_query($conn, $postquery);
         </script>
         <?php if (!$viewingOwnProfile) { ?>
           <?php if ($connected) { ?>
-            <button class="connect" id="connect"><i class="fa-solid fa-user-check"></i> Connected</button>
+            <button class="connect" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-check"></i> Connected</button>
           <?php } else { ?>
             <button class="connect" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
           <?php } ?>
@@ -192,7 +201,7 @@ $postresult = mysqli_query($conn, $postquery);
 
 
       </div>
-       <br>
+      <br>
       <br>
       <hr>
       <br>
@@ -236,7 +245,7 @@ $postresult = mysqli_query($conn, $postquery);
         <br>
       </div>
 
-      
+
 
     </div>
     <!-- <button class="connect" id="connect"><i class="fa-solid fa-user-plus"></i>  Connect</button> -->
@@ -250,7 +259,7 @@ $postresult = mysqli_query($conn, $postquery);
         <div class="follow-section">
           <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
           <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
-          <button class="connect" id="connect" data-user-id="<?php echo $suser['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
+          <button class="connect suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
         </div>
       <?php endforeach; ?>
       <?php
@@ -262,83 +271,87 @@ $postresult = mysqli_query($conn, $postquery);
 
 
   </div>
-   <center><h1>Posts</h1></center> 
+  <center>
+    <h1>Posts</h1>
+  </center>
   <div class="feeds1">
- 
-  <?php  
-  $row = mysqli_num_rows($postresult);
-  ?><?php
-    if($row!=0){
-    ?>   <?php
+
+    <?php
+    $row = mysqli_num_rows($postresult);
+    ?><?php
+      if ($row != 0) {
+      ?> <?php
+        } else {
+          ?> <h1>No Posts Yet</h1><?php
+                                }
+                                  ?>
+  <script>
+    function redirectToProfile(userID) {
+      var profileUrl = "./profile.php?userID=" + userID;
+      window.location.href = profileUrl;
     }
-    else{
-    ?>  <h1>No Posts Yet</h1><?php
-    }
-    ?>
-        <script> 
-          function redirectToProfile(userID) {
-            var profileUrl = "./profile.php?userID=" + userID;
-            window.location.href = profileUrl;
-          }
-        </script>
-      <script>
+  </script>
+  <script>
     function deletePost(postId) {
-        $.ajax({
-            url: './delete_post.php',
-            method: 'POST',
-            data: { postId: postId },
-            success: function(response) {
-                console.log(response);
-                $("#post_" + postId).remove(); // Log the response for debugging
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
+      $.ajax({
+        url: './delete_post.php',
+        method: 'POST',
+        data: {
+          postId: postId
+        },
+        success: function(response) {
+          console.log(response);
+          $("#post_" + postId).remove(); // Log the response for debugging
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
     }
-</script>
+  </script>
 
 
-        <?php  
-       
-        while ($postDetails = mysqli_fetch_assoc($postresult)) {
-          
-    ?>
-            <div class="feed">
-                <div class="feed-top">
-                    <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-                        <div class="profile-picture">
-                            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
-                        </div>
-                        <div class="info">
-                            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
-                        </div>
-                        <?php if ($viewingOwnProfile) { ?>
-                            <div>
-                                <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-               
-                <div class="feed-image">
-                    <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-                </div>
-                 <div class="caption">
-                 <?php echo $postDetails['Content']; ?>
-                <br></div>
-                <div class="action-button">
-                    <!-- Your action buttons here -->
-                </div>
-                <!-- <div class="flex">
+  <?php
+
+  while ($postDetails = mysqli_fetch_assoc($postresult)) {
+
+  ?>
+    <div class="feed">
+      <div class="feed-top">
+        <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
+          <div class="profile-picture">
+            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+          </div>
+          <div class="info">
+            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+          </div>
+          <?php if ($viewingOwnProfile) { ?>
+            <div>
+              <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
+
+      <div class="feed-image">
+        <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+      </div>
+      <div class="caption">
+        <?php echo $postDetails['Content']; ?>
+        <br>
+      </div>
+      <div class="action-button">
+        <!-- Your action buttons here -->
+      </div>
+      <!-- <div class="flex">
                     <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
                     <i class="fa-regular fa-comment "></i>
                 </div>
                 <div class="comments text-grey">View all comments</div> -->
-            </div>
-    <?php
-        }?>
-      </div>
+    </div>
+  <?php
+  } ?>
+  </div>
 </body>
 
 </html>

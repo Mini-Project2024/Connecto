@@ -71,7 +71,7 @@ $result = mysqli_query($conn, $query);
       $company = $userDetails['CompanyName'];
       $userId = $userDetails['UserID'];
 
-      $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE connector_id = {$userDetails['UserID']}";
+      $no_connections = "SELECT COUNT(*) AS connection_count FROM connections WHERE (connector_id = {$userDetails['UserID']} OR user_id = {$userDetails['UserID']})";
       $res = mysqli_query($conn, $no_connections);
       $no = mysqli_fetch_array($res);
 

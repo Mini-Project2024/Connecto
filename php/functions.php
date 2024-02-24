@@ -152,3 +152,17 @@ function getlikes($PostID){
     $run = mysqli_query($conn,$query);
     return mysqli_fetch_all($run);
 }
+
+function disconnectUser($user_id){
+    global $conn;
+    $current_user_id = $_SESSION['user']['UserID'];
+    $query = "DELETE FROM connections WHERE connector_id = $current_user_id AND user_id = $user_id";
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+        return true;
+    } else {
+        // Log the error
+        error_log("Error disconnecting user: " . mysqli_error($conn));
+        return false;
+    }
+}

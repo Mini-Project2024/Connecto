@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "functions.php";
 
 if(isset($_GET['sendmessage'])){
@@ -15,7 +15,6 @@ if(isset($_GET['getMessages'])){
     $chatlist = "";
     foreach ($chats as $chat) {
         $ch_user = getUser($chat['user_id']);
-        // Modify the onclick event to pass the user_id
         $chatlist .= '<div class="msg">
                             <a href="./messages.php?chatter_id=' . $ch_user['UserID'] . '" class="chatlist_item">
                             <div class="msg-main">
@@ -51,15 +50,27 @@ if(isset($_GET['getMessages'])){
     echo json_encode($json);
 }
 
-//for follow
-
 if(isset($_GET['connect'])){
     $user_id = $_POST['user_id'];
-    if(followUser($user_id)){
-        $response['status'] = true;
-    }else{
-        $response['status'] = false;
+    $current_user_id = $_SESSION['user']['UserID'];
+
+    // Check if the users are already connected
+    if(checkFollowStatus($user_id)){
+        // If they are connected, disconnect them
+        if(disconnectUser($user_id)){
+            $response['status'] = false; // Set status to false indicating disconnection
+        }else{
+            $response['status'] = true; // Set status to true indicating connection
+        }
+    } else {
+        // If they are not connected, connect them
+        if(followUser($user_id)){
+            $response['status'] = true; // Set status to true indicating connection
+        }else{
+            $response['status'] = false; // Set status to false indicating disconnection
+        }
     }
+
     echo json_encode($response);
 }
 
@@ -80,26 +91,39 @@ if(isset($_GET['searchUsers'])){
     $json['userlist'] = $userlist;
     echo json_encode($json);
 }
+
 if(isset($_GET['like'])){
     $PostID= $_POST['PostID'];
     if(!checkLikeStatus($PostID)){
-    if(like($PostID)){
-        $response['status'] = true;
-    }else{
-        $response['status'] = false;
+        if(like($PostID)){
+            $response['status'] = true;
+        }else{
+            $response['status'] = false;
+        }
+        echo json_encode($response);
     }
-    echo json_encode($response);
 }
-}
+
 if(isset($_GET['unlike'])){
     $PostID= $_POST['PostID'];
     if(checkLikeStatus($PostID)){
-    if(unlike($PostID)){
+        if(unlike($PostID)){
+            $response['status'] = true;
+        }else{
+            $response['status'] = false;
+        }
+        echo json_encode($response);
+    }
+}
+
+if(isset($_GET['disconnect'])){
+    $user_id = $_POST['user_id']; // Ensure this is properly set
+    if(disconnectUser($user_id)){
         $response['status'] = true;
     }else{
         $response['status'] = false;
     }
     echo json_encode($response);
 }
-}
+
 ?>
