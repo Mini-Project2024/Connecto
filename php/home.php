@@ -293,7 +293,7 @@ function unlikes(PostID) {
                          FROM comments c JOIN users u
                          ON c.UserID = u.UserID  AND PostID = $postID AND ParentCommentID=0";
         $commentResult = mysqli_query($conn, $commentQuery);
-        $commentcount=mysqli_num_rows($commentResult);
+        
       
 
           
@@ -313,22 +313,30 @@ function unlikes(PostID) {
             <br>
             <?=count($likes)?> likes
             <div class="commentsection" style="display: none;">
-                 <?php  while ($comment = mysqli_fetch_assoc($commentResult)) {?>
+           
+                 <?php 
+                  $replycommentcount = 0;
+                  $commentcount = 0;
+                  while ($comment = mysqli_fetch_assoc($commentResult)) {
+                    $commentcount++;
+                    ?>
                 <div class="comment">
                   <div class="onlycomment">
+                    <div class="profileandcomment">
                       <div class="profile-picture">
-                        <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
-                      </div>
-                      <div class="nameandcomment">
-                        <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
-                        <p class="commenttext"><?php echo $comment['Comment'] ?></p>
-                      </div>
+                          <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                        </div>
+                        <div class="nameandcomment">
+                          <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                          <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                        </div>
+                    </div>
                       <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
 
                   </div>
                     
                     <div class="inputform" style="display: none;">
-                      <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                      <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
                         <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
                         <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
                         <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
@@ -345,8 +353,9 @@ function unlikes(PostID) {
                                         ON c.UserID = u.UserID  
                                         AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
                   $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
-                  $replycommentcount =mysqli_num_rows($replyCommentResult);
+            
                   while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                    $replycommentcount++;
                 ?>
                   <div class="replycomment">
                     <div class="profile-picture">
@@ -362,7 +371,7 @@ function unlikes(PostID) {
             
                 <?php }?>
                 
-                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
+                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
                   <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
                   <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
                   <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
