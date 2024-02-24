@@ -187,7 +187,10 @@ function unlikes(PostID) {
       </div>
       <nav>
         <ul>
+          <div class="box">
+          <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px"></i>
           <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
+          </div>
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="#">Home</a></li>
           <li><a href="network.php">My Network</a></li>
