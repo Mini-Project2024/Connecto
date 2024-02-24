@@ -187,7 +187,10 @@ function unlikes(PostID) {
       </div>
       <nav>
         <ul>
+          <div class="box">
+          <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px"></i>
           <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
+          </div>
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="#">Home</a></li>
           <li><a href="network.php">My Network</a></li>
@@ -378,7 +381,7 @@ function unlikes(PostID) {
                 </form>
                 
             </div>
-                                       <?php echo $commentcount + $replycommentcount ." comments" ?>
+            <?php echo $commentcount + $replycommentcount ." comments" ?>
 
           </div>
 
@@ -389,7 +392,6 @@ function unlikes(PostID) {
       <footer>
 
         <p>&copy; 2024 Your Network. All rights reserved.</p>
-
       </footer>
 
     </section>

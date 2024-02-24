@@ -41,6 +41,46 @@ svg{
   
   border-radius: 20px;
 }
+.box{
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 2px 5px 8px #fff;
+}
+.box input{
+  background: transparent;
+  border: none;
+  outline: none;
+  display: none;
+  width: 450px;
+  transition: width 1.5s, border-radius 1.5s;
+}
+.box:hover{
+  width: 500px;
+  border-radius: 20px;
+ 
+}
+.box input:focus {
+  display: block;
+  width: 500px;
+}
+.box:focus {
+  display: block;
+  width: 500px;
+}
+.box
+ :focus {
+  display: block;
+  width: 500px;
+}
+.box:hover input{
+  display: block;
+  box-shadow:none;
+}
 /* -----------------register page--------- */
 .register{
   background: #f4f4f4;
