@@ -31,11 +31,17 @@ if ($userDetails) {
     <link rel="stylesheet" href="../components/css/style.css"> 
     <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
     <title>Post picture</title>
+    <style>
+        body{
+            background:url(../components/images/chat-bg4.jpg);
+        }
+    </style>
 </head>
 <body>
     
     <div class="postcontainer">
         <div class="myself">
+        <a class="back-arrow" href="./home.php"><i class="fa-solid fa-arrow-left"></i></a>
         <img class='postprofile' src="./uploads/<?php echo $profileImage ?>" alt="Your Name" />
         <h4 class='postprofilename'>
          Post your thoughts..
