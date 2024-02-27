@@ -13,6 +13,7 @@ a, i ,.user{
 }
 i{
   margin: 10px;
+  z-index: 55;
 }
 .flex i{
   cursor: pointer;
@@ -547,6 +548,7 @@ flex-wrap: wrap;
 gap: 20px;
 }
 .feeds1 .feed{
+  position: relative;
   border: 1px solid lightgrey;
   border-radius: 10px;
 }
@@ -560,6 +562,23 @@ gap: 20px;
   width: 350px;
   height: 350px;
   object-fit: cover;
+}
+.feeds1  .feed .action-button{
+  opacity: 0;
+  top: 0px;
+  position:absolute;
+  height: 350px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #211f1faf;
+  color: #fff;
+  transition: .5s;
+}
+.feeds1 .feed:hover .action-button{
+ opacity: 1;
+ cursor: pointer;
 }
 /* ------------------message icon ----------- */
 .msg-main {

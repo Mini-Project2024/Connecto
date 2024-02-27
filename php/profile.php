@@ -326,18 +326,18 @@ $postresult = mysqli_query($conn, $postquery);
     <div class="feed">
       <div class="feed-top">
         <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-          <div class="profile-picture">
+          <!-- <div class="profile-picture">
             <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
             <?php $likes =getlikes($postDetails['PostID']);?>
-          </div>
-          <div class="info">
+          </div> -->
+          <!-- <div class="info">
             <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
-          </div>
-          <?php if ($viewingOwnProfile) { ?>
+          </div> -->
+          <!-- <?php if ($viewingOwnProfile) { ?>
             <div>
               <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
             </div>
-          <?php } ?>
+          <?php } ?> -->
         </div>
       </div>
 
@@ -349,7 +349,7 @@ $postresult = mysqli_query($conn, $postquery);
         <br>
       </div> -->
       <div class="action-button">
-      <h2 style="margin-left:10px"> <?=count($likes)?>  <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;cursor:pointer;color:red;display:<?=$unlike_btn_display?>" onclick="unlikes(<?php echo $postDetails['PostID'];?>)"></i> 
+      <h2 style="margin-left:10px"> <?=count($likes)?>  <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;"></i> 
       </h2>
       </div>
       <!-- <div class="flex">
