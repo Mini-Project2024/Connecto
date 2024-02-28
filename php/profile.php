@@ -323,7 +323,7 @@ $postresult = mysqli_query($conn, $postquery);
   while ($postDetails = mysqli_fetch_assoc($postresult)) {
 
   ?>
-    <div class="feed">
+    <div class="feed" onclick="openPopup()" >
       <div class="feed-top">
         <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
           <!-- <div class="profile-picture">
@@ -333,11 +333,7 @@ $postresult = mysqli_query($conn, $postquery);
           <!-- <div class="info">
             <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
           </div> -->
-          <!-- <?php if ($viewingOwnProfile) { ?>
-            <div>
-              <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
-            </div>
-          <?php } ?> -->
+         
         </div>
       </div>
 
@@ -361,6 +357,280 @@ $postresult = mysqli_query($conn, $postquery);
   <?php
   } ?>
   </div>
+
+  <script>
+       function openPopup(){
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+       }
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+        
+    </script>
+  <!-- Pop-up Posts -->
+ <?php   
+   $postquery = "SELECT p.*, u.* 
+                  FROM posts p 
+                  JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID'] . " 
+                  ORDER BY p.PostedDate DESC";
+$postresult = mysqli_query($conn, $postquery);
+$postDetails = mysqli_fetch_assoc($postresult);
+
+//insert comment
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  include("config.php");
+
+  $newComment = $_POST['newcomment'];
+  $postID = $_POST['PostID'];
+  $userID = $_POST['UserID'];
+  $parentCommentId = $_POST['ParentCommentID'];
+  $commentdate = date('Y-m-d H:i:s');
+
+  $commentinsertQuery = "INSERT INTO comments (Comment, UserID, PostID, CommentDate,ParentCommentID) VALUES ('$newComment', '$userID', '$postID','$commentdate','$parentCommentId')";
+  $commentinsertValue = mysqli_query($conn, $commentinsertQuery);
+ 
+  
+  if ($commentinsertValue) {
+      // echo "Successfull comment insertion";
+  } else {
+      echo "Error adding comment: " . mysqli_error($conn) ;
+  }
+}
+?>
+
+
+     
+      <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <?php 
+                    $likes =getlikes($postDetails['PostID']);?>
+                    <div class="popup-feed">
+                      <div class="feed-top">
+                        <div class="poppup-user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
+                          <div class="profile-picture">
+                            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+                          </div>
+                          <div class="info">
+                            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+                          </div>
+                           <?php if ($viewingOwnProfile) { ?>
+                            <div>
+                              <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                          <?php } ?>
+                        </div>
+                        <div class="popup-feed-image">
+                        <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+                        </div>
+                      </div>
+                      <div class="mypostrightside">
+                      <span>
+                      <?php
+                      if(checkLikeStatus($postDetails['PostID'])){
+                        $like_btn_display='none';
+                        $unlike_btn_display=''; 
+                      }
+                        else{
+                          $like_btn_display='';
+                        $unlike_btn_display='none'; 
+                        }
+                        ?>
+                        <script>
+                              
+                              function toggleCommentSection(commentIcon) {
+                                  var commentInput = document.querySelector('.newcomment'); 
+                                  commentInput.focus();
+                                  commentInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                              }
+
+                              function toggleReply(replyButton, commentID, postID) {
+                                  var comment = replyButton.closest('.popup-comment'); // Get the parent comment element
+                                  var inputform = comment.querySelector('.inputform'); // Find the input form within the comment
+                                  var parentCommentIDInput = inputform.querySelector('.parentCommentID');
+                                  parentCommentIDInput.value = commentID; // Set the ParentCommentID input field
+                                  var postIDInput = inputform.querySelector('.postID');
+                                  postIDInput.value = postID; // Set the PostID input field
+                                  if (inputform.style.display === 'none' || inputform.style.display === '') {
+                                      inputform.style.display = 'block';
+                                      comment.appendChild(inputform); // Move the input form to the end of the comment
+                                  } else {
+                                      inputform.style.display = 'none';
+                                  }
+                              }
+
+                              // for like
+                              function likes(PostID) {
+                                  var button = this;
+                                  $(button).attr('disabled', true);
+
+                                  $.ajax({
+                                      url: './ajax.php?like',
+                                      method: 'post',
+                                      dataType: 'json',
+                                      data: { PostID: PostID },
+                                      success: function (response) {
+                                          console.log(response);
+                                          if (response.status) {
+                                              // Change the class to the filled heart icon
+                                            
+                                              $(button).attr('disabled', false);
+                                              $(button).hide();
+                                              $(button).siblings('.unlike_btn').show();
+                                              location.reload(true);
+                                          } else {
+                                              $(button).attr('disabled', false);
+                                              alert("Something is wrong");
+                                          }
+                                      }
+                                  });
+                              }
+
+                              function unlikes(PostID) {
+                                  var button = this;
+                                  $(button).attr('disabled', true);
+
+                                  $.ajax({
+                                      url: './ajax.php?unlike',
+                                      method: 'post',
+                                      dataType: 'json',
+                                      data: { PostID: PostID },
+                                      success: function (response) {
+                                        
+                                          console.log(response);
+                                          
+                                          if (response.status) {
+                                              // Change the class to the regular heart icon
+                                              $(button).attr('disabled', false);
+                                              $(button).hide();
+                                              $(button).siblings('.like_btn').show();
+                                              location.reload(true);
+                                            
+                                          } else {
+                                              $(button).attr('disabled', false);
+                                              alert("Something is wrong");
+                                          }
+                                      }
+                                  });
+                                };
+                                
+
+
+                  </script>
+                    <?php
+                        // Comment section php code
+                //Parent comments
+                  $postID = $postDetails['PostID'];
+                  $commentQuery = "SELECT u.*,c.*
+                                  FROM comments c JOIN users u
+                                  ON c.UserID = u.UserID  AND PostID = $postID AND ParentCommentID=0";
+                  $commentResult = mysqli_query($conn, $commentQuery);
+                  
+                
+
+                    
+
+            ?>
+                        
+                    
+                      <div class="popup-commentsection" >
+                    
+                          <?php 
+                            $replycommentcount = 0;
+                            $commentcount = 0;
+                            while ($comment = mysqli_fetch_assoc($commentResult)) {
+                              $commentcount++;
+                              ?>
+                          <div class="popup-comment">
+                            <div class="onlycomment">
+                              <div class="profileandcomment">
+                                <div class="profile-picture">
+                                    <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                                  </div>
+                                  <div class="nameandcomment">
+                                    <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                                    <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                                  </div>
+                              </div>
+                                <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
+
+                            </div>
+                              
+                              <div class="inputform" style="display: none;">
+                                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
+                                  <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
+                                  <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                                  <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                                  <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
+                                  <button type="submit" class="commentpost">Post</button>
+                                </form>
+                              </div>
+                          </div>
+
+
+                          <?php 
+                            $replyCommentQuery = "SELECT u.*,c.*
+                                                  FROM comments c JOIN users u
+                                                  ON c.UserID = u.UserID  
+                                                  AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
+                            $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
+                      
+                            while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                              $replycommentcount++;
+                          ?>
+                            <div class="popup-replycomment">
+                              <div class="profile-picture">
+                                <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
+                              </div>
+                              <div class="nameandcomment">
+                                <h5><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></h5>
+                                <p class="commenttext"><?php echo "@".$comment['FirstName'].' '.$comment['LastName']; ?> <?php echo $replyComment['Comment'] ?></p>
+                              </div>
+                              
+                            </div>
+                          <?php } ?>
+                      
+                          <?php }?>
+                          
+                          <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="popup-commentForm">
+                            <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
+                            <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                            <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                            <input type="hidden" name="ParentCommentID" class="parentCommentID" value="NULL">
+                            <button type="submit" class="commentpost">Post</button>
+
+                          </form>
+                          
+                      </div>
+                      <div class="flex">
+                        
+                        <i class="fa-regular fa-heart like_btn "style="font-size:24px;cursor:pointer;display:<?=$like_btn_display?>" onclick="likes(<?php echo $postDetails['PostID']; ?>)"></i> 
+                        
+                      <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;cursor:pointer;color:red;display:<?=$unlike_btn_display?>" onclick="unlikes(<?php echo $postDetails['PostID'];?>)"></i> 
+                      </span>
+                      
+                      <!-- <?php echo $postDetails['PostID']?> -->
+                      <i class="fa-regular fa-comment " style=" font-size: 24px;" onclick="toggleCommentSection(this)"></i>
+
+                      </div>
+                      <h4> <?=count($likes)?> likes</h4>
+                      
+                      <div class="caption">
+                        <?php echo $postDetails['Content']; ?>
+                      </div>
+
+                    </div>
+
+                    
+                  
+                  </div>
+          </div>
+      </div>
+
+    
 </body>
 
 </html>
