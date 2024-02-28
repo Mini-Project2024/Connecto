@@ -1233,11 +1233,15 @@ input[type="submit"] {
   display: flex;
 }
 .popup-feed-image{
-  width: 400px; 
+  width: 420px; 
   height: 450px; 
   border-radius: 0px;
   overflow: hidden;
-  object-fit: cover;
+  object-fit:cover;
+}
+.popup-feed-image img{
+  width: 420px; 
+  height: 450px; 
 }
 .poppup-user{
   display: flex;
@@ -1248,6 +1252,8 @@ input[type="submit"] {
   padding: 5px;
   border: 1px solid gainsboro;
   border-radius: 10px;
+  width: 100%;
+  position: relative;
   max-height: 350px;
   overflow: scroll; 
 }
@@ -1256,7 +1262,7 @@ input[type="submit"] {
   width: 0; /* Set the width of the scrollbar to 0 */
 }
 .mypostrightside{
-  padding: 10px;
+  padding: 20px;
 }
 .popup-commentForm .newcomment{
   width: 400px;

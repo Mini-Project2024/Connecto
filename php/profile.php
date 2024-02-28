@@ -234,7 +234,7 @@ $postresult = mysqli_query($conn, $postquery);
             <path d="M4 9L24 24L44 9" />
           </g>
         </svg>
-        <?php echo $email ?> <br>
+        <a href="https://mail.google.com/mail/u/0/?fs=1&to=<?php echo $email ?>&su=&body=&tf=cm"><?php echo $email ?></a> <br>
       </div>
       <hr>
       <div class="flex">
@@ -323,7 +323,7 @@ $postresult = mysqli_query($conn, $postquery);
   while ($postDetails = mysqli_fetch_assoc($postresult)) {
 
   ?>
-    <div class="feed" onclick="openPopup()" >
+    <div class="feed" onclick="openPopup(<?php echo $postDetails['PostID']; ?>)" >
       <div class="feed-top">
         <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
           <!-- <div class="profile-picture">
@@ -359,7 +359,7 @@ $postresult = mysqli_query($conn, $postquery);
   </div>
 
   <script>
-       function openPopup(){
+       function openPopup(Postid){
         var popup = document.getElementById("popup");
         popup.style.display = "block";
        }
@@ -373,7 +373,7 @@ $postresult = mysqli_query($conn, $postquery);
  <?php   
    $postquery = "SELECT p.*, u.* 
                   FROM posts p 
-                  JOIN users u ON p.UserID = u.UserID and u.UserID = " . $userDetails['UserID'] . " 
+                  JOIN users u ON p.UserID = u.UserID WHERE u.UserID = " . $userDetails['UserID'] . " 
                   ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 $postDetails = mysqli_fetch_assoc($postresult);
