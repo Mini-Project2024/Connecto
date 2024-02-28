@@ -78,7 +78,7 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;"
-            href="http://localhost/job-finder/php/reset_password.php?token=<?php echo $token; ?>"
+            href="http://localhost/job-finder/php/reset_password.php?token=$token"
             >Reset Password</a
             >
             <br>
