@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Other head elements -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .mainBox {
+        max-width: 600px;
+        margin: 50px auto;
+        /* Center the container vertically */
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        /* Center the content inside the container */
+      }
+      .container {
+        text-align: left;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      p {
+        color: #555;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      .main-img {
+        width: 130px;
+        height: 140px;
+      }
+      .img{
+        display: flex;
+        align-items: center;
+      }
+      h1{
+        color: #0718c4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mainBox">
+        <div class="img">
+            <img class="main-img" src="../images/image-removebg-preview.png" alt="logo">
+            <h1>CONNECTO</h1>
+        </div>
+        <hr />
+      <h2>Password Reset</h2>
+      <div class="container">
+        <p>Hi,User</p>
+        <p>We have a request to reset your Connecto Account password. You can do this by clicking on the button below.</p>
+        <br>
+        <a
+          class="btn"
+          href="http://localhost/job-finder/php/reset_password.php?token=<?php echo $token; ?>"
+          >Reset Password</a
+        >
+        <br>
+        <p>If you did not request this change of password you may safely ignore this message.</p>
+        <br>
+        <hr>
+        <br>
+        Have a question? You can reach out to us via <a href="mailto:connecto@gmail.com">connecto@gmail.com</a>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
