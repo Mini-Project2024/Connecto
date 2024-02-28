@@ -59,6 +59,12 @@ $result = mysqli_query($conn, $query);
   <br><br><br><br><br>
   <center>
     <h1>Your Connections</h1>
+    <?php
+    $row = mysqli_num_rows($result);
+    if($row==0){
+     ?><h3>No connections found...</h3>;<?php
+    }
+    ?>
   </center>
   <script>
     function redirectToProfile(userID) {
