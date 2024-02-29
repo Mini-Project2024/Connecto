@@ -125,16 +125,25 @@ $postresult = mysqli_query($conn, $postquery);
 
 
     // Acc deleting
-    function deleteacc(userid) {
+    function deleteacc(userid,firstname,lastname) {
+      var userInput = prompt("To delete your account, type your username here:");
+          if (userInput != firstname +" "+ lastname) {
+          alert("Username confirmation failed.");
+          return;}
       $.ajax({
         url: './delete_acc.php',
         method: 'POST',
         data: {
-          userid: userid
+          userid: userid,
+          firstname: firstname,
+          lastname: lastname
         },
         dataType: 'json', // Specify JSON dataType for parsing response
         success: function(response) {
-          prompt("to delete your account, type your username here");
+        
+          // Exit function if confirmation fails
+        
+
           if (response.status === 'success') {
             // Redirect to the provided URL
             window.location.href = response.redirect;
@@ -202,7 +211,8 @@ $postresult = mysqli_query($conn, $postquery);
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
           <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
-          <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>)" class='deleteacc'><i class="fa-regular fa-trash-can" style="color:black;font-size:20px"></i></button>
+          <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>,'<?php echo $userDetails['FirstName'];?>','<?php echo $userDetails['LastName'];?>')" class='deleteacc'><i class="fa-regular fa-trash-can" style="color:black;font-size:20px"></i></button>
+
           <a href="./profileedit.php" class="edit-connect">Edit Profile <i class="fa-solid fa-pen"></i></a>
         <?php } ?>
 

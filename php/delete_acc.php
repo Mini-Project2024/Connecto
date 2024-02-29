@@ -4,6 +4,8 @@ include("config.php");
 
 if (isset($_POST['userid'])) {
     $userid = $_POST['userid'];
+    $firstname =$_POST['firstname'];
+    $lastname =$_POST['lastname'];
     $deleteQuery = "DELETE FROM users WHERE UserID = $userid";
     if (mysqli_query($conn, $deleteQuery)) {
         session_destroy(); 
