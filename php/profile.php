@@ -73,8 +73,9 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
-    $(document).on("click", ".connect", function() {
+    $(document).on("click", ".connect1", function() {
       var button = $(this);
+      
       var user_id_connect = button.data('user-id');
 
       var connectStatus = button.text().trim();
@@ -203,9 +204,9 @@ $postresult = mysqli_query($conn, $postquery);
         </script>
         <?php if (!$viewingOwnProfile) { ?>
           <?php if ($connected) { ?>
-            <button class="connect" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-check"></i> Connected</button>
+            <button class="connect1" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-check"></i> Connected</button>
           <?php } else { ?>
-            <button class="connect" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
+            <button class="connect1" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
           <?php } ?>
           <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
