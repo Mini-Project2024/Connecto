@@ -12,7 +12,7 @@ a, i ,.user{
   cursor: pointer;
 }
 i{
-  margin: 10px;
+  margin: 5px;
   z-index: 55;
 }
 .flex i{
@@ -55,46 +55,6 @@ header svg{
   outline: none;
   
   border-radius: 20px;
-}
-.box{
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 2px 5px 8px #fff;
-}
-.box input{
-  background: transparent;
-  border: none;
-  outline: none;
-  display: none;
-  width: 450px;
-  transition: width 1.5s, border-radius 1.5s;
-}
-.box:hover{
-  width: 500px;
-  border-radius: 20px;
- 
-}
-.box input:focus {
-  display: block;
-  width: 500px;
-}
-.box:focus {
-  display: block;
-  width: 500px;
-}
-.box
- :focus {
-  display: block;
-  width: 500px;
-}
-.box:hover input{
-  display: block;
-  box-shadow:none;
 }
 .profile-options h2{
   text-transform:capitalize;
@@ -147,14 +107,25 @@ header svg{
 }
 
 /* ------------login------------ */
+.div-login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  background: #fefefe;
+}
 .login{
   
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
- 
+  background: #f4f4f4;
+}
+.button{
+  text-align: center;
+  font-weight: 600;
 }
 .login form{
   height: 500px;
@@ -164,17 +135,34 @@ header svg{
   justify-content: center;
 
   border-radius:10px;
-  padding: 10px;
+  padding: 25px;
 }
 .login form input{ 
   border: 1px solid lightgrey;
   outline: none;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding:10px;
   width: 340px;
 
 }
+/* -----------search---------- */
+.box{
+  height: 50px;
+  display: flex;
+  background: #fff;
+  box-shadow:0 0 12px  #aaa;
+  border-radius: 40px;
+  padding: 3px;
+}
+.box input{
+  background: transparent;
+  border: transparent;
+  outline: none; 
+  height: 45px;
+  width: 100%;
+}
+
 /* -------------------------- */
 .logo {
   flex: 0 0 auto;
@@ -580,6 +568,9 @@ gap: 20px;
  opacity: 1;
  cursor: pointer;
 }
+
+
+
 /* ------------------message icon ----------- */
 .msg-main {
   display: flex;
@@ -1043,16 +1034,29 @@ input[type="submit"] {
   background-color: #0718C4;
   color: #fff;
   font-weight: 600;
-  /* width: 100px; */
+  width: 125px;
   padding: 5px 10px;
   border-radius: 20px;
   border: none;
+  height: 37px;
   text-decoration: none;
 }
 .connect{
  color: #0718C4;
  border: none;
  font-weight: 600;
+}
+.connect1{
+  background: #0718C4;
+  color: #fff;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  width: fit-content;
+  height: 37px;
+  padding: 5px 10px; 
+  text-decoration: none;
 }
 .edit-connect{
   padding: 5px 10px;
@@ -1089,17 +1093,20 @@ input[type="submit"] {
 }
 
 #searchResults {
+
   position: absolute;
-  top: 100%;
-  left: 55%;
+  top: 210%;
+  left: 75%;
   right: 0;
-  width: 300px;
+  width: 366px;
+  /* height: 100vh; */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  z-index: 999; /* Ensure it's above other elements */
+  z-index: 999;
   color: #000;
   font-weight: 600;
+  backdrop-filter: blur;
 }
 
 #searchResults ul {
@@ -1123,11 +1130,12 @@ input[type="submit"] {
 
 /* comment section */
 .commentsection {
-  padding: 5px;
+  padding: 10px;
   border: 1px solid gray;
   border-radius: 10px;
   max-height: 200px;
   overflow: scroll; 
+ 
 }
 
 .commentsection::-webkit-scrollbar {
@@ -1174,7 +1182,9 @@ input[type="submit"] {
 }
 .newcomment{
   width: 500px;
-  border-radius: 5px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
 }
 .replybtn{
   border: none;
@@ -1182,10 +1192,18 @@ input[type="submit"] {
 }
 .commentpost{
   border: none;
-  background-color: white;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #0718c4;
 }
 .commentForm{
-  width: fit-content;
+  border: 1px solid lightgrey;
+  padding: 0px;
+  position: relative;
+  bottom: 0;
+  width: max-content;
   margin: 0  auto;
 }
 /* Popup container */
