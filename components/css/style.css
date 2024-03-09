@@ -189,10 +189,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
   margin: -2px 0;
 }
-
 header {
   position: fixed;
   top: 0;
@@ -205,15 +203,12 @@ header {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   z-index: 9999;
 }
-
 header h1 {
   display: flex;
   align-items: center;
   font-size: 1.5rem;
   font-family: "Lato", sans-serif;
-
 }
-
 nav {
   display: flex;
   align-items: center;
@@ -221,7 +216,6 @@ nav {
   flex: 0 0 auto;
   z-index: 50;
 }
-
 nav ul {
   list-style: none;
   display: flex;
@@ -230,7 +224,6 @@ nav ul {
   justify-content: center;
   height: 67px;
 }
-
 nav ul li {
   display: flex;
   flex-direction: column;
@@ -238,7 +231,6 @@ nav ul li {
   margin:-4px 15px;
   align-items: center;
 }
-
 nav a {
   text-decoration: none;
   color: #fff;
@@ -246,27 +238,22 @@ nav a {
   font-weight: bold;
   margin: inherit;
 }
-
 nav .profile {
   display: flex;
   align-items: center;
 }
-
 nav .profile img {
   border-radius: 50%;
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
-
 main {
   padding: 20px 0 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  
 }
-
 .left,
 .middle,
 .right {
@@ -276,7 +263,6 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
-
 .left {
   width: 400px;
   position: fixed;
@@ -286,12 +272,10 @@ main {
   bottom: 0;
   flex: 0 0 100%;
 }
-
 .middle {
   margin: 15px;
   flex: 0 0 100%;
 }
-
 .right {
   width: 400px;
   position: fixed;
@@ -305,14 +289,12 @@ main {
 .right::-webkit-scrollbar {
   display: none;
 }
-
 .left img {
   border-radius: 50%;
   width: 100%;
   height: 100px;
   width: 100px;
 }
-
 .left button {
   display: block;
   width: 100%;
@@ -333,7 +315,6 @@ main {
   object-fit: cover;
   object-position: center;
 }
-
 .messaging-options {
   border-radius: 5px;
   background-color: #fff;
@@ -411,7 +392,6 @@ span.fa-solid.fa-arrow-up {
   height: 50px;
   margin: 20px auto;
 }
-
 /* Media queries for responsiveness */
 @media only screen and (min-width: 768px) {
   .left,
@@ -428,11 +408,9 @@ span.fa-solid.fa-arrow-up {
   .left {
     flex: 0 0 calc(20% - 20px);
   }
-
   .middle {
     flex: 0 0 calc(60% - 20px);
   }
-
   .right {
     flex: 0 0 calc(20% - 20px);
   }
@@ -479,16 +457,15 @@ span.fa-solid.fa-arrow-up {
   margin: 0 auto;
   width: 620px;
 }
-
 .feeds .feed {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
   margin: 1rem auto;
   line-height: 1.5;
+  word-wrap: break-word;
   font-size: 0.85rem;
 }
-
 .feeds .feed .feed-top {
   display: flex;
   align-items: center;
@@ -501,10 +478,8 @@ span.fa-solid.fa-arrow-up {
   align-items: center;
   gap: 1rem;
 }
-
 .feeds1 .feed .feed-top .user {
   display: flex;
-
   width: 100%;
   padding: 0 10px;
   justify-content: space-around;
@@ -519,7 +494,6 @@ span.fa-solid.fa-arrow-up {
   display: flex;
   background:#ddd;
   justify-content: center;
-
   align-items: center;
 }
 .feed .feed-image img {
@@ -531,14 +505,15 @@ span.fa-solid.fa-arrow-up {
 }
 .feeds1 {
   margin: 30px;
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .feeds1 .feed{
   position: relative;
   border: 1px solid lightgrey;
   border-radius: 10px;
+  
 }
 .feeds1 .feed .feed-top{
   display: flex;
@@ -568,9 +543,6 @@ gap: 20px;
  opacity: 1;
  cursor: pointer;
 }
-
-
-
 /* ------------------message icon ----------- */
 .msg-main {
   display: flex;
@@ -578,13 +550,11 @@ gap: 20px;
   gap: 15px;
   padding: 5px;
 }
-
 .msg-img {
   height: 45px;
   width: 45px;
   border-radius: 50%;
 }
-
 .msg-name {
   font-weight: 600;
   font-size: 18px;
@@ -593,7 +563,6 @@ gap: 20px;
   text-decoration: none;
   color: #000;
 }
-
 .chatbox {
   width: 100%;
   height: 580px;
@@ -601,7 +570,6 @@ gap: 20px;
   position: relative;
   border-radius: 15px 15px 10px 10px;
 }
-
 .chathead {
   display: flex;
   flex-direction: row;
@@ -611,25 +579,21 @@ gap: 20px;
   background-color: #ddd;
   border-radius: 15px 15px 0 0;
 }
-
 .chathead > p {
   font-weight: 600;
   font-size: 15px;
 }
-
 .chathead > a > i {
   color: #000;
   font-weight: 600;
   font-size: 20px;
 }
-
 .chat-img {
   height: 45px;
   width: 45px;
   border-radius: 50%;
   border: 2px solid #000;
 }
-
 .chatarea {
   max-height: 460px;
   overflow-y: auto;
@@ -638,11 +602,9 @@ gap: 20px;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .chatarea::-webkit-scrollbar {
   display: none;
 }
-
 .chatbottom {
   position: absolute;
   bottom: 0;
@@ -1281,6 +1243,7 @@ input[type="submit"] {
 }
 .mypostrightside{
   padding: 20px;
+  word-break: break-all;
 }
 .popup-commentForm .newcomment{
   width: 400px;
