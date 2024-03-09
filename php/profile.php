@@ -326,6 +326,8 @@ $postresult = mysqli_query($conn, $postquery);
         }
       });
     }
+
+
   </script>
 
 
@@ -369,25 +371,19 @@ $postresult = mysqli_query($conn, $postquery);
   } ?>
   </div>
 
-  <script>
-       function openPopup(Postid){
-        var popup = document.getElementById("popup");
-        popup.style.display = "block";
-       }
-        function closePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-        
-    </script>
+
+ 
+  
   <!-- Pop-up Posts -->
- <?php   
-   $postquery = "SELECT p.*, u.* 
-                  FROM posts p 
-                  JOIN users u ON p.UserID = u.UserID WHERE u.UserID = " . $userDetails['UserID'] . " 
-                  ORDER BY p.PostedDate DESC";
-$postresult = mysqli_query($conn, $postquery);
-$postDetails = mysqli_fetch_assoc($postresult);
+
+  <script>
+     <?php   
+//    $postquery = "SELECT p.*, u.* 
+//                   FROM posts p 
+//                   JOIN users u ON p.UserID = u.UserID WHERE u.UserID = " . $userDetails['UserID'] . " 
+//                   ORDER BY p.PostedDate DESC";
+// $postresult = mysqli_query($conn, $postquery);
+// $postDetails = mysqli_fetch_assoc($postresult);
 
 //insert comment
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -411,10 +407,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
-
-
-     
-      <div id="popup" class="popup">
+       // Modify openPopup function to accept PostID
+function openPopup(PostID) {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+    console.log("Opening popup...");
+    // Pass the PostID to fetch corresponding post details
+    fetchPostDetails(PostID);
+}
+        function closePopup() {
+          console.log("Opening popup...");
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+        function fetchPostDetails(PostID) {
+    // Modify the AJAX call to send data using POST method
+    $.ajax({
+        url: 'fetch_post_details.php',
+        method: 'POST', // Change method to POST
+        data: { Postid: PostID }, // Send Postid as data
+        success: function(response) {
+          var popupContent = document.querySelector('.popup-content');
+            popupContent.innerHTML =`
+            <div id="popup" class="popup">
             <div class="popup-content">
                 <span class="close" onclick="closePopup()">&times;</span>
                 <?php 
@@ -640,6 +655,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </div>
           </div>
       </div>
+            `
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", xhr, status, error);
+        }
+    });
+}
+
+
+        
+    </script>
+
+     
+      
 
     
 </body>
