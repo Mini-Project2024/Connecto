@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $query);
     <?php
     $row = mysqli_num_rows($result);
     if($row==0){
-     ?><h3>No connections found...</h3>;<?php
+     ?><h3>No connections found...</h3><?php
     }
     ?>
   </center>
