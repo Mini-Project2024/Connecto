@@ -90,12 +90,28 @@ if ($userDetails) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../components/css/style.css">
+    <style>
+        .full .left1 .back-arrow{
+            position:absolute;
+            left: 20px;
+            top: 20px;
+        
+            /* font-size:40px; */
+            z-index: 999;
+        }
+    </style>
 </head>
 
 <body>
+
+
     <div class="full">
     <div class="left1">
+    <a class="back-arrow" href="./home.php"><i class="fa-solid fa-arrow-left" style="font-size:26px;color:white;"></i></a>
+    
     <h1>Profile <br> details</h1>
         <img src="../components/images/application.png" alt="">
     </div> 
@@ -103,6 +119,7 @@ if ($userDetails) {
     <div class="right1">   
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" class="edit">
         <h1>Edit Your Profile</h1>
+      
         <fieldset>
             <legend>Personal details</legend>
         <div class="one">

@@ -97,7 +97,7 @@
             echo '<script>
                 Swal.fire({
                     title: "Message",
-                    text: "Sent Successfully!",
+                    text: "Sent to your mail Successfully!",
                     icon: "success"
                 });
               </script>';
