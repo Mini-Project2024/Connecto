@@ -126,12 +126,11 @@ $postresult = mysqli_query($conn, $postquery);
 
 
     // Acc deleting
-    function deleteacc(userid, firstname, lastname) {
+    function deleteacc(userid,firstname,lastname) {
       var userInput = prompt("To delete your account, type your username here:");
-      if (userInput != firstname + " " + lastname) {
-        alert("Username confirmation failed.");
-        return;
-      }
+          if (userInput != firstname +" "+ lastname) {
+          alert("Username confirmation failed.");
+          return;}
       $.ajax({
         url: './delete_acc.php',
         method: 'POST',
@@ -142,9 +141,9 @@ $postresult = mysqli_query($conn, $postquery);
         },
         dataType: 'json', // Specify JSON dataType for parsing response
         success: function(response) {
-
+        
           // Exit function if confirmation fails
-
+        
 
           if (response.status === 'success') {
             // Redirect to the provided URL
@@ -163,7 +162,7 @@ $postresult = mysqli_query($conn, $postquery);
 </head>
 
 <body>
-  <header>
+<header>
     <div class="container">
       <div class="logo">
         <img src="../components/images/logo.png" alt="">
@@ -176,20 +175,7 @@ $postresult = mysqli_query($conn, $postquery);
           </div> -->
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px;margin-bottom:12px;"></i><a href="home.php">Home</a></a></li>
-          <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                  <g>
-                    <ellipse cx="245.639" cy="154.693" rx="50.324" ry="51.162"></ellipse>
-                    <path d="M158.728,306.884h173.823c0-48.799-38.912-88.359-86.912-88.359S158.728,258.085,158.728,306.884z"></path>
-                    <path d="M49.729,99.439c4.652,0,9.151-0.652,13.424-1.846l52.215,60.854l23.238-19.949L88.831,80.488 c6.652-8.413,10.635-19.007,10.635-30.516c0-27.291-22.311-49.482-49.736-49.482C22.311,0.49,0,22.681,0,49.972 C0,77.248,22.311,99.439,49.729,99.439z M49.729,31.115c10.535,0,19.111,8.464,19.111,18.857c0,10.393-8.576,18.842-19.111,18.842 s-19.104-8.449-19.104-18.842C30.625,39.579,39.194,31.115,49.729,31.115z"></path>
-                    <path d="M49.729,489.51c27.425,0,49.736-22.191,49.736-49.482c0-11.515-3.983-22.114-10.636-30.529l49.778-58.012l-23.238-19.948 l-52.216,60.854c-4.274-1.194-8.773-1.846-13.424-1.846C22.311,390.546,0,412.737,0,440.028S22.311,489.51,49.729,489.51z M49.729,421.171c10.535,0,19.111,8.464,19.111,18.857c0,10.393-8.576,18.857-19.111,18.857s-19.104-8.464-19.104-18.857 C30.625,429.635,39.194,421.171,49.729,421.171z"></path>
-                    <path d="M374.631,158.447l52.22-60.852c4.27,1.192,8.765,1.844,13.412,1.844c27.425,0,49.737-22.191,49.737-49.467 c0-27.291-22.311-49.482-49.737-49.482c-27.41,0-49.721,22.191-49.721,49.482c0,11.508,3.983,22.103,10.634,30.516l-49.783,58.011 L374.631,158.447z M440.263,31.115c10.543,0,19.111,8.464,19.111,18.857c0,10.393-8.569,18.842-19.111,18.842 c-10.527,0-19.096-8.449-19.096-18.842C421.167,39.579,429.736,31.115,440.263,31.115z"></path>
-                    <path d="M401.177,409.499c-6.652,8.416-10.635,19.014-10.635,30.529c0,27.291,22.311,49.482,49.721,49.482 c27.425,0,49.737-22.191,49.737-49.482s-22.311-49.482-49.737-49.482c-4.647,0-9.142,0.652-13.412,1.844l-52.221-60.852 l-23.238,19.948L401.177,409.499z M459.375,440.028c0,10.393-8.569,18.857-19.111,18.857c-10.527,0-19.096-8.464-19.096-18.857 c0-10.393,8.569-18.857,19.096-18.857C450.806,421.171,459.375,429.635,459.375,440.028z"></path>
-                  </g>
-                </g>
-              </svg><a href="network.php">My Network</a></li></a>
+          <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <ellipse cx="245.639" cy="154.693" rx="50.324" ry="51.162"></ellipse> <path d="M158.728,306.884h173.823c0-48.799-38.912-88.359-86.912-88.359S158.728,258.085,158.728,306.884z"></path> <path d="M49.729,99.439c4.652,0,9.151-0.652,13.424-1.846l52.215,60.854l23.238-19.949L88.831,80.488 c6.652-8.413,10.635-19.007,10.635-30.516c0-27.291-22.311-49.482-49.736-49.482C22.311,0.49,0,22.681,0,49.972 C0,77.248,22.311,99.439,49.729,99.439z M49.729,31.115c10.535,0,19.111,8.464,19.111,18.857c0,10.393-8.576,18.842-19.111,18.842 s-19.104-8.449-19.104-18.842C30.625,39.579,39.194,31.115,49.729,31.115z"></path> <path d="M49.729,489.51c27.425,0,49.736-22.191,49.736-49.482c0-11.515-3.983-22.114-10.636-30.529l49.778-58.012l-23.238-19.948 l-52.216,60.854c-4.274-1.194-8.773-1.846-13.424-1.846C22.311,390.546,0,412.737,0,440.028S22.311,489.51,49.729,489.51z M49.729,421.171c10.535,0,19.111,8.464,19.111,18.857c0,10.393-8.576,18.857-19.111,18.857s-19.104-8.464-19.104-18.857 C30.625,429.635,39.194,421.171,49.729,421.171z"></path> <path d="M374.631,158.447l52.22-60.852c4.27,1.192,8.765,1.844,13.412,1.844c27.425,0,49.737-22.191,49.737-49.467 c0-27.291-22.311-49.482-49.737-49.482c-27.41,0-49.721,22.191-49.721,49.482c0,11.508,3.983,22.103,10.634,30.516l-49.783,58.011 L374.631,158.447z M440.263,31.115c10.543,0,19.111,8.464,19.111,18.857c0,10.393-8.569,18.842-19.111,18.842 c-10.527,0-19.096-8.449-19.096-18.842C421.167,39.579,429.736,31.115,440.263,31.115z"></path> <path d="M401.177,409.499c-6.652,8.416-10.635,19.014-10.635,30.529c0,27.291,22.311,49.482,49.721,49.482 c27.425,0,49.737-22.191,49.737-49.482s-22.311-49.482-49.737-49.482c-4.647,0-9.142,0.652-13.412,1.844l-52.221-60.852 l-23.238,19.948L401.177,409.499z M459.375,440.028c0,10.393-8.569,18.857-19.111,18.857c-10.527,0-19.096-8.464-19.096-18.857 c0-10.393,8.569-18.857,19.096-18.857C450.806,421.171,459.375,429.635,459.375,440.028z"></path> </g> </g></svg><a href="network.php">My Network</a></li></a>
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:28px;margin-bottom:12px;"></i><a href="logout.php">Logout</a></a></li>
         </ul>
       </nav>
@@ -226,7 +212,7 @@ $postresult = mysqli_query($conn, $postquery);
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
           <a href="./network.php" class="view-connect" id="view-connect"><i class="fa-solid fa-user-plus"></i> View Connections</a>
-          <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>,'<?php echo $userDetails['FirstName']; ?>','<?php echo $userDetails['LastName']; ?>')" class='deleteacc'><i class="fa-regular fa-trash-can" style="color:black;font-size:20px"></i></button>
+          <button onclick="deleteacc(<?php echo $userDetails['UserID']; ?>,'<?php echo $userDetails['FirstName'];?>','<?php echo $userDetails['LastName'];?>')" class='deleteacc'><i class="fa-regular fa-trash-can" style="color:black;font-size:20px"></i></button>
 
           <a href="./profileedit.php" class="edit-connect">Edit Profile <i class="fa-solid fa-pen"></i></a>
         <?php } ?>
@@ -343,17 +329,22 @@ $postresult = mysqli_query($conn, $postquery);
   </script>
 
 
-
   <?php
 
   while ($postDetails = mysqli_fetch_assoc($postresult)) {
-    $postIdd = $postDetails['PostID'];
+
   ?>
-    <div class="feed" onclick="openPopup(<?php echo $postDetails['PostID']; ?>)">
+    <div class="feed" onclick="openPopup(<?php echo $postDetails['PostID']; ?>)" >
       <div class="feed-top">
         <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-          <?php $likes = getlikes($postDetails['PostID']); ?>
-          <?php echo $postIdd ?>
+          <!-- <div class="profile-picture">
+            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+            <?php $likes =getlikes($postDetails['PostID']);?>
+          </div> -->
+          <!-- <div class="info">
+            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+          </div> -->
+         
         </div>
       </div>
 
@@ -365,8 +356,8 @@ $postresult = mysqli_query($conn, $postquery);
         <br>
       </div> -->
       <div class="action-button">
-        <h2 style="margin-left:10px"> <?= count($likes) ?> <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;"></i>
-        </h2>
+      <h2 style="margin-left:10px"> <?=count($likes)?>  <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;"></i> 
+      </h2>
       </div>
       <!-- <div class="flex">
                     <i class="fa-regular fa-heart style=" font-size: 24px;"></i>
@@ -379,295 +370,278 @@ $postresult = mysqli_query($conn, $postquery);
   </div>
 
   <script>
-    function openPopup(Postid) {
+       function openPopup(Postid){
         var popup = document.getElementById("popup");
         popup.style.display = "block";
-        console.log(Postid);
-        // Embedding PHP code directly within JavaScript
-        <?php
-        // Assuming you have already established a database connection
-        // Get the PostID from the JavaScript variable
-        $PostID = "<script>document.write(Postid)</script>";
-
-        // Query to fetch post details based on PostID
-        $postquery = "SELECT p.*, u.* 
-                      FROM posts p 
-                      JOIN users u ON p.UserID = u.UserID 
-                      WHERE p.PostID = $PostID";
-        $postresult = mysqli_query($conn, $postquery);
-        $postDetails = mysqli_fetch_assoc($postresult);
-        ?>
-    }
-
-    function closePopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "none";
-    }
-  </script>
+       }
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+        
+    </script>
   <!-- Pop-up Posts -->
-  <?php
-  // $postquery = "SELECT p.*, u.* 
-  //                 FROM posts p 
-  //                 JOIN users u ON p.UserID = u.UserID WHERE p.PostID = " . $postIdd . " 
-  //                 ORDER BY p.PostedDate DESC";
-  // $postresult = mysqli_query($conn, $postquery);
-  // $postDetails = mysqli_fetch_assoc($postresult);
+ <?php   
+   $postquery = "SELECT p.*, u.* 
+                  FROM posts p 
+                  JOIN users u ON p.UserID = u.UserID WHERE u.UserID = " . $userDetails['UserID'] . " 
+                  ORDER BY p.PostedDate DESC";
+$postresult = mysqli_query($conn, $postquery);
+$postDetails = mysqli_fetch_assoc($postresult);
 
-  //insert comment
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//insert comment
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    include("config.php");
+  include("config.php");
 
-    $newComment = $_POST['newcomment'];
-    $postID = $_POST['PostID'];
-    $userID = $_POST['UserID'];
-    $parentCommentId = $_POST['ParentCommentID'];
-    $commentdate = date('Y-m-d H:i:s');
+  $newComment = $_POST['newcomment'];
+  $postID = $_POST['PostID'];
+  $userID = $_POST['UserID'];
+  $parentCommentId = $_POST['ParentCommentID'];
+  $commentdate = date('Y-m-d H:i:s');
 
-    $commentinsertQuery = "INSERT INTO comments (Comment, UserID, PostID, CommentDate,ParentCommentID) VALUES ('$newComment', '$userID', '$postID','$commentdate','$parentCommentId')";
-    $commentinsertValue = mysqli_query($conn, $commentinsertQuery);
-
-
-    if ($commentinsertValue) {
+  $commentinsertQuery = "INSERT INTO comments (Comment, UserID, PostID, CommentDate,ParentCommentID) VALUES ('$newComment', '$userID', '$postID','$commentdate','$parentCommentId')";
+  $commentinsertValue = mysqli_query($conn, $commentinsertQuery);
+ 
+  
+  if ($commentinsertValue) {
       // echo "Successfull comment insertion";
-    } else {
-      echo "Error adding comment: " . mysqli_error($conn);
-    }
+  } else {
+      echo "Error adding comment: " . mysqli_error($conn) ;
   }
-  ?>
+}
+?>
 
 
+     
+      <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <?php 
+                    $likes =getlikes($postDetails['PostID']);?>
+                    <div class="popup-feed">
+                      <div class="feed-top">
+                        <div class="poppup-user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
+                          <div class="profile-picture">
+                            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
+                          </div>
+                          <div class="info">
+                            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
+                          </div>
+                           <?php if ($viewingOwnProfile) { ?>
+                            <div>
+                              <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                          <?php } ?>
+                        </div>
+                        <div class="popup-feed-image">
+                        <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
+                        </div>
+                      </div>
+                      <div class="mypostrightside">
+                      <span>
+                      <?php
+                      if(checkLikeStatus($postDetails['PostID'])){
+                        $like_btn_display='none';
+                        $unlike_btn_display=''; 
+                      }
+                        else{
+                          $like_btn_display='';
+                        $unlike_btn_display='none'; 
+                        }
+                        ?>
+                        <script>
+                              
+                              function toggleCommentSection(commentIcon) {
+                                  var commentInput = document.querySelector('.newcomment'); 
+                                  commentInput.focus();
+                                  commentInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                              }
 
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">&times;</span>
-      <?php
-      $likes = getlikes($postDetails['PostID']); ?>
-      <div class="popup-feed">
-        <div class="feed-top">
-          <div class="poppup-user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-            <div class="profile-picture">
-              <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
-            </div>
-            <div class="info">
-              <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
-            </div>
-            <?php if ($viewingOwnProfile) { ?>
-              <div>
-                <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
-              </div>
-            <?php } ?>
-          </div>
-          <div class="popup-feed-image">
-            <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-          </div>
-        </div>
-        <div class="mypostrightside">
-          <span>
-            <?php
-            if (checkLikeStatus($postDetails['PostID'])) {
-              $like_btn_display = 'none';
-              $unlike_btn_display = '';
-            } else {
-              $like_btn_display = '';
-              $unlike_btn_display = 'none';
-            }
-            ?>
-            <script>
-              function toggleCommentSection(commentIcon) {
-                var commentInput = document.querySelector('.newcomment');
-                commentInput.focus();
-                commentInput.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-              }
+                              function toggleReply(replyButton, commentID, postID) {
+                                  var comment = replyButton.closest('.popup-comment'); // Get the parent comment element
+                                  var inputform = comment.querySelector('.inputform'); // Find the input form within the comment
+                                  var parentCommentIDInput = inputform.querySelector('.parentCommentID');
+                                  parentCommentIDInput.value = commentID; // Set the ParentCommentID input field
+                                  var postIDInput = inputform.querySelector('.postID');
+                                  postIDInput.value = postID; // Set the PostID input field
+                                  if (inputform.style.display === 'none' || inputform.style.display === '') {
+                                      inputform.style.display = 'block';
+                                      comment.appendChild(inputform); // Move the input form to the end of the comment
+                                  } else {
+                                      inputform.style.display = 'none';
+                                  }
+                              }
 
-              function toggleReply(replyButton, commentID, postID) {
-                var comment = replyButton.closest('.popup-comment'); // Get the parent comment element
-                var inputform = comment.querySelector('.inputform'); // Find the input form within the comment
-                var parentCommentIDInput = inputform.querySelector('.parentCommentID');
-                parentCommentIDInput.value = commentID; // Set the ParentCommentID input field
-                var postIDInput = inputform.querySelector('.postID');
-                postIDInput.value = postID; // Set the PostID input field
-                if (inputform.style.display === 'none' || inputform.style.display === '') {
-                  inputform.style.display = 'block';
-                  comment.appendChild(inputform); // Move the input form to the end of the comment
-                } else {
-                  inputform.style.display = 'none';
-                }
-              }
+                              // for like
+                              function likes(PostID) {
+                                  var button = this;
+                                  $(button).attr('disabled', true);
 
-              // for like
-              function likes(PostID) {
-                var button = this;
-                $(button).attr('disabled', true);
+                                  $.ajax({
+                                      url: './ajax.php?like',
+                                      method: 'post',
+                                      dataType: 'json',
+                                      data: { PostID: PostID },
+                                      success: function (response) {
+                                          console.log(response);
+                                          if (response.status) {
+                                              // Change the class to the filled heart icon
+                                            
+                                              $(button).attr('disabled', false);
+                                              $(button).hide();
+                                              $(button).siblings('.unlike_btn').show();
+                                              location.reload(true);
+                                          } else {
+                                              $(button).attr('disabled', false);
+                                              alert("Something is wrong");
+                                          }
+                                      }
+                                  });
+                              }
 
-                $.ajax({
-                  url: './ajax.php?like',
-                  method: 'post',
-                  dataType: 'json',
-                  data: {
-                    PostID: PostID
-                  },
-                  success: function(response) {
-                    console.log(response);
-                    if (response.status) {
-                      // Change the class to the filled heart icon
+                              function unlikes(PostID) {
+                                  var button = this;
+                                  $(button).attr('disabled', true);
 
-                      $(button).attr('disabled', false);
-                      $(button).hide();
-                      $(button).siblings('.unlike_btn').show();
-                      location.reload(true);
-                    } else {
-                      $(button).attr('disabled', false);
-                      alert("Something is wrong");
-                    }
-                  }
-                });
-              }
+                                  $.ajax({
+                                      url: './ajax.php?unlike',
+                                      method: 'post',
+                                      dataType: 'json',
+                                      data: { PostID: PostID },
+                                      success: function (response) {
+                                        
+                                          console.log(response);
+                                          
+                                          if (response.status) {
+                                              // Change the class to the regular heart icon
+                                              $(button).attr('disabled', false);
+                                              $(button).hide();
+                                              $(button).siblings('.like_btn').show();
+                                              location.reload(true);
+                                            
+                                          } else {
+                                              $(button).attr('disabled', false);
+                                              alert("Something is wrong");
+                                          }
+                                      }
+                                  });
+                                };
+                                
 
-              function unlikes(PostID) {
-                var button = this;
-                $(button).attr('disabled', true);
 
-                $.ajax({
-                  url: './ajax.php?unlike',
-                  method: 'post',
-                  dataType: 'json',
-                  data: {
-                    PostID: PostID
-                  },
-                  success: function(response) {
-
-                    console.log(response);
-
-                    if (response.status) {
-                      // Change the class to the regular heart icon
-                      $(button).attr('disabled', false);
-                      $(button).hide();
-                      $(button).siblings('.like_btn').show();
-                      location.reload(true);
-
-                    } else {
-                      $(button).attr('disabled', false);
-                      alert("Something is wrong");
-                    }
-                  }
-                });
-              };
-            </script>
-            <?php
-            // Comment section php code
-            //Parent comments
-            $postID = $postDetails['PostID'];
-            $commentQuery = "SELECT u.*,c.*
+                  </script>
+                    <?php
+                        // Comment section php code
+                //Parent comments
+                  $postID = $postDetails['PostID'];
+                  $commentQuery = "SELECT u.*,c.*
                                   FROM comments c JOIN users u
                                   ON c.UserID = u.UserID  AND PostID = $postID AND ParentCommentID=0";
-            $commentResult = mysqli_query($conn, $commentQuery);
+                  $commentResult = mysqli_query($conn, $commentQuery);
+                  
+                
 
-
-
-
+                    
 
             ?>
+                        
+                    
+                      <div class="popup-commentsection" >
+                    
+                          <?php 
+                            $replycommentcount = 0;
+                            $commentcount = 0;
+                            while ($comment = mysqli_fetch_assoc($commentResult)) {
+                              $commentcount++;
+                              ?>
+                          <div class="popup-comment">
+                            <div class="onlycomment">
+                              <div class="profileandcomment">
+                                <div class="profile-picture">
+                                    <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
+                                  </div>
+                                  <div class="nameandcomment">
+                                    <h5><?php echo $comment['FirstName'].' '.$comment['LastName']; ?></h5>
+                                    <p class="commenttext"><?php echo $comment['Comment'] ?></p>
+                                  </div>
+                              </div>
+                                <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
+
+                            </div>
+                              
+                              <div class="inputform" style="display: none;">
+                                <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
+                                  <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
+                                  <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                                  <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                                  <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
+                                  <button type="submit" class="commentpost">Post</button>
+                                </form>
+                              </div>
+                          </div>
 
 
-            <div class="popup-commentsection">
-
-              <?php
-              $replycommentcount = 0;
-              $commentcount = 0;
-              while ($comment = mysqli_fetch_assoc($commentResult)) {
-                $commentcount++;
-              ?>
-                <div class="popup-comment">
-                  <div class="onlycomment">
-                    <div class="profileandcomment">
-                      <div class="profile-picture">
-                        <img src="./uploads/<?php echo $comment['ProfileImage']; ?>" alt="" class="profile">
-                      </div>
-                      <div class="nameandcomment">
-                        <h5><?php echo $comment['FirstName'] . ' ' . $comment['LastName']; ?></h5>
-                        <p class="commenttext"><?php echo $comment['Comment'] ?></p>
-                      </div>
-                    </div>
-                    <button class="replybtn" onclick="toggleReply(this, <?php echo $comment['CommentID']; ?>, <?php echo $postID; ?>)">Reply</button>
-
-                  </div>
-
-                  <div class="inputform" style="display: none;">
-                    <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="commentForm">
-                      <input type="text" name="newcomment" class="replynewcomment" placeholder="Add your reply...">
-                      <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
-                      <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
-                      <input type="hidden" name="ParentCommentID" class="parentCommentID" value="<?php echo $comment['CommentID']; ?>">
-                      <button type="submit" class="commentpost">Post</button>
-                    </form>
-                  </div>
-                </div>
-
-
-                <?php
-                $replyCommentQuery = "SELECT u.*,c.*
+                          <?php 
+                            $replyCommentQuery = "SELECT u.*,c.*
                                                   FROM comments c JOIN users u
                                                   ON c.UserID = u.UserID  
                                                   AND PostID = $postID AND ParentCommentID = {$comment['CommentID']}";
-                $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
+                            $replyCommentResult = mysqli_query($conn, $replyCommentQuery);
+                      
+                            while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
+                              $replycommentcount++;
+                          ?>
+                            <div class="popup-replycomment">
+                              <div class="profile-picture">
+                                <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
+                              </div>
+                              <div class="nameandcomment">
+                                <h5><?php echo $replyComment['FirstName'].' '.$replyComment['LastName']; ?></h5>
+                                <p class="commenttext"><?php echo "@".$comment['FirstName'].' '.$comment['LastName']; ?> <?php echo $replyComment['Comment'] ?></p>
+                              </div>
+                              
+                            </div>
+                          <?php } ?>
+                      
+                          <?php }?>
+                          
+                          <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="popup-commentForm">
+                            <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
+                            <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
+                            <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
+                            <input type="hidden" name="ParentCommentID" class="parentCommentID" value="NULL">
+                            <button type="submit" class="commentpost">Post</button>
 
-                while ($replyComment = mysqli_fetch_assoc($replyCommentResult)) {
-                  $replycommentcount++;
-                ?>
-                  <div class="popup-replycomment">
-                    <div class="profile-picture">
-                      <img src="./uploads/<?php echo $replyComment['ProfileImage']; ?>" alt="" class="profile">
-                    </div>
-                    <div class="nameandcomment">
-                      <h5><?php echo $replyComment['FirstName'] . ' ' . $replyComment['LastName']; ?></h5>
-                      <p class="commenttext"><?php echo "@" . $comment['FirstName'] . ' ' . $comment['LastName']; ?> <?php echo $replyComment['Comment'] ?></p>
+                          </form>
+                          
+                      </div>
+                      <div class="flex">
+                        
+                        <i class="fa-regular fa-heart like_btn "style="font-size:24px;cursor:pointer;display:<?=$like_btn_display?>" onclick="likes(<?php echo $postDetails['PostID']; ?>)"></i> 
+                        
+                      <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;cursor:pointer;color:red;display:<?=$unlike_btn_display?>" onclick="unlikes(<?php echo $postDetails['PostID'];?>)"></i> 
+                      </span>
+                      
+                      <!-- <?php echo $postDetails['PostID']?> -->
+                      <i class="fa-regular fa-comment " style=" font-size: 24px;" onclick="toggleCommentSection(this)"></i>
+
+                      </div>
+                      <h4> <?=count($likes)?> likes</h4>
+                      
+                      <div class="caption">
+                        <?php echo $postDetails['Content']; ?>
+                      </div>
+
                     </div>
 
+                    
+                  
                   </div>
-                <?php } ?>
-
-              <?php } ?>
-
-              <form id="commentForm<?php echo $postID; ?>" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" class="popup-commentForm">
-                <input type="text" name="newcomment" class="newcomment" placeholder="Add your comment...">
-                <input type="hidden" name="PostID" class="postID" value="<?php echo $postDetails['PostID']; ?>">
-                <input type="hidden" name="UserID" class="userID" value="<?php echo $user['UserID']; ?>">
-                <input type="hidden" name="ParentCommentID" class="parentCommentID" value="NULL">
-                <button type="submit" class="commentpost">Post</button>
-
-              </form>
-
-            </div>
-            <div class="flex">
-
-              <i class="fa-regular fa-heart like_btn " style="font-size:24px;cursor:pointer;display:<?= $like_btn_display ?>" onclick="likes(<?php echo $postDetails['PostID']; ?>)"></i>
-
-              <i class="fa-solid fa-heart unlike_btn" style="font-size:24px;cursor:pointer;color:red;display:<?= $unlike_btn_display ?>" onclick="unlikes(<?php echo $postDetails['PostID']; ?>)"></i>
-          </span>
-
-          <!-- <?php echo $postDetails['PostID'] ?> -->
-          <i class="fa-regular fa-comment " style=" font-size: 24px;" onclick="toggleCommentSection(this)"></i>
-
-        </div>
-        <h4> <?= count($likes) ?> likes</h4>
-
-        <div class="caption">
-          <?php echo $postDetails['Content']; ?>
-        </div>
-
+          </div>
       </div>
 
-
-
-    </div>
-  </div>
-  </div>
-
-
+    
 </body>
 
 </html>
