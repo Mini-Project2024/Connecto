@@ -37,13 +37,72 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            align-items:center;
+            justify-content:center;
+        }
+        header{
+         font-size:30px;
+        }
+        img{
+            height: 400px;
+            width: 400px;
+        }
+        section{
+            display:flex;
+        }
+        .wrapper{
+            border:1px solid lightgrey;
+            border-radius:10px;
+            height: 400px;
+            width: 700px;
+            padding: 10px;
+        }
+        form{
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;             
+        }
+        header{
+            font-size:35px;
+            font-weight:600;
+        }
+        input[type=password]{
+      width: 200px;
+      outline:none;
+      border:1px solid #a4a4a4;
+      border-radius:5px;
+      padding: 10px;
+      margin: 10px;
+    }
+      input[type=submit]{
+      background: #0718c4;
+      color:#fff;
+      border:none;
+      outline:none;
+      padding: 10px;
+      inset:10px;
+      border-radius:5px;
+    }
+    .field input{
+        display: flex;
+        align-items:center;
+        justify-content:center;
+    }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
         <section class="form login">
-            <header>Reset Password</header>
+            
+            <img src="../components/images/reset.avif" alt="">
             <form action="process-reset-password.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <header>Reset Password</header> <br><br>
                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
                 <div class="field input">
                     <label for="password">New Password</label>

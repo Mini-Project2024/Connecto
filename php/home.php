@@ -88,11 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               if (response.userlist.length > 0) {
                 if (response.hasOwnProperty('userlist')) {
                   document.getElementById('searchResults').innerHTML = response.userlist;
+                  
                 }
               } else {
                 $('#searchResults').html('<p>No users found</p>');
               }
+             
             }
+            
           });
         }
       }

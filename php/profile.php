@@ -191,9 +191,9 @@ $postresult = mysqli_query($conn, $postquery);
         <h1><?php echo $firstName . ' ' . $lastName; ?></h1>
         <div class="flex">
           <img src="../components/images/location.svg" class="svg">
-          <p>From <?php echo $NativePlace ?></p>
+          <p> <?php echo ' From ' . $NativePlace ?></p>
         </div>
-        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> <a href="./network.php">Connections</a></p>
+        <p style="font-size:15px;margin-left:14px;"><?php echo $no['connection_count'] ?> Connections</p>
 
         <br>
         <script>
@@ -230,7 +230,7 @@ $postresult = mysqli_query($conn, $postquery);
         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2m-6 0h-4V4h4z" />
         </svg>
-        <p><?php echo $position ?> at <?php echo $company ?></p>
+        <p><?php echo $position . " at " . $company ?></p>
 
 
         <br>
@@ -252,7 +252,7 @@ $postresult = mysqli_query($conn, $postquery);
         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 640 512">
           <path fill="currentColor" d="M337.8 5.4c-10.8-7.2-24.8-7.2-35.6 0L166.3 96H48c-26.5 0-48 21.5-48 48v320c0 26.5 21.5 48 48 48h208v-96c0-35.3 28.7-64 64-64s64 28.7 64 64v96h208c26.5 0 48-21.5 48-48V144c0-26.5-21.5-48-48-48H473.7zM96 192h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16v-64c0-8.8 7.2-16 16-16m400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16zM96 320h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16v-64c0-8.8 7.2-16 16-16m400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16zM232 176a88 88 0 1 1 176 0a88 88 0 1 1-176 0m88-48c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-16v-16c0-8.8-7.2-16-16-16" />
         </svg>
-        <?php echo $institution ?> <br>
+        <p><?php echo $institution ?></p> <br>
       </div>
       <hr>
       <div class="flex">
@@ -272,7 +272,7 @@ $postresult = mysqli_query($conn, $postquery);
 
 
     <div class="side-profile">
-      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
+      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2><br>
       <?php foreach ($follow_suggestions as $suser) : ?>
         <div class="follow-section">
           <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">

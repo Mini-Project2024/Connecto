@@ -15,6 +15,9 @@ i{
   margin: 5px;
   z-index: 55;
 }
+.flex p{
+  color: rgb(93, 88, 88);
+}
 .flex i{
   cursor: pointer;
 }
@@ -162,7 +165,6 @@ header svg{
   height: 45px;
   width: 100%;
 }
-
 /* -------------------------- */
 .logo {
   flex: 0 0 auto;
@@ -333,6 +335,7 @@ main {
   object-fit: cover;
   object-position: center;
 }
+
 
 .messaging-options {
   border-radius: 5px;
@@ -1007,11 +1010,15 @@ input[type="submit"] {
 }
 .side-profile {
   margin-top: 104px;
-  height: 101vh;
+  height: 98vh;
   width: 26%;
   border: 1px solid lightgrey;
   border-radius: 10px;
   padding: 30px;
+  overflow-y: scroll;
+}
+.side-profile::-webkit-scrollbar {
+  display: none;
 }
 .side-profile .follow-section {
   display: flex;
@@ -1101,7 +1108,7 @@ input[type="submit"] {
   width: 366px;
   /* height: 100vh; */
   background-color: #fff;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 5px;
   z-index: 999;
   color: #000;
