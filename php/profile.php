@@ -277,7 +277,7 @@ $postresult = mysqli_query($conn, $postquery);
         <div class="follow-section">
           <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
           <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
-          <button class="connect suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
+          <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
         </div>
       <?php endforeach; ?>
       <?php
