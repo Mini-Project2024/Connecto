@@ -116,7 +116,7 @@ header svg{
   justify-content: center;
   border: 1px solid lightgrey;
   border-radius: 20px;
-  background: #fefefe;
+  background: transparent;
 }
 .login{
   
@@ -124,7 +124,8 @@ header svg{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f4f4;
+  background: transparent;
+  /* backdrop-filter: blur(10px); */
 }
 .button{
   text-align: center;
@@ -182,7 +183,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
 }
 .profile {
   object-fit: cover;

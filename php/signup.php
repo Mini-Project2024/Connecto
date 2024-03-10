@@ -91,18 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param('ssssss', $firstName, $lastName, $email, $password, $fileName,$defaultbanner);
 
             if ($stmt->execute()) {
-                echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
-                echo '<script>';
-                echo 'document.addEventListener("DOMContentLoaded", function() {';
-                echo 'Swal.fire({';
+               header("Location:../components/pages/login.html");
             
-                echo 'text: "Registration successful!",';
-                echo 'icon: "success",';
-                echo '}).then(function() {';
-                echo 'window.location.href = "../components/pages/login.html";';
-                echo '});';
-                echo '});';
-                echo '</script>';
                 
             } else {
                 echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
