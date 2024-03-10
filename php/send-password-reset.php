@@ -99,6 +99,7 @@
                     title: "Message",
                     text: "Sent to your mail Successfully!",
                     icon: "success"
+                   
                 });
               </script>';
         } catch (Exception $e) {
