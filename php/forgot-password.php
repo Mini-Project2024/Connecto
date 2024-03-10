@@ -22,9 +22,11 @@
       align-items:center;
       justify-content:center;
       border:1px solid #ddd;
+      padding: 10px;
     }
     .wrapper header{
       font-size:40px;
+      font-weight:600;
     }
     .question{
       height: 300px;
@@ -44,7 +46,7 @@
       flex-direction:column;
     }
     input[type=text]{
-      width: 200px;
+      width: 250px;
       outline:none;
       border:1px solid #a4a4a4;
       border-radius:5px;
