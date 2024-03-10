@@ -69,7 +69,8 @@ $postresult = mysqli_query($conn, $postquery);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../components/css/style.css">
-  <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
+
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
