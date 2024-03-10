@@ -67,8 +67,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
                     // If uploaded successfully, store the file name in a variable
                     $fileName = basename($_FILES["img"]["name"]);
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
+                     echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+                    echo '<script>';
+                    echo 'document.addEventListener("DOMContentLoaded", function() {';
+                    echo 'Swal.fire({';
+                    echo 'title: "Oh no!",';
+                    echo 'text: "Sorry, there was an error uploading your file",';
+                    echo 'icon: "error",';
+                    echo 'confirmButtonText: "OK"';
+                    echo '}).then(function() {';
+                    echo 'window.location.href = "../components/pages/index.html";';
+                    echo '});';
+                    echo '});';
+                    echo '</script>';
                     $uploadOk = 0;
                 }
             }
@@ -80,10 +91,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param('ssssss', $firstName, $lastName, $email, $password, $fileName,$defaultbanner);
 
             if ($stmt->execute()) {
-                echo "Registration successful!";
-                header("Location: ../components/pages/login.html");
+                echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+                echo '<script>';
+                echo 'document.addEventListener("DOMContentLoaded", function() {';
+                echo 'Swal.fire({';
+            
+                echo 'text: "Registration successful!",';
+                echo 'icon: "success",';
+                echo '}).then(function() {';
+                echo 'window.location.href = "../components/pages/login.html";';
+                echo '});';
+                echo '});';
+                echo '</script>';
+                
             } else {
-                echo "Error in registration. Please try again.";
+                echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+                echo '<script>';
+                echo 'document.addEventListener("DOMContentLoaded", function() {';
+                echo 'Swal.fire({';
+                echo 'title: "Oh no!",';
+                echo 'text: "Error in Registeration!",';
+                echo 'icon: "error",';
+                echo 'confirmButtonText: "OK"';
+                echo '}).then(function() {';
+                echo 'window.location.href = "../components/pages/index.html";';
+                echo '});';
+                echo '});';
+                echo '</script>';
             }
             $stmt->close();
         }
