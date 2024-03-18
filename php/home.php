@@ -54,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -177,6 +179,40 @@ function unlikes(PostID) {
     });
   };
   
+  // Function to get user's location
+  function getUserLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendLocationToServer);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    // Function to send location to server
+    function sendLocationToServer(position) {
+      // Extract latitude and longitude from position object
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+
+      // Send latitude and longitude to server using AJAX
+      $.ajax({
+        url: 'store_location.php',
+        method: 'POST',
+        data: {
+          latitude: latitude,
+          longitude: longitude
+        },
+        success: function(response) {
+          console.log(response); // Log response from server
+        },
+        error: function(xhr, status, error) {
+          console.error(error); // Log any errors
+        }
+      });
+    }
+
+    // Call getUserLocation function when the page loads
+    getUserLocation();
 
   </script>
   <link rel="stylesheet" href="../components/css/style.css">
