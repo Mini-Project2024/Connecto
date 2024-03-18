@@ -385,8 +385,6 @@ $postresult = mysqli_query($conn, $postquery);
         }
       });
     }
-
-
   </script>
 
 
@@ -441,9 +439,6 @@ $postresult = mysqli_query($conn, $postquery);
       popup.style.display = "none";
     }
   </script>
-
- 
-  
   <!-- Pop-up Posts -->
   <?php
   $postquery = "SELECT p.*, u.* 
@@ -452,15 +447,6 @@ $postresult = mysqli_query($conn, $postquery);
                   ORDER BY p.PostedDate DESC";
   $postresult = mysqli_query($conn, $postquery);
   $postDetails = mysqli_fetch_assoc($postresult);
-
-  <script>
-     <?php   
-//    $postquery = "SELECT p.*, u.* 
-//                   FROM posts p 
-//                   JOIN users u ON p.UserID = u.UserID WHERE u.UserID = " . $userDetails['UserID'] . " 
-//                   ORDER BY p.PostedDate DESC";
-// $postresult = mysqli_query($conn, $postquery);
-// $postDetails = mysqli_fetch_assoc($postresult);
 
   //insert comment
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -531,76 +517,6 @@ $postresult = mysqli_query($conn, $postquery);
                   block: 'center'
                 });
               }
-  } else {
-      echo "Error adding comment: " . mysqli_error($conn) ;
-  }
-}
-?>
-       // Modify openPopup function to accept PostID
-function openPopup(PostID) {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
-    console.log("Opening popup...");
-    // Pass the PostID to fetch corresponding post details
-    fetchPostDetails(PostID);
-}
-        function closePopup() {
-          console.log("Opening popup...");
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-        function fetchPostDetails(PostID) {
-    // Modify the AJAX call to send data using POST method
-    $.ajax({
-        url: 'fetch_post_details.php',
-        method: 'POST', // Change method to POST
-        data: { Postid: PostID }, // Send Postid as data
-        success: function(response) {
-          var popupContent = document.querySelector('.popup-content');
-            popupContent.innerHTML =`
-            <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close" onclick="closePopup()">&times;</span>
-                <?php 
-                    $likes =getlikes($postDetails['PostID']);?>
-                    <div class="popup-feed">
-                      <div class="feed-top">
-                        <div class="poppup-user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
-                          <div class="profile-picture">
-                            <img src="./uploads/<?php echo $postDetails['ProfileImage']; ?>" alt="" class="profile">
-                          </div>
-                          <div class="info">
-                            <h3><?php echo $postDetails['FirstName'] . ' ' . $postDetails['LastName'] ?></h3>
-                          </div>
-                           <?php if ($viewingOwnProfile) { ?>
-                            <div>
-                              <button class="delete" onclick="return confirm('Are you sure you want to delete this post?') && deletePost(<?php echo $postDetails['PostID']; ?>)"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                          <?php } ?>
-                        </div>
-                        <div class="popup-feed-image">
-                        <img src="./posts/<?php echo $postDetails['ContentPhoto']; ?>" alt="">
-                        </div>
-                      </div>
-                      <div class="mypostrightside">
-                      <span>
-                      <?php
-                      if(checkLikeStatus($postDetails['PostID'])){
-                        $like_btn_display='none';
-                        $unlike_btn_display=''; 
-                      }
-                        else{
-                          $like_btn_display='';
-                        $unlike_btn_display='none'; 
-                        }
-                        ?>
-                        <script>
-                              
-                              function toggleCommentSection(commentIcon) {
-                                  var commentInput = document.querySelector('.newcomment'); 
-                                  commentInput.focus();
-                                  commentInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-                              }
 
               function toggleReply(replyButton, commentID, postID) {
                 var comment = replyButton.closest('.popup-comment'); // Get the parent comment element
@@ -785,25 +701,6 @@ function openPopup(PostID) {
     </div>
   </div>
   </div>
-                    
-                  
-                  </div>
-          </div>
-      </div>
-            `
-        },
-        error: function(xhr, status, error) {
-            console.error("Error:", xhr, status, error);
-        }
-    });
-}
-
-
-        
-    </script>
-
-     
-      
 
 
 </body>
