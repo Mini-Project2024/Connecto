@@ -393,7 +393,7 @@ $postresult = mysqli_query($conn, $postquery);
   while ($postDetails = mysqli_fetch_assoc($postresult)) {
 
   ?>
-    <div class="feed" onclick="openPopup(<?php echo $postDetails['PostID']; ?>)">
+    <div class="feed">
       <div class="feed-top">
         <div class="user" onclick="redirectToProfile(<?php echo $postDetails['UserID']; ?>)">
           <!-- <div class="profile-picture">
