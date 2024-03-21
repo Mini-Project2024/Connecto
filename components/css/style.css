@@ -8,6 +8,14 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
+@media  (max-width:600px) {
+  .left ,.right{
+    display: none;
+  }
+  nav ul {
+    display: none;
+  }
+}
 a, i ,.user{
   cursor: pointer;
 }
@@ -77,12 +85,12 @@ header svg{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 450px;
+  width: 400px;
   height: 580px;
-   border-radius: 12px;
-  /* background: #fff; */
-  border: .5px solid lightgrey;
-  
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 1px 1px 33px -13px #000;
+  border: 0.5px solid lightgrey;
 }
 .register-img img{
 
@@ -103,10 +111,10 @@ header svg{
 .register form input{
   border: 1px solid lightgrey;
   outline: none;
-  margin: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding:10px;
-  width: 340px;
+  margin: 10px;
+  width: 324px;
 }
 
 /* ------------login------------ */
@@ -114,17 +122,17 @@ header svg{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid lightgrey;
+ 
   border-radius: 20px;
   background: transparent;
 }
 .login{
-  
+  background: #fff;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+
   /* backdrop-filter: blur(10px); */
 }
 .button{
@@ -132,14 +140,17 @@ header svg{
   font-weight: 600;
 }
 .login form{
-  height: 500px;
+  height: 422px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 33px -13px #000;
   border-radius:10px;
   padding: 25px;
+  width: 333px;
+  padding-bottom: 0;
 }
 .login form input{ 
   border: 1px solid lightgrey;
@@ -147,8 +158,21 @@ header svg{
   margin: 10px;
   border-radius: 10px;
   padding:10px;
-  width: 340px;
+  width: 270px;
 
+}
+.login-img img{
+  height: 700px;
+  width: 420px;
+}
+.new-user{
+  /* border: 1px solid lightgrey; */
+  width: 333px;
+  text-align: center;
+  border-radius: 5px;
+  /* box-shadow: 1px 1px 33px -13px lightgrey; */
+ margin: 10px 0;
+  padding: 10px;
 }
 /* -----------search---------- */
 .box{
