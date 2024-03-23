@@ -1194,7 +1194,7 @@ input[type="submit"] {
   color: #0718c4;
 }
 .commentForm{
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
   padding: 0px;
   position: relative;
   bottom: 0;
