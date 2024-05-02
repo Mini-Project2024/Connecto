@@ -1,1 +1,1 @@
-# Job Finder
+# CONNECTO - Campus Connect Platform
