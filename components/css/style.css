@@ -880,6 +880,7 @@ hr {
   position: relative;
   left: 259px;
   top: 13px;
+  width: 400px;
 }
 .username h1 {
   font-size: 30px;
@@ -1372,3 +1373,124 @@ input[type="submit"] {
   }
 }
 
+/* ------------------------------profile section responsive code--------------------------- */
+@media screen and (max-width: 500px) {
+ .full-profile{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+ .main-profile {
+  margin: 100px 20px 20px 20px;
+  width: 91%;
+  padding-bottom: 25px;
+ }
+ .username {
+  position: relative;
+  left: 210px;
+  top: 2px;
+  width: 200px;
+  height: 150px;
+}
+.main-profile .profile-image {
+  position: absolute;
+  left: 45px;
+  top: 182px;
+  width: 151px;
+  height: 151px;
+}
+.main-profile .cover-photo {
+ 
+  height: 128px;
+
+}
+.flex{
+  height: 20px;
+}
+.edit-connect {
+  position: relative;
+  left: 15px;
+  top: -7px;
+}
+.view-connect {
+  position: relative;
+  right: 172px;
+  top: 16px;
+  padding: 6px 10px;
+}
+/* .flex p{
+  margin: 20px;
+} */
+.side-profile{
+  width: 90%;
+  margin: 20px;
+  height: 100%;
+ border: none;
+ padding: 5px;
+}
+.side-profile .follow{
+  display: flex;
+}
+.side-profile .follow-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 28px 26px 28px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 200px;
+}
+.side-profile .follow-section p{
+  text-align: center;
+}
+.edit-connect i ,.view-connect i{
+ display: none;
+}
+.deleteacc {
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 9px;
+    right: -12px;
+    background: transparent;
+}
+.main-profile hr{
+  display: none;
+}
+.main-profile .svg{
+  margin: 10px;
+}
+.flex svg{
+  height: 20px;
+}
+.feeds1 .feed .action-button {
+  opacity: 0;
+  top: 0px;
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #211f1faf;
+  color: #fff;
+  transition: .5s;
+}
+
+.feeds1 .feed .feed-image img{
+  width: 130px; /* Ensure the image never exceeds its container's width */
+  height: 130px; /* Maintain the aspect ratio */
+  border-radius: 0px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.feeds1 {
+  margin: 30px;
+  gap: 13px;
+}
+.main-profile h4{
+  padding: 0;
+  text-align: center;
+}
+}
