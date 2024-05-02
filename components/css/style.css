@@ -390,19 +390,19 @@ main {
   align-items: center;
   margin: 10px;
 } */
-footer {
-  position: relative;
+
+#footer {
+  /* position: fixed; */
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  width: 100vw;
   background-color: #0718c4;
-  color: #fff;
-  padding: 10px;
-  margin: 0 auto;
-  width: 100%;
+  color: white;
   text-align: center;
+  padding: 10px 0;
 }
+
 /* .right button {
   position: absolute;
   bottom: 100px;
@@ -422,18 +422,18 @@ span.fa-solid.fa-arrow-up {
   margin: 20px auto;
 }
 /* Media queries for responsiveness */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .left,
   .middle,
   .right {
     flex: 0 0 calc(33.33% - 20px);
   }
-}
+} */
 .left,
 .right {
   z-index: 5;
 }
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
   .left {
     flex: 0 0 calc(20% - 20px);
   }
@@ -443,7 +443,7 @@ span.fa-solid.fa-arrow-up {
   .right {
     flex: 0 0 calc(20% - 20px);
   }
-}
+} */
 /* --------add a new post------- */
 .new_post {
   display: flex;
@@ -747,6 +747,8 @@ span.fa-solid.fa-arrow-up {
 
 body {
   background: #f4f4f4;
+  width: 100vw;
+  height: 100vh;
 }
 .network-container {
   display: flex;
@@ -1304,3 +1306,69 @@ input[type="submit"] {
   gap: 15px;
   align-items: center;
 }
+/* ----------------------------------------Responsive--------------------------------- */
+
+/* ------------------index.html------------------------*/
+@media screen and (max-width: 768px) {
+  .register{
+    flex-direction: column;
+  }
+
+  .register-img{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register form{
+    width: 330px;
+    height: 550px;
+  }
+
+  .register form input{
+    width: 280px;
+  }
+}
+
+/* ------------------login.html------------------------*/
+@media screen and (max-width: 768px) {
+  .div-login{
+    flex-direction: column;
+  }
+  .login-im{
+    display: none;
+  }
+}
+
+/* ------------------home.php------------------------*/
+@media screen and (max-width: 768px) {
+  nav{
+    display: none;
+  }
+  .left{
+    display: none;
+  }
+  .right{
+    display: none;
+  }
+  .middle_s {
+    width: max-content;
+    padding: 0 20px;
+  }
+  .new_post{
+    width: 100%;
+  }
+  footer{
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .feeds .feed{
+    width: auto;
+  }
+  main.container{
+    justify-content: space-around;
+  }
+}
+
