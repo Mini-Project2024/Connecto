@@ -1339,17 +1339,34 @@ input[type="submit"] {
     display: none;
   }
 }
-
+#hamburger{
+  display: none;
+}
+.nav-second{
+  display: none;
+}
 /* ------------------home.php------------------------*/
 @media screen and (max-width: 768px) {
   nav{
     display: none;
   }
   .left{
-    display: none;
+    display: block;
+    height: 100%;
   }
   .right{
     display: none;
+  }
+  .mid {
+    width: 50%;
+    position: fixed;
+    right: 0;
+    left: 0;
+    height: calc(100vh - 85px);
+    top: 85px;
+    /* bottom: 0; */
+    overflow-y: auto;
+    padding: 20px;
   }
   .middle_s {
     width: max-content;
@@ -1361,6 +1378,48 @@ input[type="submit"] {
   footer{
     width: 100vw;
   }
+  #hamburger {
+    display: block;
+  }
+  .profileEdit{
+    display: none;
+  }
+  .ham{
+    justify-content: center;
+    font-size: 32px;
+    padding: 5px;
+  }
+  .nav-second {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: 100%;
+    margin-top: 50px;
+  }
+  
+  .nav-second ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-second li {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: #000;
+  }
+  
+  .nav-second hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 80%; /* Adjust the width of the horizontal rule */
+    margin: 0 auto; /* Center the horizontal rule */
+  }
+  .logo img{
+    width: 185px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -1370,5 +1429,18 @@ input[type="submit"] {
   main.container{
     justify-content: space-around;
   }
+}
+
+@media screen and (max-width: 480px) {
+  .left button{
+    font-size: 23px;
+  }
+  .profile-options h2{
+    font-size: 30px;
+  }
+  .profile-options p{
+    font-size: 20px;
+  }
+  
 }
 
