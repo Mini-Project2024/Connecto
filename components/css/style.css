@@ -34,7 +34,7 @@ i{
   outline: none;
   position: absolute;
   top: 9px;
-  right:300px;
+  right: -268px;
   background: transparent;
 }
 a{
@@ -1447,6 +1447,18 @@ input[type="submit"] {
 
 /* ------------------------------profile section responsive code--------------------------- */
 @media screen and (max-width: 500px) {
+  /* -----------edit profile page------ */
+
+  .full .left1 {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      width: 0%;
+      background: #fff;
+  }
+  .full .left1 img {
+    display: none;
+  }
  .full-profile{
   width: 100%;
   display: flex;
@@ -1564,5 +1576,23 @@ input[type="submit"] {
 .main-profile h4{
   padding: 0;
   text-align: center;
+}
+.one .fname ,.one .lname {
+  width: 100px;
+}
+fieldset{
+  width: 400px;
+}
+.edit textarea {
+  width: 100%;
+}
+.edit{
+  width: 90%;
+}
+.full .right1{
+  width: 100%;
+}
+.full .left1 .back-arrow{
+  display: block;
 }
 }

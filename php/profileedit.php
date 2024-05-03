@@ -92,7 +92,7 @@ if ($userDetails) {
     <title>User Profile</title>
     <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../components/css/style.css">
+  <link rel="stylesheet" href="../components/css/style.css">
     <style>
         .full .left1 .back-arrow{
             position:absolute;
