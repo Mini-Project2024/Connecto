@@ -19,6 +19,18 @@ $current_user_id = $_SESSION['user']['UserID'];
 $query = "SELECT u.* FROM connections c JOIN users u ON c.user_id = u.UserID WHERE c.connector_id = $current_user_id";
 $result = mysqli_query($conn, $query);
 
+$query11 = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
+$result11 = mysqli_query($conn, $query11);
+$userDetails11 = mysqli_fetch_assoc($result11);
+
+// Check if user details exist
+if ($userDetails11) {
+  $profileImage11 = $userDetails11['ProfileImage'];
+
+  $firstName11 = $userDetails11['FirstName'];
+  $lastName11 = $userDetails11['LastName'];
+  $position11 = $userDetails11['Position'];
+}
 
 ?>
 
@@ -27,7 +39,7 @@ $result = mysqli_query($conn, $query);
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>My Network</title>
   <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
@@ -70,6 +82,31 @@ $result = mysqli_query($conn, $query);
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:28px;margin-bottom:12px;"></i><a href="logout.php">Logout</a></a></li>
         </ul>
       </nav>
+      <div id="hamburger" class="hamburger" onclick="toggleNavbar()">
+        <i class="fa-solid fa-bars ham"></i>
+      </div>
+      <script>
+        // Function to toggle the right section and change the hamburger icon
+        function toggleNavbar() {
+          var leftSection = document.querySelector(".left");
+          var hamburgerIcon = document.querySelector(".ham");
+
+          if (
+            leftSection.style.display === "none" ||
+            leftSection.style.display === ""
+          ) {
+            leftSection.style.display = "block";
+            // Change hamburger icon to X
+            hamburgerIcon.classList.remove("fa-bars");
+            hamburgerIcon.classList.add("fa-xmark");
+          } else {
+            leftSection.style.display = "none";
+            // Change hamburger icon to bars
+            hamburgerIcon.classList.remove("fa-xmark");
+            hamburgerIcon.classList.add("fa-bars");
+          }
+        }
+      </script>
     </div>
   </header>
   <br><br><br><br><br>
@@ -119,6 +156,26 @@ $result = mysqli_query($conn, $query);
       </div>
     <?php } ?>
   </div>
+  <section class="left" style="display: none;">
+
+      <div class="profile-options">
+        <img src="./uploads/<?php echo $profileImage11 ?>" alt="Your Name" class="profile" />
+        <h2>
+          <?php echo $userDetails11['FirstName'] . ' ' . $userDetails11['LastName'] ?>
+        </h2>
+        <p><?php echo $position11 ?></p>
+        <a href="./profile.php"><button>View Profile</button></a>
+        <!-- <a class="profileEdit" href="./profileedit.php"><button>Edit Profile</button></a> -->
+      </div>
+      <div class="nav-second">
+        <ul>
+          <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li><hr>
+          <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li><hr>
+          <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li><hr>
+          <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php"></a>Messages</a></li>
+        </ul>
+      </div>
+    </section>
 </body>
 
 </html>

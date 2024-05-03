@@ -1352,7 +1352,7 @@ input[type="submit"] {
     display: none;
   }
   .left{
-    display: block;
+    display: none;
     height: 100%;
   }
   .right{
