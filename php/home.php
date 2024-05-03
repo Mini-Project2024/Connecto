@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>CONNECTO</title>
   <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
