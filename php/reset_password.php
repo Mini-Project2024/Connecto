@@ -93,6 +93,23 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
         align-items:center;
         justify-content:center;
     }
+    @media screen and (max-width:480px)
+    {
+      section {
+        display: flex;
+        flex-direction: column;
+      }
+      .wrapper{
+        height: 500px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+      img{
+            height: 210px;
+            width: 210px;
+      }
+    }
     </style>
 </head>
 
@@ -100,7 +117,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
     <div class="wrapper">
         <section class="form login">
             
-            <img src="../components/images/reset.avif" alt="">
+            <center><img src="../components/images/reset.avif" alt=""></center>
             <form action="process-reset-password.php" method="POST" enctype="multipart/form-data" autocomplete="off">
             <header>Reset Password</header> <br><br>
                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
