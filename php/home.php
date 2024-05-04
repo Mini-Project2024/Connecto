@@ -102,6 +102,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
       }
     }
+    function search1() {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        var searchString = document.querySelector('.search1').value.trim();
+        if (searchString !== '') {
+          $.ajax({
+            url: './ajax.php?searchUsers',
+            method: 'GET',
+            dataType: 'json',
+            data: {
+              searchString: searchString
+            },
+            success: function(response) {
+              // console.log(response);
+              if (response.userlist.length > 0) {
+                if (response.hasOwnProperty('userlist')) {
+                  document.getElementById('searchResults1').innerHTML = response.userlist;
+
+                }
+              } else {
+                $('#searchResults1').html('<p>No users found</p>');
+              }
+
+            }
+
+          });
+        }
+      }
+    }
 
 
     function synmsg() {
@@ -293,9 +321,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <div class="nav-second">
         <ul>
-          <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li><hr>
-          <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li><hr>
-          <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li><hr>
+          <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li>
+          <hr>
+          <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li>
+          <hr>
+          <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li>
+          <hr>
           <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php">Messages</a></a></li>
         </ul>
       </div>
@@ -306,6 +337,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2> start a new post</h2>
         <button><a style="text-decoration:none; color:#fff; font-weight:600;" href="./post.php">Post</a></button>
       </div>
+      <div class="box1">
+        <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px;margin:13px"></i>
+        <input type="text" name="search1" class="search1" onkeypress="search()" placeholder="Search for user">
+      </div>
+      <div id="searchResults1" style="text-align: center;"></div>
       <div class="feeds">
         <script>
           function redirectToProfile(userID) {
@@ -494,7 +530,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </script> -->
       <div class="box">
         <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px;margin:13px"></i>
-        <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
+        <input type="text" name="search1" class="search1" onkeypress="search1()" placeholder="Search for user">
       </div>
       <br>
       <div class="messaging-options" id="messaging-options">
