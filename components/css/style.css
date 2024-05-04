@@ -1318,6 +1318,10 @@ input[type="submit"] {
   .register-img{
     display: none;
   }
+  .mid{
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -1328,6 +1332,36 @@ input[type="submit"] {
 
   .register form input{
     width: 280px;
+  }
+
+}
+/* Postpage */
+@media screen and (max-width: 480px) {
+.postcontainer{
+  width: 500px;
+}
+#posttext{
+  width:490px;
+}
+}
+/* Edit-page */
+@media screen and (max-width: 768px) {
+.full .left1{
+  width: 0%;
+}
+.full .left1 h1{
+  display: none;
+}
+.full .left1 img{
+  display: none;
+}
+.full .right1{
+  width: 100%;
+}
+}
+@media screen and (max-width: 480px) {
+  .full {
+    width: 100%;
   }
 }
 
@@ -1346,8 +1380,13 @@ input[type="submit"] {
 .nav-second{
   display: none;
 }
+
 /* ------------------home.php------------------------*/
 @media screen and (max-width: 768px) {
+  *{
+    padding: 0;
+    margin: 0;
+  }
   nav{
     display: none;
   }
@@ -1359,7 +1398,8 @@ input[type="submit"] {
     display: none;
   }
   .mid {
-    width: 50%;
+    width: 90%;
+    margin: 0 auto;
     position: fixed;
     right: 0;
     left: 0;
@@ -1368,6 +1408,12 @@ input[type="submit"] {
     /* bottom: 0; */
     overflow-y: auto;
     padding: 20px;
+  }
+  #searchResults{
+    top:0px;
+    left: 50%;
+    right:0%;
+
   }
   .middle_s {
     width: max-content;
@@ -1449,16 +1495,7 @@ input[type="submit"] {
 @media screen and (max-width: 500px) {
   /* -----------edit profile page------ */
 
-  .full .left1 {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      width: 0%;
-      background: #fff;
-  }
-  .full .left1 img {
-    display: none;
-  }
+  
  .full-profile{
   width: 100%;
   display: flex;
@@ -1580,18 +1617,14 @@ input[type="submit"] {
 .one .fname ,.one .lname {
   width: 100px;
 }
-fieldset{
-  width: 400px;
-}
+
 .edit textarea {
   width: 100%;
 }
 .edit{
   width: 90%;
 }
-.full .right1{
-  width: 100%;
-}
+
 .full .left1 .back-arrow{
   display: block;
 }
