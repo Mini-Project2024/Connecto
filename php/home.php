@@ -296,7 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li><hr>
           <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li><hr>
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li><hr>
-          <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php"></a>Messages</a></li>
+          <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php">Messages</a></a></li>
         </ul>
       </div>
     </section>
