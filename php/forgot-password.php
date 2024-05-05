@@ -62,7 +62,20 @@
       inset:10px;
       border-radius:5px;
     }
-
+   
+    @media screen and (max-width:480px)
+    {
+      section {
+        display: flex;
+        flex-direction: column;
+      }
+      .wrapper{
+        height: 450px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 
