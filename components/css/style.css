@@ -1145,19 +1145,19 @@ input[type="submit"] {
 /* ----------------------------------------SearchResults---------------------------------------- */
 
 #searchResults1 {
-
   position: absolute;
   top: 250px;
-  left: 50%;
-  right: 50%;
-  width: 366px;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  width: 100%; /* Take full width */
   background-color: #fff;
   border-radius: 5px;
   z-index: 999;
   color: #000;
   font-weight: 600;
-  backdrop-filter: blur;
+  /* backdrop-filter: blur; */
 }
+
 
 #searchResults1 ul {
   list-style: none;
@@ -1437,6 +1437,9 @@ input[type="submit"] {
   display: none;
   width: 630px;
 }
+#searchResults1{
+  display: none;
+}
 /* ------------------home.php------------------------*/
 @media screen and (max-width: 768px) {
   *{
@@ -1445,6 +1448,10 @@ input[type="submit"] {
   }
   .box1{
     display: flex;
+  }
+  #searchResults1{
+    margin-left: 3%;
+    display: block;
   }
   nav{
     display: none;
@@ -1546,6 +1553,9 @@ input[type="submit"] {
   }
   .profile-options p{
     font-size: 20px;
+  }
+  #searchResults1{
+    margin-left: 20%;
   }
   
 }
@@ -1686,6 +1696,9 @@ input[type="submit"] {
 
 .full .left1 .back-arrow{
   display: block;
+}
+#searchResults1{
+  margin-left: 15%;
 }
 }
 
