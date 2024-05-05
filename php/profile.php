@@ -313,7 +313,9 @@ $postresult = mysqli_query($conn, $postquery);
     ?>
 
     <div class="side-profile">
-      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2><br>
+    <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2><br>
+       <div class="myside">
+     
       <div class="follow">
       <?php foreach ($follow_suggestions as $suser) : ?>
         <div class="follow-section">
@@ -327,7 +329,7 @@ $postresult = mysqli_query($conn, $postquery);
         echo "<h6>Currently no suggestions for You</h6>";
       }
       ?>
-    </div></div>
+    </div></div></div>
 
 
     <!-- <div class="side-profile">
