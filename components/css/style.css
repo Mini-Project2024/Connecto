@@ -1023,12 +1023,21 @@ input[type="submit"] {
   border: 1px solid lightgrey;
   border-radius: 10px;
   padding: 30px;
-  overflow-y: scroll;
+  
+  
 }
-.side-profile::-webkit-scrollbar {
+.side-profile .myside{
+  
+   
+    height: 80vh;
+    width: 100%;
+    overflow-y: scroll;
+  
+}
+.myside::-webkit-scrollbar {
   display: none;
 }
-.side-profile .follow-section {
+.side-profile .myside .follow-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1036,7 +1045,7 @@ input[type="submit"] {
   border: 1px solid lightgrey;
   border-radius: 5px;
 }
-.side-profile .follow-profile {
+.side-profile .myside .follow-profile {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1546,6 +1555,7 @@ input[type="submit"] {
 
 @media screen and (max-width: 480px) {
   .left button{
+    background-color: #fff;
     font-size: 23px;
   }
   .profile-options h2{
@@ -1761,17 +1771,20 @@ input[type="submit"] {
 /* .flex p{
   margin: 20px;
 } */
-.side-profile{
+.side-profile {
   width: 90%;
   margin: 20px;
   height: 100%;
  border: none;
  padding: 5px;
 }
-.side-profile .follow{
+.side-profile .myside .follow{
   display: flex;
 }
-.side-profile .follow-section {
+.side-profile .myside{
+  height: 100%;
+}
+.side-profile .myside .follow-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1861,4 +1874,29 @@ fieldset{
     border: none;
     cursor: pointer;
 }
+}
+@media  (max-width:1100px) {
+  .full .left1 {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 0%;
+    background: #fff;
+}
+.full .left1 img {
+  display: none;
+}
+.full .right1{
+  width: 100%;
+}
+
+}
+@media  (max-width:650px) {
+
+  fieldset{
+    width: 500px;
+    margin: 20px;
+  }
+
+
 }

@@ -301,10 +301,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     </section>
   <section class="mid">
-      <div class="box">
+      <!-- <div class="box">
         <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px;margin:13px"></i>
         <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
-      </div>
+      </div> -->
       <br>
       <div class="messaging-options" id="messaging-options">
         <h2>Messaging</h2>
