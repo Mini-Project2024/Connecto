@@ -75,6 +75,16 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
+    function closesug(){
+      var sideprofile=document.getElementsByClassName('.side-profile');
+
+      if (sideprofile.style.display=='block'){
+        sideprofile.style.display=='none';
+      }
+      else{
+        sideprofile.style.display=='block'
+      }
+    }
     $(document).on("click", ".connect1", function() {
       var button = $(this);
 
@@ -313,7 +323,11 @@ $postresult = mysqli_query($conn, $postquery);
     ?>
 
     <div class="side-profile">
-    <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2><br>
+      <div class="sug">
+      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
+       <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
+      </div>
+   
        <div class="myside">
      
       <div class="follow">

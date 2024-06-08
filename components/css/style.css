@@ -1449,6 +1449,9 @@ input[type="submit"] {
 #searchResults1{
   display: none;
 }
+.sug i{
+  display: none;
+}
 /* ------------------home.php------------------------*/
 @media screen and (max-width: 768px) {
   *{
@@ -1545,6 +1548,25 @@ input[type="submit"] {
 }
 
 @media screen and (max-width: 600px) {
+  .sug{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .sug h2{
+    display: flex;
+  }
+  .sug div i, .sug i{
+    display: block;
+  }
+  .sug div i{
+    font-size: 20px;
+  }
+  .sug div{
+    display: flex;
+    width: 100%;
+   justify-content: right;
+  }
   .feeds .feed{
     width: auto;
   }
@@ -1898,5 +1920,43 @@ fieldset{
     margin: 20px;
   }
 
+
+}
+@media  (max-width:450px) {
+  .main-profile .profile-image {
+    position: absolute;
+    left: 45px;
+    top: 182px;
+    width: 120px;
+    height: 120px;
+}
+.username {
+  position: relative;
+  left: 162px;
+  top: 2px;
+  width: 174px;
+  height: 150px;
+}
+.username h1{
+  font-size: 22px;
+}
+.view-connect{
+  right: 139px;
+}
+.edit-connect {
+
+  left: 56px;
+}
+
+}
+@media  (max-width:480px) {
+  .username h1{
+    font-size: 25px;
+  }
+
+  .username {
+    position: relative;
+    left: 201px;
+  }
 
 }
