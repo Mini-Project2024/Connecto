@@ -330,13 +330,13 @@ $postresult = mysqli_query($conn, $postquery);
       ?>
     </div> -->
 
+    <style>
+      
+    </style>
 
     <div class="side-profile">
       <h2>Suggestions<i class="fa-solid fa-user-plus"></i></h2><br>
       <?php
-      // echo "<pre>";
-      // var_dump($follow_suggestions);
-      // echo "</pre>";
       foreach ($follow_suggestions as $suser) :
         // Calculate the distance between the logged-in user and the suggested user
         $distance = calculateDistance($current_user_lat, $current_user_lon, $suser['Latitude'], $suser['Longitude']);
@@ -360,8 +360,8 @@ $postresult = mysqli_query($conn, $postquery);
         echo "<pre>";
         var_dump($follow_suggestions);
         echo "</pre>";
-    }
-    
+      }
+
 
       ?>
     </div>
