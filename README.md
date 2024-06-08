@@ -36,7 +36,11 @@ https://github.com/Mini-Project2024/Connecto.git
 cd connecto
 ```
 
-3. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
+3. Open xampp and start the Apache and mysql server
+
+4. Import the sql Code to phpmyadmin
+
+5. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
 
 ### Contributors
 This is a team project, and we grateful for the contributions of all team members:
