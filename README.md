@@ -44,7 +44,7 @@ cd connecto
 
 ## Images
 
-<img src="https://i.ibb.co/zXYxjgw/main.png" alt="main" border="0" style="width:550px; height:400px" />
+<img src="https://i.ibb.co/zXYxjgw/main.png" alt="main" border="0" style="width:800px; height:400px" />
 
 ## Contributors
 
