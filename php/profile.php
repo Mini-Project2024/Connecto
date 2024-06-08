@@ -334,30 +334,28 @@ $postresult = mysqli_query($conn, $postquery);
 
     </style>
 
-    <div class="side-profile">
+  <div class="side-profile">
       <div class="sug">
-        <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
-        <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
+      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
+       <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
       </div>
-
-      <div class="myside">
-
-        <div class="follow">
-          <?php foreach ($follow_suggestions as $suser) : ?>
-            <div class="follow-section">
-              <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
-              <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
-              <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
-            </div>
-          <?php endforeach; ?>
-          <?php
-          if (count($follow_suggestions) < 1) {
-            echo "<h6>Currently no suggestions for You</h6>";
-          }
-          ?>
+   
+       <div class="myside">
+     
+      <div class="follow">
+      <?php foreach ($follow_suggestions as $suser) : ?>
+        <div class="follow-section">
+          <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
+          <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
+          <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
         </div>
-      </div>
-    </div>
+      <?php endforeach; ?>
+      <?php
+      if (count($follow_suggestions) < 1) {
+        echo "<h6>Currently no suggestions for You</h6>";
+      }
+      ?>
+    </div></div></div>
 
     <!-- <----------------------- Nishals works end ---------------------------->
 
