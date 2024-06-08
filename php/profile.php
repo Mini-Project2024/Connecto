@@ -331,39 +331,32 @@ $postresult = mysqli_query($conn, $postquery);
     </div> -->
 
     <style>
-      
+
     </style>
 
     <div class="side-profile">
-      <h2>Suggestions<i class="fa-solid fa-user-plus"></i></h2><br>
-      <?php
-      foreach ($follow_suggestions as $suser) :
-        // Calculate the distance between the logged-in user and the suggested user
-        $distance = calculateDistance($current_user_lat, $current_user_lon, $suser['Latitude'], $suser['Longitude']);
+      <div class="sug">
+        <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
+        <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br>
+      </div>
 
-        // Check if the suggested user is within the threshold distance
-        if ($distance <= $threshold_distance) :
-      ?>
-          <div class="follow-section">
-            <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
-            <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
-            <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
-          </div>
-      <?php
-        endif;
-      endforeach;
+      <div class="myside">
 
-      // Check if there are no suggestions for the logged-in user
-      if (empty($follow_suggestions)) {
-        echo "<h6>Currently no suggestions for you</h6>";
-        // Debug statement
-        echo "<pre>";
-        var_dump($follow_suggestions);
-        echo "</pre>";
-      }
-
-
-      ?>
+        <div class="follow">
+          <?php foreach ($follow_suggestions as $suser) : ?>
+            <div class="follow-section">
+              <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
+              <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
+              <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
+            </div>
+          <?php endforeach; ?>
+          <?php
+          if (count($follow_suggestions) < 1) {
+            echo "<h6>Currently no suggestions for You</h6>";
+          }
+          ?>
+        </div>
+      </div>
     </div>
 
     <!-- <----------------------- Nishals works end ---------------------------->
