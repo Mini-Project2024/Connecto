@@ -48,9 +48,10 @@ This is a team project, and we grateful for the contributions of all team member
 + <a href="https://github.com/Neharsputhran">Neha</a>
 + <a href="https://github.com/ananyashenoy16">Ananya K</a>
 + <a href="https://github.com/akshay-899">M Akshay Prabhu</a>
+
 Thank you for your hard work and dedication in making CONNECTO a reality!
 
 ### Contact
 For questions, suggestions, or feedback, please contact any of the members.
 
-==Thank you for using CONNECTO! We hope this platform enhances your campus experience.==
+==Thank you for using CONNECTO! We hope this platform enhances your campus experience==
