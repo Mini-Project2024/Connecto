@@ -337,7 +337,7 @@ $postresult = mysqli_query($conn, $postquery);
     <div class="side-profile">
       <div class="sug">
         <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
-        <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br>
+        <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
       </div>
 
       <div class="myside">
