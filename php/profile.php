@@ -19,6 +19,7 @@ if (isset($_GET['userID'])) {
 } else {
   $user = $_SESSION['user'];
   $follow_suggestions = filterFollowSuggestion($user['UserID']);
+
   $query = "SELECT * FROM users WHERE UserID = " . $user['UserID']; // Assuming user_details table stores additional user information
   $result = mysqli_query($conn, $query);
   $userDetails = mysqli_fetch_assoc($result);
@@ -300,37 +301,31 @@ $postresult = mysqli_query($conn, $postquery);
     $current_user_id = $current_user; // Example user ID
 
     // Fetch the latitude and longitude of the logged-in user from the database
-    // $query = "SELECT Latitude, Longitude FROM users WHERE UserID = $current_user_id";
-    // $result = mysqli_query($conn, $query);
-    // $row = mysqli_fetch_assoc($result);
-    // $current_user_lat = $row['Latitude'];
-    // $current_user_lon = $row['Longitude'];
+    $query = "SELECT Latitude, Longitude FROM users WHERE UserID = $current_user_id";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $current_user_lat = $row['Latitude'];
+    $current_user_lon = $row['Longitude'];
 
-    // // Define the calculateDistance function
-    // function calculateDistance($lat1, $lon1, $lat2, $lon2)
-    // {
-    //   $earth_radius = 6371; // Radius of the earth in km
-    //   $dLat = deg2rad($lat2 - $lat1);
-    //   $dLon = deg2rad($lon2 - $lon1);
-    //   $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon / 2) * sin($dLon / 2);
-    //   $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-    //   $distance = $earth_radius * $c; // Distance in km
-    //   return $distance;
-    // }
+    // Define the calculateDistance function
+    function calculateDistance($lat1, $lon1, $lat2, $lon2)
+    {
+      $earth_radius = 6371; // Radius of the earth in km
+      $dLat = deg2rad($lat2 - $lat1);
+      $dLon = deg2rad($lon2 - $lon1);
+      $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon / 2) * sin($dLon / 2);
+      $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+      $distance = $earth_radius * $c; // Distance in km
+      return $distance;
+    }
 
-    // $threshold_distance = 10; // Threshold distance in km
+    $threshold_distance = 10; // Threshold distance in km
 
     ?>
 
-    <div class="side-profile">
-      <div class="sug">
-      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
-       <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
-      </div>
-   
-       <div class="myside">
-     
-      <div class="follow">
+    <!-- <div class="side-profile">
+      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2><br>
+      < class="follow">
       <?php foreach ($follow_suggestions as $suser) : ?>
         <div class="follow-section">
           <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
@@ -343,18 +338,21 @@ $postresult = mysqli_query($conn, $postquery);
         echo "<h6>Currently no suggestions for You</h6>";
       }
       ?>
-    </div></div></div>
+    </div> -->
 
+    <style>
+      
+    </style>
 
-    <!-- <div class="side-profile">
+    <div class="side-profile">
       <h2>Suggestions<i class="fa-solid fa-user-plus"></i></h2><br>
       <?php
-      // foreach ($follow_suggestions as $suser) :
-      //   // Calculate the distance between the logged-in user and the suggested user
-      //   $distance = calculateDistance($current_user_lat, $current_user_lon, $suser['Latitude'], $suser['Longitude']);
+      foreach ($follow_suggestions as $suser) :
+        // Calculate the distance between the logged-in user and the suggested user
+        $distance = calculateDistance($current_user_lat, $current_user_lon, $suser['Latitude'], $suser['Longitude']);
 
-      //   // Check if the suggested user is within the threshold distance
-      //   if ($distance <= $threshold_distance) :
+        // Check if the suggested user is within the threshold distance
+        if ($distance <= $threshold_distance) :
       ?>
           <div class="follow-section">
             <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
@@ -362,20 +360,21 @@ $postresult = mysqli_query($conn, $postquery);
             <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
           </div>
       <?php
-      //   endif;
-      // endforeach;
+        endif;
+      endforeach;
 
       // Check if there are no suggestions for the logged-in user
-      if (count($follow_suggestions) < 1) {
+      if (empty($follow_suggestions)) {
         echo "<h6>Currently no suggestions for you</h6>";
         // Debug statement
         echo "<pre>";
-        // var_dump($follow_suggestions);
+        var_dump($follow_suggestions);
         echo "</pre>";
       }
 
+
       ?>
-    </div> -->
+    </div>
 
     <!-- <----------------------- Nishals works end ---------------------------->
 
