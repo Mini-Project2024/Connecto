@@ -54,4 +54,4 @@ Thank you for your hard work and dedication in making CONNECTO a reality!
 ### Contact
 For questions, suggestions, or feedback, please contact any of the members.
 
-==Thank you for using CONNECTO! We hope this platform enhances your campus experience==
+<mark>Thank you for using CONNECTO! We hope this platform enhances your campus experience.</mark>
