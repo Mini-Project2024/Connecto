@@ -1,6 +1,6 @@
 
 # CONNECTO - Campus Connect Platform
-___
+
 ## Overview
 CONNECTO is a campus connect platform designed to bring students together, allowing them to connect, share posts, and chat with one another. This platform aims to foster a sense of community and enhance communication among students on campus.
 
@@ -42,7 +42,11 @@ cd connecto
 
 5. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
 
-### Contributors
+### Images
+<img href="./components/images/main.png" style="width:100px; height: 100px">
+
+## Contributors
+
 This is a team project, and we grateful for the contributions of all team members:
 + <a href="https://github.com/NishalNT">Nishal N Thingalaya</a>
 + <a href="https://github.com/Neharsputhran">Neha</a>
@@ -51,7 +55,8 @@ This is a team project, and we grateful for the contributions of all team member
 
 Thank you for your hard work and dedication in making CONNECTO a reality!
 
-### Contact
+## Contact
+
 For questions, suggestions, or feedback, please contact any of the members.
 
 <mark>Thank you for using CONNECTO! We hope this platform enhances your campus experience.</mark>
