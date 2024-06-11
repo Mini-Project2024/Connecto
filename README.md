@@ -49,12 +49,9 @@ cd connecto
 ## Contributors
 
 This is a team project, and we grateful for the contributions of all team members:
-+ <a href="https://github.com/NishalNT">Nishal N Thingalaya</a>
-+ <a href="https://github.com/Neharsputhran">Neha</a>
-+ <a href="https://github.com/ananyashenoy16">Ananya K</a>
-+ <a href="https://github.com/akshay-899">M Akshay Prabhu</a>
 
-<a href="https://github.com/OWNER/REPO/graphs/contributors">
+
+<a href="https://github.com/Mini-Project2024/Connecto/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
 </a>
 
