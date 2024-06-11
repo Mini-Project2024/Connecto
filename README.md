@@ -60,7 +60,7 @@ cd connecto
 
 ## Images
 
-<img src="https://i.ibb.co/gy76j7Q/image.png" alt="main" border="0" style="width:800px; height:400px" />
+<img src="https://i.ibb.co/h8M2RPv/image.png" alt="main" border="0" style="width:800px; height:400px" />
 
 ## Contributors
 
