@@ -49,7 +49,7 @@ cd connecto
 
 6. **Create Database**:
    - Open your web browser and go to `http://localhost/phpmyadmin`.
-   - Create a new database named `voteronline`.
+   - Create a new database named `connecto`.
    - Import the SQL file provided in the `database` folder of this repository to set up the necessary tables.
 
 7. **Configure Database Connection**:
