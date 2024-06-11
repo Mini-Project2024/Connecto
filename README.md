@@ -49,11 +49,11 @@ cd connecto
 
 6. **Create Database**:
    - Open your web browser and go to `http://localhost/phpmyadmin`.
-   - Create a new database named `connecto`.
+   - Create a new database named `finder`.
    - Import the SQL file provided in the `database` folder of this repository to set up the necessary tables.
 
 7. **Configure Database Connection**:
-   - Open the `config.php` file in the project directory.
+   - Open the `config.php` and `database.php` file in the project directory.
    - Update the database credentials (hostname, username, password, database name) to match your local setup
 
 8. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
