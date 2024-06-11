@@ -51,8 +51,9 @@ cd connecto
 This is a team project, and we grateful for the contributions of all team members:
 
 <a href="https://github.com/Mini-Project2024/Connecto/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Mini-Project2024/Connecto" />
+  <img src="https://contrib.rocks/image?repo=Mini-Project2024/Connecto&nocache=1" />
 </a>
+
 
 
 Thank you for your hard work and dedication in making CONNECTO a reality!
