@@ -54,6 +54,10 @@ This is a team project, and we grateful for the contributions of all team member
 + <a href="https://github.com/ananyashenoy16">Ananya K</a>
 + <a href="https://github.com/akshay-899">M Akshay Prabhu</a>
 
+<a href="https://github.com/OWNER/REPO/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
+</a>
+
 Thank you for your hard work and dedication in making CONNECTO a reality!
 
 ## Contact
