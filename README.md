@@ -26,21 +26,37 @@ Before you begin, ensure you have the following installed on your local machine:
 + vs code
 
 ## Steps to Run
-1. Clone the Repository
+1. **Clone the Repository**
 ```bash
 https://github.com/Mini-Project2024/Connecto.git
 ```
 
-2. Go to the folder
+2. **Go to the folder**
 ```bash 
 cd connecto
 ```
 
-3. Open xampp and start the Apache and mysql server
+3. **Download and Install XAMPP**:
+   - Download XAMPP from [Apache Friends](https://www.apachefriends.org/index.html).
+   - Install XAMPP on your local machine.
 
-4. Import the sql Code to phpmyadmin
+4. **Copy Folder to XAMPP Directory**:
+   - Copy the application folder to the `htdocs` directory inside your XAMPP installation folder (e.g., `C:\xampp\htdocs\`).
 
-5. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
+5. **Start XAMPP**:
+   - Open the XAMPP Control Panel.
+   - Start the Apache and MySQL modules.
+
+6. **Create Database**:
+   - Open your web browser and go to `http://localhost/phpmyadmin`.
+   - Create a new database named `voteronline`.
+   - Import the SQL file provided in the `database` folder of this repository to set up the necessary tables.
+
+7. **Configure Database Connection**:
+   - Open the `config.php` file in the project directory.
+   - Update the database credentials (hostname, username, password, database name) to match your local setup
+
+8. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
 
 ## Images
 
