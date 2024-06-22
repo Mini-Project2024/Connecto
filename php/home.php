@@ -54,6 +54,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
+//notification part
+$current_user_id = $_SESSION['user']['UserID'];
+$querynum = "SELECT COUNT(*) AS num_requests 
+          FROM connection_requests cr
+          WHERE cr.to_user_id = ? AND cr.status = 'pending'";
+$stmt = $conn->prepare($querynum);
+$stmt->bind_param("i", $current_user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$num_requests = $row['num_requests'];
+
 
 
 ?>
@@ -230,7 +242,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <nav>
         <ul>
-
+          <!-- <div class="box">
+          <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px"></i>
+          <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
+          </div> -->
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px;margin-bottom:12px;"></i><a href="home.php">Home</a></a></li>
           <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
@@ -247,8 +262,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </g>
                 </g>
               </svg><a href="network.php">My Network</a></li></a>
+          <li>
+            <a href="notification.php">
+              <i class="fa-solid fa-bell" style="font-size:28px;margin-bottom:12px;"></i>
+              <a href="notification.php">Notification</a>
+              <?php if ($num_requests > 0) : ?>
+                <span class="badge" style="position: absolute;top: 1px; right: 180px; background-color: red; border-radius: 50%; width: 20px; text-align: center;"><?php echo $num_requests; ?></span>
+              <?php endif; ?>
+            </a>
+          </li>
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:28px;margin-bottom:12px;"></i><a href="logout.php">Logout</a></a></li>
-          <!-- <li class="hamburger"><a href="#"><i class="fa-solid fa-bars"></i></a></li> -->
         </ul>
 
       </nav>

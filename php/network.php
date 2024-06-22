@@ -32,6 +32,18 @@ if ($userDetails11) {
   $position11 = $userDetails11['Position'];
 }
 
+//notification part
+// $querynum = "SELECT COUNT(*) AS num_requests 
+//           FROM connection_requests cr
+//           WHERE cr.to_user_id = ".$current_user_id." AND cr.from_user_id = ".$userDetails11['UserID']." AND cr.status = 'pending'";
+// $stmt = $conn->prepare($querynum);
+// $stmt->bind_param("ii", $user['UserID'],$userDetails11['UserID']);
+// $stmt->execute();
+// $result = $stmt->get_result();
+// $row = $result->fetch_assoc();
+// $num_requests = $row['num_requests'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +77,7 @@ if ($userDetails11) {
           </div> -->
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px;margin-bottom:12px;"></i><a href="home.php">Home</a></a></li>
-          <li><a href="network.php"><svg fill="#ffff" height="27px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
+          <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -79,6 +91,15 @@ if ($userDetails11) {
                   </g>
                 </g>
               </svg><a href="network.php">My Network</a></li></a>
+          <li>
+            <a href="notification.php">
+              <i class="fa-solid fa-bell" style="font-size:28px;margin-bottom:12px;"></i>
+              <a href="notification.php">Notification</a>
+              <!-- <?php if ($num_requests > 0) : ?>
+                <span class="badge" style="position: absolute;top: 1px; right: 180px; background-color: red; border-radius: 50%; width: 20px; text-align: center;"><?php echo $num_requests; ?></span>
+              <?php endif; ?> -->
+            </a>
+          </li>
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:28px;margin-bottom:12px;"></i><a href="logout.php">Logout</a></a></li>
         </ul>
       </nav>
@@ -141,6 +162,7 @@ if ($userDetails11) {
       $res = mysqli_query($conn, $no_connections);
       $no = mysqli_fetch_array($res);
 
+
     ?>
       <div class="cards">
 
@@ -158,24 +180,27 @@ if ($userDetails11) {
   </div>
   <section class="left" style="display: none;">
 
-      <div class="profile-options">
-        <img src="./uploads/<?php echo $profileImage11 ?>" alt="Your Name" class="profile" />
-        <h2>
-          <?php echo $userDetails11['FirstName'] . ' ' . $userDetails11['LastName'] ?>
-        </h2>
-        <p><?php echo $position11 ?></p>
-        <a href="./profile.php"><button>View Profile</button></a>
-        <!-- <a class="profileEdit" href="./profileedit.php"><button>Edit Profile</button></a> -->
-      </div>
-      <div class="nav-second">
-        <ul>
-          <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li><hr>
-          <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li><hr>
-          <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li><hr>
-          <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php"></a>Messages</a></li>
-        </ul>
-      </div>
-    </section>
+    <div class="profile-options">
+      <img src="./uploads/<?php echo $profileImage11 ?>" alt="Your Name" class="profile" />
+      <h2>
+        <?php echo $userDetails11['FirstName'] . ' ' . $userDetails11['LastName'] ?>
+      </h2>
+      <p><?php echo $position11 ?></p>
+      <a href="./profile.php"><button>View Profile</button></a>
+      <!-- <a class="profileEdit" href="./profileedit.php"><button>Edit Profile</button></a> -->
+    </div>
+    <div class="nav-second">
+      <ul>
+        <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px; color: #000;"></i><a href="home.php">Home</a></a></li>
+        <hr>
+        <li><a href="network.php"><i class="fa-solid fa-users" style="font-size:30px; color: #000;"></i><a href="network.php">My Network</a></a></li>
+        <hr>
+        <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:30px; color: #000;"></i><a href="logout.php">Logout</a></a></li>
+        <hr>
+        <li><a class="message_icon" href="users.php"><i class="fa-solid fa-message" style="font-size: 30px; color: #000;"></i><a href="users.php"></a>Messages</a></li>
+      </ul>
+    </div>
+  </section>
 </body>
 
 </html>
