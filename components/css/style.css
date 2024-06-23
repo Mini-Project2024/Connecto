@@ -819,8 +819,8 @@ object-fit:cover;
 }
 .cards .connect-content {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  width: 40%;
+  justify-content: space-around;
 }
 .view{
   width: 150px;
@@ -868,8 +868,16 @@ object-fit:cover;
 
   border: 1px solid lightgrey;
   border-radius: 10px;
-}
 
+}
+.main-profile1 {
+  margin: 100px;
+  width: 40%;
+  display: flex;align-items: center;
+  justify-content: center;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
 hr {
   border: 0.2px solid lightgrey;
 }

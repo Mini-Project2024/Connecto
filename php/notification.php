@@ -43,6 +43,16 @@ $num_requests = $row['num_requests'];
     <script src="https://kit.fontawesome.com/b7a08da434.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body{
+            display: flex;
+            flex-direction:center;
+            align-items:center;
+            justify-content:center;
+            /* align-items:center; */
+
+        }
+    </style>
 </head>
 
 <body>
@@ -83,7 +93,7 @@ $num_requests = $row['num_requests'];
             </nav>
         </div>
     </header>
-    <div class="main-profile">
+    <div class="main-profile1">
         <?php if (empty($requests)) : ?>
             <h3>No Notifications Currently</h3>
         <?php else : ?>
