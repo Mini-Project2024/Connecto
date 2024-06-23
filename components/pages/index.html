@@ -6,6 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <title>Sign-Up</title>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+            const errorText = document.querySelector('.error-text');
+            errorText.innerHTML = '';
+
+            const firstName = document.querySelector('input[name="first_name"]').value.trim();
+            const lastName = document.querySelector('input[name="last_name"]').value.trim();
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const password = document.querySelector('input[name="password"]').value.trim();
+            const img = document.querySelector('input[name="img"]').files[0];
+
+            if (firstName === '') {
+                isValid = false;
+                errorText.innerHTML += '<p>Firstname is required.</p>';
+            }
+
+            if (lastName === '') {
+                isValid = false;
+                errorText.innerHTML += '<p>Lastname is required.</p>';
+            }
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                isValid = false;
+                errorText.innerHTML += '<p>Please enter a valid email address.</p>';
+            }
+
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            if (!passwordPattern.test(password)) {
+                isValid = false;
+                errorText.innerHTML += '<p>Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p>';
+            }
+
+        
+
+            if (isValid) {
+                document.querySelector('form').submit();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', validateForm);
+        });
+    </script>
 </head>
 
 <body>

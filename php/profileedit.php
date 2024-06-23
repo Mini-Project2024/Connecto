@@ -143,12 +143,12 @@ if ($userDetails) {
        <label>Bio:</label><textarea name="bio" id="bio" cols="30" rows="10" placeholder="Bio"><?php echo $bio; ?></textarea>
        <label>Native Place:</label><input type="text" name="nativeplace" placeholder="Native Place" class="nname" value="<?php echo $nativeplace ?>" >
     </fieldset>
-    <fieldset>
+    <!-- <fieldset>
         <legend>Company Details</legend>
         <label>Company:</label><input type="text" name="company" placeholder="Company name" value="<?php echo $company ?>">
         <label>Position:</label><input type="text" name="position" placeholder="Position" value="<?php echo $position ?>">
         </fieldset>
-        <Fieldset> 
+        <Fieldset>  -->
             <legend>Institutional details</legend>
             <div class="one"> <label>Institution:</label> <input type="text" name="institution" placeholder="Institution" value="<?php echo $institution ?>"></div>
             <div class="one"><label>Degree:</label><input type="text" name="degree" placeholder="Degree" value="<?php echo $degree ?>"></div>
