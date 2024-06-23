@@ -153,18 +153,53 @@ function getlikes($PostID){
     return mysqli_fetch_all($run);
 }
 
-function disconnectUser($user_id){
+function disconnectUser($user_id, $current_user_id) {
     global $conn;
-    $current_user_id = $_SESSION['user']['UserID'];
-    $query = "DELETE FROM connections WHERE connector_id = $current_user_id AND user_id = $user_id";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
+
+    // Delete bidirectional connections
+    $query = "DELETE FROM connections WHERE (user_id = ? AND connector_id = ?) OR (user_id = ? AND connector_id = ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("iiii", $current_user_id, $user_id, $user_id, $current_user_id);
+    
+    if ($stmt->execute()) {
         return true;
     } else {
         // Log the error
-        error_log("Error disconnecting user: " . mysqli_error($conn));
+        error_log("Error disconnecting user: " . $stmt->error);
         return false;
     }
 }
 
+function createConnectionRequest($from_user_id, $to_user_id) {
+    global $conn;
+    $query = "INSERT INTO connection_requests (from_user_id, to_user_id, status) VALUES (?, ?, 'pending')";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $from_user_id, $to_user_id);
+    return $stmt->execute();
+}
 
+function checkPendingRequest($from_user_id, $to_user_id) {
+    global $conn;
+    $query = "SELECT * FROM connection_requests WHERE from_user_id = ? AND to_user_id = ? AND status = 'pending'";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $from_user_id, $to_user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
+}
+
+function acceptConnectionRequest($request_id) {
+    global $conn;
+    $query = "UPDATE connection_requests SET status = 'accepted' WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $request_id);
+    return $stmt->execute();
+}
+
+function rejectConnectionRequest($request_id) {
+    global $conn;
+    $query = "DELETE FROM connection_requests WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $request_id);
+    return $stmt->execute();
+}

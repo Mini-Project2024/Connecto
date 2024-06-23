@@ -50,29 +50,6 @@ if(isset($_GET['getMessages'])){
     echo json_encode($json);
 }
 
-if(isset($_GET['connect'])){
-    $user_id = $_POST['user_id'];
-    $current_user_id = $_SESSION['user']['UserID'];
-
-    // Check if the users are already connected
-    if(checkFollowStatus($user_id)){
-        // If they are connected, disconnect them
-        if(disconnectUser($user_id)){
-            $response['status'] = false; // Set status to false indicating disconnection
-        }else{
-            $response['status'] = true; // Set status to true indicating connection
-        }
-    } else {
-        // If they are not connected, connect them
-        if(followUser($user_id)){
-            $response['status'] = true; // Set status to true indicating connection
-        }else{
-            $response['status'] = false; // Set status to false indicating disconnection
-        }
-    }
-
-    echo json_encode($response);
-}
 
 if(isset($_GET['searchUsers'])){
     $str = $_GET['searchString'];
@@ -116,14 +93,86 @@ if(isset($_GET['unlike'])){
     }
 }
 
-if(isset($_GET['disconnect'])){
-    $user_id = $_POST['user_id']; // Ensure this is properly set
-    if(disconnectUser($user_id)){
-        $response['status'] = true;
-    }else{
-        $response['status'] = false;
+if (isset($_GET['connect'])) {
+    $user_id = $_POST['user_id'];
+    $current_user_id = $_SESSION['user']['UserID'];
+
+    if (checkPendingRequest($current_user_id, $user_id)) {
+        $response['message'] = 'Request already pending';
+    } else {
+        if (createConnectionRequest($current_user_id, $user_id)) {
+            $response['status'] = true;
+            $response['message'] = 'Request sent';
+        } else {
+            $response['message'] = 'Request failed';
+        }
     }
+
     echo json_encode($response);
+    exit();
 }
 
+if (isset($_GET['disconnect'])) {
+    $user_id = $_POST['user_id'];
+    $current_user_id = $_SESSION['user']['UserID'];
+
+    if (disconnectUser($user_id, $current_user_id)) {
+        $response['status'] = true;
+    } else {
+        $response['message'] = 'Disconnection failed';
+    }
+    echo json_encode($response);
+    exit();
+}
+
+
+
+if (isset($_GET['acceptRequest'])) {
+    $request_id = $_POST['request_id'];
+
+    // Get the from_user_id and to_user_id from the connection_requests table
+    $query = "SELECT from_user_id, to_user_id FROM connection_requests WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $request_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row) {
+        $from_user_id = $row['from_user_id'];
+        $to_user_id = $row['to_user_id'];
+
+        // Insert the connection into the connections table
+        $insert_query = "INSERT INTO connections (user_id, connector_id) VALUES (?, ?), (?, ?)";
+        $stmt = $conn->prepare($insert_query);
+        $stmt->bind_param("iiii", $from_user_id, $to_user_id, $to_user_id, $from_user_id);
+        if ($stmt->execute()) {
+            // Update the status in the connection_requests table
+            $update_query = "UPDATE connection_requests SET status = 'accepted' WHERE id = ?";
+            $stmt = $conn->prepare($update_query);
+            $stmt->bind_param("i", $request_id);
+            if ($stmt->execute()) {
+                echo json_encode(['status' => true]);
+                exit();
+            }
+        }
+    }
+
+    echo json_encode(['status' => false]);
+    exit();
+}
+
+if (isset($_GET['rejectRequest'])) {
+    $request_id = $_POST['request_id'];
+    $query = "UPDATE connection_requests SET status = 'rejected' WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $request_id);
+    if ($stmt->execute()) {
+        echo json_encode(['status' => true]);
+    } else {
+        echo json_encode(['status' => false]);
+    }
+    exit();
+}
 ?>
+

@@ -61,6 +61,23 @@ $postquery = "SELECT p.*, u.*
               ORDER BY p.PostedDate DESC";
 $postresult = mysqli_query($conn, $postquery);
 
+//notification part
+$current_user_id = $_SESSION['user']['UserID'];
+$querynum = "SELECT COUNT(*) AS num_requests 
+          FROM connection_requests cr
+          WHERE cr.to_user_id = ? AND cr.status = 'pending'";
+$stmt = $conn->prepare($querynum);
+$stmt->bind_param("i", $current_user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$num_requests = $row['num_requests'];
+
+
+
+// Check if there's a pending request between the current user and the profile user
+$pendingRequest = checkPendingRequest($_SESSION['user']['UserID'], $userDetails['UserID']);
+
 
 ?>
 <!DOCTYPE html>
@@ -76,44 +93,36 @@ $postresult = mysqli_query($conn, $postquery);
   <script src="https://kit.fontawesome.com/f4e815f78b.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
+    //auto refresh the page to load the contents
+    setTimeout(function() {
+            location.reload();
+        }, 6000);
+    // Connection establishment and disconnection
     $(document).on("click", ".connect1", function() {
       var button = $(this);
-
       var user_id_connect = button.data('user-id');
+      var currentStatus = button.text().trim();
 
-      var connectStatus = button.text().trim();
-      var ajaxURL = './ajax.php?connect';
-      var action = 'connect';
-
-
-      if (connectStatus === 'Connected') {
-        ajaxURL = './ajax.php?disconnect';
-        action = 'disconnect';
+      if (currentStatus === 'Connected') {
+        disconnectConnection(button, user_id_connect);
+      } else {
+        connectConnection(button, user_id_connect);
       }
+    });
 
+    function connectConnection(button, user_id_connect) {
       $.ajax({
-        url: ajaxURL,
+        url: './ajax.php?connect',
         method: 'POST',
         dataType: 'json',
         data: {
           user_id: user_id_connect
         },
         success: function(response) {
-          // console.log(response.status);
           if (response.status) {
-            if (action === 'connect') {
-              button.html('<i class="fa-solid fa-user-check"></i> Connected');
-              setTimeout(function() {
-                location.reload();
-              }, 500);
-            } else {
-              button.html('<i class="fa-solid fa-user-plus"></i> Connect');
-              setTimeout(function() {
-                location.reload();
-              }, 500);
-            }
+            button.html('<i class="fa-solid fa-user-clock"></i> Pending');
           } else {
-            alert("Something went wrong");
+            alert(response.message);
           }
         },
         error: function(xhr, status, error) {
@@ -121,8 +130,30 @@ $postresult = mysqli_query($conn, $postquery);
           alert("Something went wrong");
         }
       });
-    });
+    }
 
+
+    function disconnectConnection(button, user_id_connect) {
+      $.ajax({
+        url: './ajax.php?disconnect',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          user_id: user_id_connect
+        },
+        success: function(response) {
+          if (response.status) {
+            button.html('<i class="fa-solid fa-user-plus"></i> Connect');
+          } else {
+            alert("Failed to disconnect");
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+          alert("Something went wrong");
+        }
+      });
+    }
 
 
 
@@ -173,10 +204,6 @@ $postresult = mysqli_query($conn, $postquery);
       </div>
       <nav>
         <ul>
-          <!-- <div class="box">
-          <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px"></i>
-          <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
-          </div> -->
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px;margin-bottom:12px;"></i><a href="home.php">Home</a></a></li>
           <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
@@ -193,6 +220,15 @@ $postresult = mysqli_query($conn, $postquery);
                   </g>
                 </g>
               </svg><a href="network.php">My Network</a></li></a>
+          <li>
+            <a href="notification.php">
+              <i class="fa-solid fa-bell" style="font-size:28px;margin-bottom:12px;"></i>
+              <a href="notification.php">Notification</a>
+              <?php if ($num_requests > 0) : ?>
+                <span class="badge" style="position: absolute;top: 1px; right: 180px; background-color: red; border-radius: 50%; width: 20px; text-align: center;"><?php echo $num_requests; ?></span>
+              <?php endif; ?>
+            </a>
+          </li>
           <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size:28px;margin-bottom:12px;"></i><a href="logout.php">Logout</a></a></li>
         </ul>
       </nav>
@@ -222,9 +258,12 @@ $postresult = mysqli_query($conn, $postquery);
         <?php if (!$viewingOwnProfile) { ?>
           <?php if ($connected) { ?>
             <button class="connect1" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-check"></i> Connected</button>
+          <?php } else if($pendingRequest) { ?>
+            <button class="connect1" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-clock"></i> Pending</button>
           <?php } else { ?>
             <button class="connect1" id="connect" data-user-id="<?php echo $userDetails['UserID'] ?>"><i class="fa-solid fa-user-plus"></i> Connect</button>
           <?php } ?>
+          
           <button onclick="redirectToMessages(<?php echo $userDetails['UserID']; ?>)" class="message_btn" id="message_btn"><i class="fa-solid fa-paper-plane"></i> Message</button>
         <?php } ?>
         <?php if ($viewingOwnProfile) { ?>
@@ -309,7 +348,7 @@ $postresult = mysqli_query($conn, $postquery);
       return $distance;
     }
 
-    $threshold_distance = 10; // Threshold distance in km
+    $threshold_distance = 1; // Threshold distance in km
 
     ?>
 
@@ -331,31 +370,32 @@ $postresult = mysqli_query($conn, $postquery);
     </div> -->
 
     <style>
-      
-    </style>
 
-  <div class="side-profile">
+    </style>
+    <div class="side-profile">
       <div class="sug">
-      <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
-       <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
+        <h2>Suggestions<i class="fa-solid fa-user-plus"></i> </h2>
+        <!-- <div><i class="fa-solid fa-xmark" onclick="closesug()"></i></div><br> -->
       </div>
-   
-       <div class="myside">
-     
-      <div class="follow">
-      <?php foreach ($follow_suggestions as $suser) : ?>
-        <div class="follow-section">
-          <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
-          <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
-          <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
+
+      <div class="myside">
+
+        <div class="follow">
+          <?php foreach ($follow_suggestions as $suser) : ?>
+            <div class="follow-section">
+              <img src="./uploads/<?php echo $suser['ProfileImage'] ?>" alt="" class="follow-profile">
+              <p><?php echo $suser['FirstName'] . ' ' . $suser['LastName']; ?></p>
+              <button class="connect1 suggestion-connect" id="fconnect" data-user-id="<?php echo $suser['UserID'] ?>">Connect</button>
+            </div>
+          <?php endforeach; ?>
+          <?php
+          if (count($follow_suggestions) < 1) {
+            echo "<h6>Currently no suggestions for You</h6>";
+          }
+          ?>
         </div>
-      <?php endforeach; ?>
-      <?php
-      if (count($follow_suggestions) < 1) {
-        echo "<h6>Currently no suggestions for You</h6>";
-      }
-      ?>
-    </div></div></div>
+      </div>
+    </div>
 
     <!-- <----------------------- Nishals works end ---------------------------->
 
