@@ -409,15 +409,17 @@ main {
 } */
 
 #footer {
-  /* position: fixed; */
-  left: 0;
+  /* left: 0; */
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   background-color: #0718c4;
   color: white;
   text-align: center;
   padding: 10px 0;
+}
+#footer p{
+  width: 100%;
 }
 
 /* .right button {
@@ -439,13 +441,15 @@ span.fa-solid.fa-arrow-up {
   margin: 20px auto;
 }
 /* Media queries for responsiveness */
-/* @media only screen and (min-width: 768px) {
-  .left,
-  .middle,
-  .right {
-    flex: 0 0 calc(33.33% - 20px);
+@media only screen and (min-width: 480px) {
+  #footer{
+    width: 100%;
   }
-} */
+  main.container{
+    justify-content: space-around;
+  
+  }
+}
 .left,
 .right {
   z-index: 5;
@@ -1408,10 +1412,22 @@ input[type="submit"] {
 /* Postpage */
 @media screen and (max-width: 480px) {
 .postcontainer{
-  width: 500px;
+  width: 350px;
+  height: 450px;
+}
+.customfile{
+  margin-top: 15px;
 }
 #posttext{
-  width:490px;
+  width:290px;
+  height: 250px;
+}
+.postmessage{
+  width: 290px;
+  height: 250px;
+}
+.postprofilename{
+  font-size: 15px;
 }
 }
 /* Edit-page */
@@ -1508,9 +1524,9 @@ input[type="submit"] {
   .new_post{
     width: 100%;
   }
-  footer{
+  /* footer{
     width: 100vw;
-  }
+  } */
   #hamburger {
     display: block;
   }
@@ -1580,12 +1596,12 @@ input[type="submit"] {
   }
   main.container{
     justify-content: space-around;
+    width: 670px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .left button{
-    background-color: #fff;
     font-size: 23px;
   }
   .profile-options h2{
@@ -1644,7 +1660,7 @@ input[type="submit"] {
 }
 .view-connect {
   position: relative;
-  right: 172px;
+  right: 12px;
   top: 16px;
   padding: 6px 10px;
 }
@@ -1742,169 +1758,6 @@ input[type="submit"] {
 }
 }
 
-@media screen and (max-width: 500px) {
-  /* -----------edit profile page------ */
-
-  .full .left1 {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      width: 0%;
-      background: #fff;
-  }
-  .full .left1 img {
-    display: none;
-  }
- .full-profile{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
- }
- .main-profile {
-  margin: 100px 20px 20px 20px;
-  width: 91%;
-  padding-bottom: 25px;
- }
- .username {
-  position: relative;
-  left: 210px;
-  top: 2px;
-  width: 200px;
-  height: 150px;
-}
-.main-profile .profile-image {
-  position: absolute;
-  left: 45px;
-  top: 182px;
-  width: 151px;
-  height: 151px;
-}
-.main-profile .cover-photo {
- 
-  height: 128px;
-
-}
-.flex{
-  height: 20px;
-}
-.edit-connect {
-  position: relative;
-  left: 15px;
-  top: -7px;
-}
-.view-connect {
-  position: relative;
-  right: 172px;
-  top: 16px;
-  padding: 6px 10px;
-}
-/* .flex p{
-  margin: 20px;
-} */
-.side-profile {
-  width: 90%;
-  margin: 20px;
-  height: 100%;
- border: none;
- padding: 5px;
-}
-.side-profile .myside .follow{
-  display: flex;
-}
-.side-profile .myside{
-  height: 100%;
-}
-.side-profile .myside .follow-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 26px 28px 26px 28px;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  height: 200px;
-}
-.side-profile .follow-section p{
-  text-align: center;
-}
-.edit-connect i ,.view-connect i{
- display: none;
-}
-.deleteacc {
-  border: none;
-  outline: none;
-  position: absolute;
-  top: 9px;
-    right: -12px;
-    background: transparent;
-}
-.main-profile hr{
-  display: none;
-}
-.main-profile .svg{
-  margin: 10px;
-}
-.flex svg{
-  height: 20px;
-}
-.feeds1 .feed .action-button {
-  opacity: 0;
-  top: 0px;
-  position: absolute;
-  height: 130px;
-  width: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #211f1faf;
-  color: #fff;
-  transition: .5s;
-}
-
-.feeds1 .feed .feed-image img{
-  width: 130px; /* Ensure the image never exceeds its container's width */
-  height: 130px; /* Maintain the aspect ratio */
-  border-radius: 0px;
-  overflow: hidden;
-  object-fit: cover;
-}
-.feeds1 {
-  margin: 30px;
-  gap: 13px;
-}
-.main-profile h4{
-  padding: 0;
-  text-align: center;
-}
-.one .fname ,.one .lname {
-  width: 100px;
-}
-fieldset{
-  width: 400px;
-}
-.edit textarea {
-  width: 100%;
-}
-.edit{
-  width: 90%;
-}
-.full .right1{
-  width: 100%;
-}
-.full .left1 .back-arrow{
-  display: block;
-}
-.left button{
-  display: block;
-    width: 50%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #fff;
-    color: lightgrey;
-    border: none;
-    cursor: pointer;
-}
-}
 @media  (max-width:1100px) {
   .full .left1 {
     display: none;
@@ -1935,36 +1788,32 @@ fieldset{
     position: absolute;
     left: 45px;
     top: 182px;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
+}
+
+.flex{
+  margin-top: 10px;
+  height: 35px;
 }
 .username {
   position: relative;
-  left: 162px;
+  left: 130px;
   top: 2px;
-  width: 174px;
+  width: 194px;
   height: 150px;
 }
 .username h1{
   font-size: 22px;
 }
 .view-connect{
-  right: 139px;
+  right: 122px;
 }
 .edit-connect {
 
-  left: 56px;
+  left: 60px;
 }
-
+.side-profile{
+  height: 350px;
 }
-@media  (max-width:480px) {
-  .username h1{
-    font-size: 25px;
-  }
-
-  .username {
-    position: relative;
-    left: 201px;
-  }
-
 }
