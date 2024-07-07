@@ -242,10 +242,7 @@ $num_requests = $row['num_requests'];
       </div>
       <nav>
         <ul>
-          <!-- <div class="box">
-          <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px"></i>
-          <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
-          </div> -->
+
           <div id="searchResults" style="text-align: center;"></div>
           <li><a href="home.php"><i class="fa-solid fa-house" style="font-size:30px;margin-bottom:12px;"></i><a href="home.php">Home</a></a></li>
           <li><a href="network.php"><svg fill="#ffff" height="28px" width="28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve" stroke="#ffff">
@@ -300,7 +297,6 @@ $num_requests = $row['num_requests'];
           }
         }
       </script>
-      <!-- <li><img src="../components/images/menu.png" alt=""></li> -->
     </div>
   </header>
   <main class="container">
@@ -541,19 +537,7 @@ $num_requests = $row['num_requests'];
     </section>
 
     <section class="right">
-      <!-- <script>
-        // Function to show chatbox and hide messaging options
-        function showChatbox() {
-          document.getElementById('chatbox').style.display = 'block';
-          document.getElementById('messaging-options').style.display = 'none';
-        }
 
-        // Function to hide chatbox and show messaging options
-        function hideChatbox() {
-          document.getElementById('chatbox').style.display = 'none';
-          document.getElementById('messaging-options').style.display = 'block';
-        }
-      </script> -->
       <div class="box">
         <i class="fa-solid fa-magnifying-glass" style="color:#0718c4;font-size:18px;margin:13px"></i>
         <input type="text" name="search" class="search" onkeypress="search()" placeholder="Search for user">
