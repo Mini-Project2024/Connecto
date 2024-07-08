@@ -1,5 +1,5 @@
 
-# CONNECTO - Campus Connect Platform 🏢🫂
+# CONNECTO - Campus Connect Platform 🏢
 
 ## Overview
 CONNECTO is a campus connect platform designed to bring students together, allowing them to connect, share posts, and chat with one another. This platform aims to foster a sense of community and enhance communication among students on campus.
