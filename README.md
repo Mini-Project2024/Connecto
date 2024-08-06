@@ -59,8 +59,9 @@ cd connecto
 8. Open your web browser and navigate to `http://localhost/connecto/components/pages/index.html` to start using CONNECTO.
 
 ## Images
-
-<img src="https://i.ibb.co/h8M2RPv/image.png" alt="main" border="0" style="width:500px; height:300px" />
+<center>
+   <img src="https://i.ibb.co/h8M2RPv/image.png" alt="main" border="0" style="width:500px; height:300px" />
+</center>
 
 ## Contributors
 
